@@ -1,0 +1,357 @@
+/*general setting*/
+.bwf-funnel-common .bwf_menu_list_primary ul li a {
+    color: #6f6f6f;
+    font-size: 14px;
+    padding: 15px 24px;
+}
+
+.bwf-widget-tabs .bwf-tab-title, .bwf_setting_inner .vue-form-generator fieldset legend {
+    line-height: 1.4;
+    color: #444;
+}
+
+.bwf-widget-tabs .bwf-tab-title {
+    font-size: 15px;
+}
+
+.bwf_setting_inner .vue-form-generator fieldset legend {
+    font-size: 20px;
+}
+
+.bwf_setting_inner .vue-form-generator fieldset .form-group > label {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.bwf_setting_inner .vue-form-generator fieldset .form-group > label span, .bwf_setting_inner .vue-form-generator fieldset .field-wrap > input {
+    margin-left: 0 !important;
+}
+
+.bwf_setting_inner .vue-form-generator fieldset .hint {
+    font-size: 11px;
+    line-height: 19px;
+}
+
+.bwf_setting_inner .vue-form-generator {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.bwf-funnel-common .bwf_menu_list_primary {
+    margin: 20px 0;
+}
+
+.bwf_setting_inner .form-group.field-input input[type="text"],
+.bwf_setting_inner .form-group.field-input input[type="email"],
+.bwf_setting_inner .form-group.field-input input[type="password"],
+.bwf_setting_inner .form-group.field-input input[type="url"],
+.bwf_setting_inner .form-group.field-input input[type="tel"],
+.bwf_setting_inner .form-group.field-input input[type="number"],
+.bwf_setting_inner textarea {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    font-size: 14px;
+    line-height: 1.42857143;
+    padding: 6px 12px;
+    margin: 0;
+    display: block;
+    color: #444;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    box-shadow: none;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}
+
+.bwf_setting_inner textarea {
+    height: 200px;
+}
+
+.bwf_save_btn_style {
+    min-width: 84px;
+    position: relative;
+    text-align: center;
+    padding: 0 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-size: .8125rem;
+    min-height: 36px;
+    box-shadow: none;
+    text-decoration: none;
+    display: inline-flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #0073aa;
+    color: #fff;
+    background: #0073aa;
+    white-space: nowrap;
+}
+.bwf_save_btn_style:hover, .bwf_save_btn_style:focus {
+    background-color: #135e96;
+}
+
+.bwf-tabs-view-vertical.bwf-widget-tabs {
+    float: left;
+    width: 100%;
+    display: flex;
+}
+
+.bwf-widget-tabs.bwf-tabs-view-vertical .bwf-tabs-wrapper {
+    width: 260px;
+    position: relative;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    float: left;
+    margin-right: 20px;
+    border-radius: 8px;
+    padding: 15px 10px;
+    background: #fff;
+    border: 1px solid #dedfea;
+}
+
+.bwf-widget-tabs .bwf-tab-title {
+    float: left;
+    width: 100%;
+    font-weight: 400;
+    position: relative;
+    padding: 18px 18px 17px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.bwf-widget-tabs .bwf-tab-title.bwf-active {
+    background: #f0faff;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    color: #0073aa;
+    cursor: default;
+}
+.bwf-widget-tabs .bwf-tab-title.bwf-active:after {
+    content: "";
+    font-family: dashicons;
+    float: right;
+    color: #009fea;
+}
+
+.bwf-widget-tabs.bwf-tabs-view-vertical .bwf-tabs-content-wrapper {
+    width: calc(100% - 260px);
+    float: left;
+    background: #fff;
+    min-height: 240px;
+    padding: 35px 30px;
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid #dedfea;
+}
+
+.bwf_setting_inner .bwf_forms_wrap {
+    margin-bottom: 20px;
+}
+
+.bwf_setting_inner fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.bwf_setting_inner .vue-form-generator fieldset legend {
+    font-weight: bold;
+    padding: 0 0 15px 10px;
+    font-size: 20px;
+    color: #444;
+}
+
+.bwf_setting_inner .form-group {
+    padding: 1em;
+    margin-bottom: 10px;
+}
+
+.bwf_setting_inner .form-group:before, .bwf_setting_inner .form-group:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.bwf_setting_inner .vue-form-generator fieldset .form-group > label {
+    width: 200px;
+    float: left;
+    margin-bottom: 0;
+    box-sizing: border-box;
+}
+
+.bwf_setting_inner .vue-form-generator fieldset .field-wrap, .bwf_setting_inner .vue-form-generator fieldset .form-group .hint, .wffn_funnel_setting .form-group .hint {
+    width: 100%;
+    float: none;
+    padding-left: 201px;
+    display: block;
+    box-sizing: border-box;
+}
+
+.bwf_setting_inner .vue-form-generator fieldset .hint {
+    margin: 0;
+    font-weight: 400;
+    clear: both;
+}
+
+.bwf_setting_inner .vue-form-generator fieldset .bwf_gsettings_sec_head {
+    border-bottom: 1px solid #ddd;
+}
+
+.bwf_setting_inner .vue-form-generator fieldset .form-group.bwf_gsettings_sec_head > label {
+    width: 100%;
+    font-weight: 600;
+}
+
+.bwf-tabs-view-vertical .bwf_setting_inner .bwf_form_button {
+    position: absolute;
+    left: -5px;
+    bottom: 20px;
+    float: none !important;
+    padding-left: 0;
+    margin: 0 !important;
+}
+
+#modal-general-settings_success.iziModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+    transition: margin-top 0.3s ease, height 0.3s ease;
+    transform: translateZ(0);
+}
+
+#modal-general-settings_success.iziModal .iziModal-header {
+    height: auto;
+    padding: 10px 15px 12px 15px;
+    background: #f9fdff !important;
+    box-shadow: none;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+#modal-general-settings_success.iziModal .iziModal-header-icon {
+    font-size: 23px;
+    float: left;
+    padding: 0 15px 0 0;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#modal-general-settings_success.iziModal .iziModal-progressbar {
+    position: absolute;
+    left: 0;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
+}
+
+#modal-general-settings_success.iziModal .iziModal-progressbar > div {
+    height: 2px;
+    width: 100%;
+}
+
+#modal-general-settings_success h2.iziModal-header-title {
+    font-size: 15px !important;
+    line-height: 1.4;
+    margin: 3px 0 0 0;
+    color: #000;
+    font-weight: 400 !important;
+}
+
+#modal-general-settings_success.iziModal .iziModal-header-buttons {
+    position: absolute;
+    top: 50%;
+    right: 14px !important;
+    margin: -16px 0 0 0;
+}
+
+@media (min-width: 1400px) {
+    .bwf_setting_inner textarea {
+        width: 600px;
+        height: 200px;
+    }
+
+    .bwf_setting_inner .form-group.field-input input[type="text"], .bwf_setting_inner .form-group.field-input input[type="email"], .bwf_setting_inner .form-group.field-input input[type="password"], .bwf_setting_inner .form-group.field-input input[type="url"], .bwf_setting_inner .form-group.field-input input[type="tel"], .bwf_setting_inner .form-group.field-input input[type="number"] {
+        width: 25em;
+    }
+}
+
+.bwf-funnel-common .error, .bwf-funnel-common .notice, .bwf-funnel-common .updated {
+    display: none;
+}
+
+.form-group.valid.wfacp_setting_track_and_events_start.field-label {
+    width: 200px;
+    float: left;
+    box-sizing: border-box;
+}
+
+.form-group.bwf_wrap_custom_html_tracking_general > label {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.form-group.bwf_wrap_custom_html_tracking_general {
+    margin-bottom: 0px;
+}
+
+.form-group.valid.wfacp_checkbox_wrap.wfacp_setting_track_and_events_end.field-checkbox {
+    width: 545px;
+    display: inline-block;
+    clear: both;
+}
+
+.bwf_setting_inner .vue-form-generator fieldset .form-group.valid.wfacp_checkbox_wrap.wfacp_setting_track_and_events_end.field-checkbox .field-wrap {
+    padding-left: 0px;
+}
+
+.bwf_setting_inner .vue-form-generator fieldset .listbox.form-control {
+    padding: 0 !important;
+    border: none !important;
+    border-radius: unset !important;
+    box-shadow: none !important;
+    overflow: unset !important;
+    max-height: unset !important;
+}
+
+.bwf-vue-custom-msg {
+    margin: 5px 0 15px;
+    border: 1px solid #ccd0d4;
+    display: block !important;
+    border-left-color: #dc3232;
+    background: #fff;
+    border-left-width: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+    padding: 1px 12px;
+}
+
+.bwf-vue-custom-msg p {
+    margin: 0.5em 0;
+    padding: 2px;
+}
+
+.bwf-vue-custom-msg a {
+    text-decoration: underline;
+}
+.bwf-hide {
+    display:none;
+}
+.bwf-hide.bwf-show {
+    display: block;
+    clear: both;
+}

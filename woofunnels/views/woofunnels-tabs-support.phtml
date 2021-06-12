@@ -1,0 +1,62 @@
+<?php if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
+$current_page = 'woofunnels';
+               ?>
+
+<style type="text/css">
+    .woofunnels_dashboard_tab_content #support-request {
+        margin-left: 10px;
+    }
+</style>
+<div class="woofunnels_plugins_wrap">
+    <h1><?php esc_html_e( 'Request Support', 'woofunnels' ); ?></h1>
+	<?php if ( $model ) { ?>
+    <div class="wp-filter">
+        <ul class="filter-links woofunnels_plugins_license_links">
+			<?php
+			$licenses = WooFunnels_licenses::get_instance();
+			$licenses->get_plugins_list();
+			if ( ! empty( $licenses->plugins_list ) ) {
+				?>
+                <li class="plugin-install-featured <?php echo ( isset( $model->current_tab ) && $model->current_tab === 'licenses' ) ? 'current' : ''; ?>">
+                    <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=licenses' );  ?>"><?php esc_html_e( 'Licenses', 'woofunnels' ); ?></a>
+                </li>
+			<?php } ?>
+            <li class="plugin-install-popular <?php echo ( isset( $model->current_tab ) && $model->current_tab === 'support' ) ? 'current' : ''; ?>">
+                <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=support' );  ?>"
+                   class=""><?php esc_html_e( 'Support', 'woofunnels' ); ?></a></li>
+			<?php if ( isset( $model->additional_tabs ) && is_array( $model->additional_tabs ) && count( $model->additional_tabs ) > 0 ): ?>
+				<?php foreach ( $model->additional_tabs as $tab ): ?>
+                    <li class="<?php echo ( isset( $model->current_tab ) && $model->current_tab === $tab['slug'] ) ? "current" : "" ?>">
+                        <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=' . $tab['slug'] );  ?>"><?php echo esc_html( $tab['label'] ); ?></a>
+                    </li>
+				<?php endforeach; ?>
+			<?php endif; ?>
+        </ul>
+    </div>
+    <br class="clear">
+    <div id="col-container" class="about-wrap">
+        <div class="woofunnels_dashboard_tab_content" id="support">
+            <div id="support-request">
+				<?php
+				_e( '
+				<p>
+Do you need support? We are happy to help :)	</p>
+<p>
+Please go through extensive documentation https://buildwoofunnels.com/docs/</p>
+<p>
+If you are still unable to find answers feel free to <a target="_blank" href="https://buildwoofunnels.com/support/">raise the ticket</a>.
+</p><p>
+For any pre-sales questions please fill out the Contact Form.</p>', 'woofunnels' )
+
+				?>
+            </div>
+			<?php do_action( 'woofunnels_support_after_content' ); ?>
+        </div>
+
+        <div class="woofunnels-area-right"> <?php do_action( 'woofunnels_support_right_area' ); ?> </div>
+		<?php } else { ?>
+            <div class="woofunnels_cannot_connect"> <?php echo apply_filters( 'woofunnels_no_data_support', esc_html__( 'Could not connect to server.', 'woofunnels' ) ); ?></div><?php } ?>
+    </div>
+

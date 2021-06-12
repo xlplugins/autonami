@@ -1,0 +1,187 @@
+<?php
+$current_page = 'woofunnels';
+?>
+<div class="woofunnels_plugins_wrap">
+    <h1><?php esc_html_e( 'View Plugins ', 'woofunnels' ); ?></h1>
+	<?php if ( $model ) { ?>
+        <div class="wp-filter">
+
+			<?php
+			if ( $model->tabs && count( $model->tabs ) > 0 ):
+				?>
+                <ul class="filter-links js_filters filter-primary"><?php
+				foreach ( $model->tabs as $key => $tabs ):
+					?>
+                    <li class="plugin-install-<?php echo $tabs['data-name']; ?> <?php echo ( $key == 0 ) ? "current" : ""; ?>"
+                        data-type="<?php echo $tabs['data-type']; ?>" data-name="<?php echo $tabs['data-name']; ?>">
+                        <a href="#<?php echo ( $tabs['data-name'] !== "" ) ? $tabs['data-name'] : 'all'; ?>"
+                           data-dd="ddddd" class=""><?php echo $tabs['title']; ?></a>
+                    </li>
+				<?php
+				endforeach;
+				?></ul><?php
+			endif;
+			?>
+            </ul>
+            <ul class="filter-links woofunnels_plugins_license_links">
+				<?php $licenses = WooFunnels_licenses::get_instance();
+				$licenses->get_plugins_list();
+				if ( ! empty( $licenses->plugins_list ) ) { ?>
+                    <li class="plugin-install-featured <?php echo ( isset( $model->current_tab ) && $model->current_tab === "licenses" ) ? "current" : "" ?>">
+                        <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . "&tab=licenses" );  ?>"><?php esc_html_e( 'Licenses', 'woofunnels' ); ?></a>
+                    </li>
+				<?php } ?>
+                <li class="plugin-install-popular">
+                    <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . "&tab=support" );  ?>"
+                       class=""><?php esc_html_e( 'Support', 'woofunnels' ); ?></a>
+                </li>
+
+				<?php if ( isset( $model->additional_tabs ) && is_array( $modal->additional_tabs ) && count( $modal->additional_tabs ) > 0 ): ?>
+					<?php foreach ( $model->additional_tabs as $tab ): ?>
+
+                        <li class="<?php echo ( isset( $model->current_tab ) && $model->current_tab === $tab['slug'] ) ? "current" : "" ?>">
+                            <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=' . $tab['slug'] );  ?>"><?php $tab['label']; ?></a>
+                        </li>
+					<?php endforeach; ?>
+				<?php endif; ?>
+            </ul>
+        </div>
+        <br class="clear">
+
+		<?php echo $model->welcome_text; ?>
+
+        <form id="plugin-filter" method="post">
+            <div class="wp-list-table widefat plugin-install">
+                <div id="the-list">
+					<?php if ( $model->data && count( $model->data ) > 0 ):$incr = 0;
+						foreach ( $model->data as $key => $addons ): ?>
+                            <div class="plugin-card plugin-card-<?php echo $key; ?>" data-index="<?php echo $incr; ?>"
+                                 data-terms='<?php echo json_encode( $addons->term ); ?>'>
+                                <div class="plugin-card-top">
+                                    <div class="name column-name">
+                                        <h3>
+                                            <a target="_blank" href="<?php echo $addons->title_link; ?>"
+                                               class="">
+												<?php echo $addons->title; ?>
+                                                <img src="<?php echo trim( $addons->icon_full_url ); ?>"
+                                                     class="plugin-icon" alt="">
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div class="action-links">
+                                        <ul class="plugin-action-buttons">
+
+											<?php if ( isset( $addons->button_config['state'] ) ): ?>
+                                                <li><a target="_blank" class="<?php echo $addons->button_config['state']; ?> button"
+                                                       data-slug="<?php echo $key; ?>"
+                                                       data-plugin="<?php echo $addons->pluginbasename; ?>"
+                                                       data-name="<?php echo $key; ?>"
+                                                       href="<?php echo $addons->button_config['url']; ?>"
+                                                       aria-label="Install BuddyPress 2.5.3 now"
+                                                       data-name="BuddyPress 2.5.3"><?php echo $addons->button_config['text']; ?></a>
+                                                </li>
+											<?php else: ?>
+                                                <li><span
+                                                            class="button button-disabled"><?php _e( 'Installed', 'woofunnels' ); ?></span>
+                                                </li>
+											<?php endif; ?>
+                                            <li><a target="_blank" href="<?php echo $addons->more_details_link ?>"
+                                                   class="open-plugin-details-modal" aria-label=""
+                                                   data-title=""><?php _e( 'More Details', 'woofunnels' ); ?></a></li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="desc column-description">
+										<?php echo mb_strimwidth( $addons->description, 0, 150, "..." ); ?> </div>
+                                </div>
+
+                                <div class="plugin-card-bottom woofunnels_plugins_status_div">
+                                    <p class="woofunnels_plugins_status"><span
+                                                class="woofunnels_status_text"><strong><?php _e( 'Status:', 'woofunnels' ); ?></strong> <span
+                                                    class="woofunnels_current_status woofunnels_available"><?php echo implode( " but ", $addons->status_config ); ?></span></span>
+                                    </p>
+                                </div>
+                                <div class="plugin-card-bottom woofunnels_plugins_features_div">
+                                    <div class="woofunnels_plugins_features">
+										<?php if ( $addons->additional_rows && count( $addons->additional_rows ) > 0 ): foreach ( $addons->additional_rows as $add_rows ): ?>
+
+                                            <div class="woofunnels_plugins_half_col">
+												<?php echo mb_strimwidth( $add_rows, 0, 70, "..." ); ?>  </div> <?php
+
+										endforeach;
+										endif;
+										?>
+
+
+                                    </div>
+
+
+                                </div>
+                                <div class="plugin-card-bottom woofunnels_plugins_features_links_div">
+                                    <div class="woofunnels_plugins_features_links woofunnels_plugins_deactivate_add clearfix ">
+                                        <ul class="subsubsub">
+
+											<?php
+											if ( $addons->additional_links && count( $addons->additional_links ) > 0 ): $i = 0;
+												foreach ( $addons->additional_links as $lable => $add_link ):
+													?>
+                                                    <li class="<?php echo $lable; ?>">
+
+														<?php
+														if ( $i > 0 ) {
+															echo "|";
+														}
+														?>
+                                                        <a target="_blank" href="<?php echo $add_link; ?>"><?php echo $lable; ?></a>
+
+                                                    </li> <?php
+													$i ++;
+												endforeach;
+											endif;
+											?>
+
+
+                                        </ul>
+
+										<?php
+										if ( $addons->plugin_state_config && count( $addons->plugin_state_config ) > 0 ):
+											?>
+                                            <ul class="woofunnels_plugins_options">
+											<?php
+											$i = 0;
+											foreach ( $addons->plugin_state_config as $lable => $add_link ):
+												?>
+                                                <li class="<?php echo $add_link['wrapperClass']; ?>">    <?php
+													if ( $i > 0 ) {
+														echo "|";
+													}
+													?> <a target="_blank" href="<?php echo $add_link['url']; ?>"
+                                                          class="<?php echo $add_link['class'] ?>"><?php echo $add_link['text']; ?></a>
+													<?php echo $add_link['after_link']; ?>
+                                                </li>
+												<?php
+												$i ++;
+											endforeach;
+											?></ul><?php
+										endif;
+										?>
+
+                                    </div>
+                                </div>
+                            </div>
+
+							<?php
+							$incr ++;
+						endforeach;
+					endif;
+					?>
+
+
+                </div>
+            </div>
+        </form>
+
+        <br class="clear">
+	<?php } else { ?>
+        <div class="woofunnels_cannot_connect"> <?php esc_html_e( 'Could not connect to server.', 'woofunnels' ); ?></div><?php } ?>
+</div>

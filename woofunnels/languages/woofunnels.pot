@@ -1,0 +1,492 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-10-16T15:26:41+05:30\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.3.0\n"
+"X-Domain: woofunnels\n"
+
+#: as-data-store/class-woofunnels-as-ds.php:148
+msgid "Every 1 minute"
+msgstr ""
+
+#: as-data-store/class-woofunnels-as-ds.php:308
+#: as-data-store/class-woofunnels-as-ds.php:354
+#: as-data-store/class-woofunnels-as-ds.php:401
+#: as-data-store/class-woofunnels-as-ds.php:441
+#: as-data-store/class-woofunnels-as-ds.php:481
+msgid "Method is called before plugins_loaded hook."
+msgstr ""
+
+#: as-data-store/class-woofunnels-as-ds.php:313
+#: as-data-store/class-woofunnels-as-ds.php:359
+msgid "Action Scheduler class not found."
+msgstr ""
+
+#: as-data-store/class-woofunnels-as-ds.php:318
+#: as-data-store/class-woofunnels-as-ds.php:364
+#: as-data-store/class-woofunnels-as-ds.php:406
+#: as-data-store/class-woofunnels-as-ds.php:446
+#: as-data-store/class-woofunnels-as-ds.php:486
+msgid "Hook is a required entity."
+msgstr ""
+
+#: as-data-store/class-woofunnels-as-ds.php:422
+msgid "No actions found for data: "
+msgstr ""
+
+#: compatibilities/class-bwf-wc-compatibility.php:103
+msgid "No Title"
+msgstr ""
+
+#: connector/class-wfco-admin.php:170
+msgid "Text Copied"
+msgstr ""
+
+#: connector/class-wfco-admin.php:171
+msgid "Sync Connector"
+msgstr ""
+
+#: connector/class-wfco-admin.php:172
+msgid "All the data of this Connector will be Synced."
+msgstr ""
+
+#: connector/class-wfco-admin.php:173
+#: connector/class-wfco-admin.php:185
+msgid "Please Wait..."
+msgstr ""
+
+#: connector/class-wfco-admin.php:174
+msgid "Sync in progress..."
+msgstr ""
+
+#: connector/class-wfco-admin.php:175
+msgid "Connector Synced"
+msgstr ""
+
+#: connector/class-wfco-admin.php:176
+msgid "We have detected change in the connector during syncing. Please re-save the Automations."
+msgstr ""
+
+#: connector/class-wfco-admin.php:177
+msgid "Oops"
+msgstr ""
+
+#: connector/class-wfco-admin.php:178
+#: connector/class-wfco-admin.php:179
+#: connector/class-wfco-admin.php:180
+msgid "There was some error. Please try again later."
+msgstr ""
+
+#: connector/class-wfco-admin.php:181
+msgid "Connector Updated"
+msgstr ""
+
+#: connector/class-wfco-admin.php:182
+msgid "We have detected change in the connector during updating. Please re-save the Automations."
+msgstr ""
+
+#: connector/class-wfco-admin.php:183
+msgid "Disconnecting Connector?"
+msgstr ""
+
+#: connector/class-wfco-admin.php:184
+msgid "All the action, tasks, logs of this connector will be deleted."
+msgstr ""
+
+#: connector/class-wfco-admin.php:186
+msgid "Disconnecting the connector ..."
+msgstr ""
+
+#: connector/class-wfco-admin.php:187
+msgid "Connector Disconnected"
+msgstr ""
+
+#: connector/class-wfco-admin.php:188
+msgid "Update"
+msgstr ""
+
+#: connector/class-wfco-admin.php:189
+msgid "Saving in progress..."
+msgstr ""
+
+#: connector/class-wfco-admin.php:190
+msgid "Updating..."
+msgstr ""
+
+#: connector/class-wfco-admin.php:191
+msgid "Connecting..."
+msgstr ""
+
+#: connector/class-wfco-ajax-controller.php:33
+#: connector/class-wfco-ajax-controller.php:85
+#: connector/class-wfco-ajax-controller.php:137
+msgid "Something is wrong, no data exists."
+msgstr ""
+
+#: connector/class-wfco-call.php:83
+msgid "CURL Error"
+msgstr ""
+
+#: connector/class-wfco-connector-screen.php:122
+msgid "Locked"
+msgstr ""
+
+#: connector/class-wfco-connector-screen.php:143
+msgid "Installed"
+msgstr ""
+
+#: connector/class-wfco-connector-screen.php:152
+#: connector/class-wfco-connector-screen.php:179
+msgid "Connect with "
+msgstr ""
+
+#: connector/class-wfco-connector-screen.php:159
+msgid "Disconnect"
+msgstr ""
+
+#: connector/class-wfco-connector-screen.php:168
+msgid "Sync"
+msgstr ""
+
+#: connector/class-wfco-connector-screen.php:172
+msgid "Settings"
+msgstr ""
+
+#: connector/class-wfco-connector-screen.php:181
+msgid "Connect"
+msgstr ""
+
+#: connector/class-wfco-connector-screen.php:187
+msgid "Activate"
+msgstr ""
+
+#: connector/class-wfco-connector-screen.php:191
+msgid "Installing.."
+msgstr ""
+
+#: connector/class-wfco-connector-screen.php:191
+msgid "Install"
+msgstr ""
+
+#: connector/class-wfco-connector.php:168
+msgid "Connector saved successfully"
+msgstr ""
+
+#: connector/class-wfco-connector.php:169
+msgid "Connector synced successfully"
+msgstr ""
+
+#: connector/class-wfco-connector.php:170
+msgid "Connector updated successfully"
+msgstr ""
+
+#: connector/class-wfco-connector.php:171
+msgid "Connector settings missing"
+msgstr ""
+
+#: connector/view/connector-admin.php:8
+msgid "WooFunnels Connectors"
+msgstr ""
+
+#: connector/view/connector-admin.php:43
+msgid "Connector connected successfully. Redirecting the page..."
+msgstr ""
+
+#: connector/view/connector-admin.php:62
+msgid "We have detected change in the connector during updation."
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:138
+#: contact/class-woofunnels-db-updater.php:154
+#: contact/class-woofunnels-db-updater.php:170
+#: contact/class-woofunnels-db-updater.php:733
+#: includes/class-woofunnels-admin-notifications.php:43
+#: includes/class-woofunnels-process.php:47
+msgid "Action failed. Please refresh the page and retry."
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:142
+#: contact/class-woofunnels-db-updater.php:158
+#: contact/class-woofunnels-db-updater.php:174
+#: contact/class-woofunnels-db-updater.php:737
+msgid "You don&#8217;t have permission to do this."
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:217
+msgid "Indexing of orders has started"
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:218
+msgid "It may take sometime to finish the process. We will update this notice once the process completes."
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:230
+msgid "Success"
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:231
+msgid "Order indexing completed successfully."
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:235
+#: contact/class-woofunnels-db-updater.php:254
+msgid "Dismiss"
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:248
+msgid "WooFunnels Notice"
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:249
+msgid "Unable to complete indexing of orders. Please <a target=\"_blank\" href=\"%s\">contact support</a> to get the issue resolved."
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:253
+msgid "Contact Support"
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:615
+msgid "Index Past Orders"
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:616
+msgid "This tool will scan all the previous orders and create an optimized index to run efficient queries. %s"
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:618
+msgid "Unable to complete indexing of orders."
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:619
+msgid "Please"
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:620
+msgid "contact support"
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:620
+msgid " to get the issue resolved."
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:623
+msgid "Learn more about this process"
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:627
+msgid "Running"
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:629
+msgid "Completed"
+msgstr ""
+
+#: contact/class-woofunnels-db-updater.php:632
+#: contact/class-woofunnels-db-updater.php:637
+msgid "Start"
+msgstr ""
+
+#: includes/class-woofunnels-admin-notifications.php:47
+#: includes/class-woofunnels-process.php:51
+msgid "Cheating huh?"
+msgstr ""
+
+#: includes/class-woofunnels-connector-deactivation.php:31
+msgid "Type of deactivation"
+msgstr ""
+
+#: includes/class-woofunnels-connector-deactivation.php:32
+#: includes/class-woofunnels-deactivate.php:43
+msgctxt "the text of the cancel button of the plugin deactivation dialog box."
+msgid "Cancel"
+msgstr ""
+
+#: includes/class-woofunnels-connector-deactivation.php:33
+#: includes/class-woofunnels-deactivate.php:39
+msgid "Submit & Deactivate"
+msgstr ""
+
+#: includes/class-woofunnels-connector-deactivation.php:34
+#: includes/class-woofunnels-deactivate.php:42
+msgid "Yes - Deactivate"
+msgstr ""
+
+#: includes/class-woofunnels-connector-deactivation.php:35
+#: includes/class-woofunnels-deactivate.php:40
+#: includes/class-woofunnels-deactivate.php:41
+#: includes/class-woofunnels-updater-licenses-table.php:149
+msgid "Deactivate"
+msgstr ""
+
+#: includes/class-woofunnels-connector-deactivation.php:36
+msgid "Temporary deactivate plugin"
+msgstr ""
+
+#: includes/class-woofunnels-connector-deactivation.php:37
+msgid "Permanently deactivate plugin"
+msgstr ""
+
+#: includes/class-woofunnels-dashboard-loader.php:573
+msgid "To enable this update please activate your WooFunnels license by visiting the Dashboard Page."
+msgstr ""
+
+#: includes/class-woofunnels-dashboard-loader.php:595
+#: includes/class-woofunnels-dashboard-loader.php:619
+#: includes/class-woofunnels-dashboard-loader.php:641
+#: includes/class-woofunnels-dashboard-loader.php:662
+msgid "Tools"
+msgstr ""
+
+#: includes/class-woofunnels-dashboard-loader.php:675
+msgid "All Plugins transients cleared."
+msgstr ""
+
+#: includes/class-woofunnels-dashboard-loader.php:724
+msgid "Reset Usage Tracking by WooFunnels"
+msgstr ""
+
+#: includes/class-woofunnels-dashboard-loader.php:725
+msgid "Reset"
+msgstr ""
+
+#: includes/class-woofunnels-dashboard-loader.php:726
+msgid "This will reset your usage tracking settings, causing it to show the opt-in notice again, so that you can manage your preferences."
+msgstr ""
+
+#: includes/class-woofunnels-dashboard-loader.php:748
+msgid "Logs"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:31
+msgid "If you have a moment, please let us know why you are deactivating"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:32
+msgid "I no longer need the plugin"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:33
+msgid "I found a better plugin"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:34
+msgid "I only needed the plugin for a short period"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:35
+msgid "What's the plugin's name?"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:36
+msgid "The plugin broke my site"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:37
+msgid "The plugin suddenly stopped working"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:38
+msgctxt "the text of the \"other\" reason for deactivating the plugin that is shown in the modal box."
+msgid "Other"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:44
+msgid "I can't pay for it anymore"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:45
+msgid "What price would you feel comfortable paying?"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:46
+msgid "I couldn't understand how to make it work"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:47
+msgid "The plugin is great, but I need specific feature that you don't support"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:48
+msgid "The plugin is not working"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:49
+msgid "It's not what I was looking for"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:50
+msgid "The plugin didn't work as expected"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:51
+msgid "What feature?"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:52
+msgid "Kindly share what didn't work so we can fix it for future users..."
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:53
+msgid "What you've been looking for?"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:54
+msgid "What did you expect?"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:55
+msgid "The plugin didn't work"
+msgstr ""
+
+#: includes/class-woofunnels-deactivate.php:56
+msgid "I don't like to share my information with you"
+msgstr ""
+
+#: includes/class-woofunnels-updater-licenses-table.php:53
+msgid "No plugins available for activation."
+msgstr ""
+
+#: includes/class-woofunnels-updater-licenses-table.php:105
+msgid "version %1$s available"
+msgstr ""
+
+#: includes/class-woofunnels-updater-licenses-table.php:127
+msgid ""
+"\n"
+"Place your license key here"
+msgstr ""
+
+#: includes/class-woofunnels-updater-licenses-table.php:133
+msgid "This license has expired. Login to <a target=\"_blank\" href=\"%s\">Your Account</a> and renew your license."
+msgstr ""
+
+#: includes/class-woofunnels-updater-licenses-table.php:139
+msgid "This license is no longer valid. Login to <a target=\"_blank\" href=\"%s\">Your Account</a> and renew your license."
+msgstr ""
+
+#: includes/class-woofunnels-updater-licenses-table.php:172
+msgid "Expire"
+msgstr ""
+
+#: includes/class-woofunnels-updater-licenses-table.php:231
+msgid "Plugin"
+msgstr ""
+
+#: includes/class-woofunnels-updater-licenses-table.php:232
+msgid "Version"
+msgstr ""
+
+#: includes/class-woofunnels-updater-licenses-table.php:233
+msgid "Key"
+msgstr ""
+
+#: includes/class-woofunnels-updater-licenses-table.php:235
+msgid "Renews On"
+msgstr ""

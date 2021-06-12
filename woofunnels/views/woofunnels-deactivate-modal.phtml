@@ -1,0 +1,432 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$slug     = $VARS['slug'];
+$licenses = apply_filters( 'woofunnels_plugins_license_needed', array() );
+
+$confirmation_message      = '';
+$reasons                   = $VARS['reasons']['default'];
+$reasons_list_items_html   = '';
+$plugin_customized_reasons = array();
+
+$incr = 0;
+
+foreach ( $reasons as $reason ) {
+	$list_item_classes = 'reason';
+	$reason_html       = '';
+
+	if ( ! empty( $reason['input_type'] ) ) {
+		$list_item_classes .= ' has-input';
+	}
+
+	if ( isset( $reason['html'] ) ) {
+		$list_item_classes .= ' has_html';
+	}
+	if ( ( isset( $reason['html'] ) && ( ! empty( $reason['html'] ) ) ) ) {
+		$reason_html .= '<div class="reason_html">' . $reason['html'] . '</div>';
+	}
+
+	$reasons_list_items_html .= sprintf( '<li class="%s" data-input-type="%s" data-input-placeholder="%s"><label><span><input type="radio" name="selected-reason" value="%s"/></span><span>%s</span></label>%s</li>', $list_item_classes, $reason['input_type'], $reason['input_placeholder'], $reason['id'] , $reason['text'], $reason_html );
+	$incr ++;
+}
+?>
+<style>
+    .woofunnels-modal {
+        position: fixed;
+        overflow: auto;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        z-index: 100000;
+        display: none;
+        background: rgba(0, 0, 0, 0.6)
+    }
+
+    .woofunnels-modal .woofunnels-modal-dialog {
+        background: transparent;
+        position: absolute;
+        left: 50%;
+        margin-left: -298px;
+        padding-bottom: 30px;
+        top: -100%;
+        z-index: 100001;
+        width: 596px
+    }
+
+    .woofunnels-modal li.reason.has_html .reason_html {
+        display: none;
+        border: 1px solid #ddd;
+        padding: 4px 6px;
+        margin: 6px 0 0 20px;
+    }
+
+    .woofunnels-modal li.reason.has_html.li-active .reason_html {
+        display: block;
+    }
+
+    @media (max-width: 650px) {
+        .woofunnels-modal .woofunnels-modal-dialog {
+            margin-left: -50%;
+            box-sizing: border-box;
+            padding-left: 10px;
+            padding-right: 10px;
+            width: 100%
+        }
+
+        .woofunnels-modal .woofunnels-modal-dialog .woofunnels-modal-panel > h3 > strong {
+            font-size: 1.3em
+        }
+
+        .woofunnels-modal .woofunnels-modal-dialog li.reason {
+            margin-bottom: 10px
+        }
+
+        .woofunnels-modal .woofunnels-modal-dialog li.reason .reason-input {
+            margin-left: 29px
+        }
+
+        .woofunnels-modal .woofunnels-modal-dialog li.reason label {
+            display: table
+        }
+
+        .woofunnels-modal .woofunnels-modal-dialog li.reason label > span {
+            display: table-cell;
+            font-size: 1.3em
+        }
+    }
+
+    .woofunnels-modal.active {
+        display: block
+    }
+
+    .woofunnels-modal.active:before {
+        display: block
+    }
+
+    .woofunnels-modal.active .woofunnels-modal-dialog {
+        top: 10%
+    }
+
+    .woofunnels-modal .woofunnels-modal-body, .woofunnels-modal .woofunnels-modal-footer {
+        border: 0;
+        background: #fefefe;
+        padding: 20px
+    }
+
+    .woofunnels-modal .woofunnels-modal-body {
+        border-bottom: 0
+    }
+
+    .woofunnels-modal .woofunnels-modal-body h2 {
+        font-size: 20px
+    }
+
+    .woofunnels-modal .woofunnels-modal-body > div {
+        margin-top: 10px
+    }
+
+    .woofunnels-modal .woofunnels-modal-body > div h2 {
+        font-weight: bold;
+        font-size: 20px;
+        margin-top: 0
+    }
+
+    .woofunnels-modal .woofunnels-modal-footer {
+        border-top: #eeeeee solid 1px;
+        text-align: right
+    }
+
+    .woofunnels-modal .woofunnels-modal-footer > .button {
+        margin: 0 7px
+    }
+
+    .woofunnels-modal .woofunnels-modal-footer > .button:first-child {
+        margin: 0
+    }
+
+    .woofunnels-modal .woofunnels-modal-panel:not(.active) {
+        display: none
+    }
+
+    .woofunnels-modal .reason-input {
+        margin: 3px 0 3px 22px
+    }
+
+    .woofunnels-modal .reason-input input, .woofunnels-modal .reason-input textarea {
+        width: 100%
+    }
+
+    body.has-woofunnels-modal {
+        overflow: hidden
+    }
+
+    #the-list .deactivate > .woofunnels-slug {
+        display: none
+    }
+
+    .woofunnels-modal li.reason-hide {
+        display: none;
+    }
+
+</style>
+<script type="text/javascript">
+    var currentPluginName = "";
+    var WooFunnelsCustomReasons = {};
+    var WooFunnelsDefaultReason = {};
+    var WooFunnelsallLicenses = '<?php echo wp_json_encode( $licenses, JSON_UNESCAPED_SLASHES ); ?>';
+    (function ($) {
+		<?php
+		foreach($VARS['reasons'] as $plugin_key => $plugin_reasons) {
+		$threshold = apply_filters( 'woofunnels_uninstall_reason_threshold_' . $plugin_key, 2 );
+		?>
+        WooFunnelsDefaultReason['<?php echo $plugin_key; ?>'] = '<?php echo apply_filters( 'woofunnels_default_reason_' . $plugin_key, '' ); ?>'
+		<?php
+		if ( $plugin_key === "default" ) {
+			continue;
+		}
+		$reasons_list_items_html_custom = "";
+		foreach ( $plugin_reasons as $key => $reason ) {
+			$list_item_classes = 'reason';
+			$reason_html       = '';
+
+			if ( ! empty( $reason['input_type'] ) ) {
+				$list_item_classes .= ' has-input';
+			}
+
+			if ( isset( $reason['html'] ) ) {
+				$list_item_classes .= ' has_html';
+			}
+			if ( ( isset( $reason['html'] ) && ( ! empty( $reason['html'] ) ) ) ) {
+				$reason_html .= '<div class="reason_html">' . $reason['html'] . '</div>';
+			}
+			$threshold = apply_filters( 'woofunnels_uninstall_reason_threshold_' . $plugin_key, 2 );
+
+
+			if ( $key < $threshold ) {
+				$reasons_list_items_html_custom = sprintf( '<li class="%s" data-input-type="%s" data-input-placeholder="%s"><label><span><input type="radio" name="selected-reason" value="%s"/></span><span>%s</span></label>%s</li>', $list_item_classes, $reason['input_type'], $reason['input_placeholder'], $reason['id'] , $reason['text'], $reason_html );
+
+			} else {
+				if ( $key == $threshold ) {
+					$reasons_list_items_html_custom .= '<li class="advanced show_m_reason" data-input-type="" data-input-placeholder="">
+  <a href="javascript:void(0)">I have more specific reason</a>
+</li>';
+				}
+				$reasons_list_items_html_custom .= sprintf( '<li class="%s" data-input-type="%s" data-input-placeholder="%s"><label><span><input type="radio" name="selected-reason" value="%s"/></span><span>%s</span></label>%s</li>', $list_item_classes, $reason['input_type'], $reason['input_placeholder'], $reason['id'] , $reason['text'], $reason_html );
+
+
+			}
+		}
+		?> WooFunnelsCustomReasons['<?php echo $plugin_key; ?>'] = <?php echo json_encode( $reasons_list_items_html_custom ); ?>;
+		<?php } ?>
+        var $deactivateLinks = {};
+        var reasonsHtml = <?php echo json_encode( $reasons_list_items_html ); ?>,
+            modalHtml =
+                '<div class="woofunnels-modal<?php echo ( $confirmation_message === "" ) ? ' no-confirmation-message' : ''; ?>">'
+                + ' <div class="woofunnels-modal-dialog">'
+                + '     <div class="woofunnels-modal-body">'
+                + '         <div class="woofunnels-modal-panel" data-panel-id="confirm"><p><?php echo $confirmation_message; ?></p></div>'
+                + '         <div class="woofunnels-modal-panel active" data-panel-id="reasons"><h3><strong><?php printf( WooFunnels_deactivate::load_str( 'deactivation-share-reason' ) ); ?>:</strong></h3><ul id="reasons-list">' + reasonsHtml + '</ul></div>'
+                + '     </div>'
+                + '     <div class="woofunnels-modal-footer">'
+                + '         <a href="#" class="button button-secondary button-deactivate"></a>'
+                + '         <a href="#" class="button button-primary button-close"><?php printf( WooFunnels_deactivate::load_str( 'deactivation-modal-button-cancel' ) ); ?></a>'
+                + '     </div>'
+                + ' </div>'
+                + '</div>',
+            $modal = $(modalHtml),
+
+            $deactivateLink = $('#the-list .deactivate > .woofunnels-slug').prev();
+
+        for (var i = 0; i < $deactivateLink.length; i++) {
+
+            $deactivateLinks[$($deactivateLink[i]).siblings(".woofunnels-slug").attr('data-slug')] = $deactivateLink[i].href;
+        }
+
+        $modal.appendTo($('body'));
+
+        registerEventHandlers();
+
+        function registerEventHandlers() {
+
+            $deactivateLink.on("click", function (evt) {
+                evt.preventDefault();
+
+
+                currentPluginName = $(this).siblings(".woofunnels-slug").attr('data-slug');
+                showModal();
+            });
+
+
+            $modal.on('click', '.show_m_reason a', function (evt) {
+                evt.preventDefault();
+                $modal.find(".reason-hide").show();
+                $(this).parent().remove();
+                return false;
+            });
+            $modal.on('click', '.button', function (evt) {
+                evt.preventDefault();
+
+                if ($(this).hasClass('disabled')) {
+                    return;
+                }
+
+                var _parent = $(this).parents('.woofunnels-modal:first');
+                var _this = $(this);
+
+                if (_this.hasClass('allow-deactivate')) {
+                    var $radio = $('input[type="radio"]:checked');
+
+
+                    var $selected_reason = $radio.parents('li:first'),
+                        $input = $selected_reason.find('textarea, input[type="text"]');
+
+
+                    $.ajax({
+                        url: ajaxurl,
+                        method: 'POST',
+                        data: {
+                            'action': 'woofunnels_submit_uninstall_reason',
+                            'reason_id': (0 !== $radio.length) ? $radio.val() : '',
+                            'reason_info': (0 !== $input.length) ? $input.val().trim() : '',
+                            'plugin_basename': currentPluginName,
+                            'licenses': WooFunnelsallLicenses,
+                            '_nonce': bwf_secure.nonce
+                        },
+                        beforeSend: function () {
+                            _parent.find('.button').addClass('disabled');
+                            _parent.find('.button-secondary').text('Processing...');
+                        },
+                        complete: function () {
+                            // Do not show the dialog box, deactivate the plugin.
+                            window.location.href = $deactivateLinks[currentPluginName];
+                        }
+                    });
+                } else if (_this.hasClass('button-deactivate')) {
+                    // Change the Deactivate button's text and show the reasons panel.
+                    _parent.find('.button-deactivate').addClass('allow-deactivate');
+
+                    showPanel('reasons');
+                }
+            });
+
+            $modal.on('click', 'input[type="radio"]', function () {
+                var _parent = $(this).parents('li:first');
+                var _parent_ul = $(this).parents('ul#reasons-list');
+
+                _parent_ul.children("li.li-active").removeClass("li-active");
+
+                $modal.find('.reason-input').remove();
+                $modal.find('.button-deactivate').text('<?php printf( WooFunnels_deactivate::load_str( 'deactivation-modal-button-submit' ) ); ?>');
+
+                if (_parent.hasClass('has_html')) {
+                    _parent.addClass('li-active');
+                }
+                if (_parent.hasClass('has-input')) {
+                    var inputType = _parent.data('input-type'),
+                        inputPlaceholder = _parent.data('input-placeholder'),
+                        reasonInputHtml = '<div class="reason-input">' + (('textfield' === inputType) ? '<input type="text" />' : '<textarea rows="5"></textarea>') + '</div>';
+
+                    _parent.append($(reasonInputHtml));
+                    _parent.find('input, textarea').attr('placeholder', inputPlaceholder).focus();
+                }
+            });
+
+            // If the user has clicked outside the window, cancel it.
+            $modal.on('click', function (evt) {
+                var $target = $(evt.target);
+
+                // If the user has clicked anywhere in the modal dialog, just return.
+                if ($target.hasClass('woofunnels-modal-body') || $target.hasClass('woofunnels-modal-footer')) {
+                    return;
+                }
+
+                // If the user has not clicked the close button and the clicked element is inside the modal dialog, just return.
+                if (!$target.hasClass('button-close') && ($target.parents('.woofunnels-modal-body').length > 0 || $target.parents('.woofunnels-modal-footer').length > 0)) {
+                    return;
+                }
+
+                closeModal();
+            });
+        }
+
+        function showModal() {
+            resetModal();
+
+            // Display the dialog box.
+            $modal.addClass('active');
+
+            $('body').addClass('has-woofunnels-modal');
+        }
+
+        function closeModal() {
+            $modal.removeClass('active');
+
+            $('body').removeClass('has-woofunnels-modal');
+        }
+
+        function resetModal() {
+
+
+            if (WooFunnelsCustomReasons.hasOwnProperty(currentPluginName) === true) {
+                $modal.find("ul#reasons-list").html(WooFunnelsCustomReasons[currentPluginName]);
+            } else {
+                $modal.find("ul#reasons-list").html(reasonsHtml);
+
+            }
+            var defaultSelect = WooFunnelsDefaultReason[currentPluginName] || WooFunnelsDefaultReason['default'];
+
+            $modal.find('.button').removeClass('disabled');
+
+            // Uncheck all radio buttons.
+            $modal.find('input[type="radio"]').prop('checked', false);
+
+            if (defaultSelect !== "") {
+                $modal.find('input[type="radio"][value="' + defaultSelect + '"]').prop('checked', true);
+                $modal.find('input[type="radio"][value="' + defaultSelect + '"]').parents('li.reason').addClass('li-active');
+            }
+
+            // Remove all input fields ( textfield, textarea ).
+            $modal.find('.reason-input').remove();
+
+            var $deactivateButton = $modal.find('.button-deactivate');
+            $modal.find(".reason-hide").hide();
+            /*
+             * If the modal dialog has no confirmation message, that is, it has only one panel, then ensure
+             * that clicking the deactivate button will actually deactivate the plugin.
+             */
+            if ($modal.hasClass('no-confirmation-message')) {
+                $deactivateButton.addClass('allow-deactivate');
+
+                showPanel('reasons');
+            } else {
+                $deactivateButton.removeClass('allow-deactivate');
+
+                showPanel('confirm');
+            }
+        }
+
+        function showPanel(panelType) {
+            $modal.find('.woofunnels-modal-panel').removeClass('active ');
+            $modal.find('[data-panel-id="' + panelType + '"]').addClass('active');
+
+            updateButtonLabels();
+        }
+
+        function updateButtonLabels() {
+            var $deactivateButton = $modal.find('.button-deactivate');
+
+            // Reset the deactivate button's text.
+            if ('confirm' === getCurrentPanel()) {
+                $deactivateButton.text('<?php printf( WooFunnels_deactivate::load_str( 'deactivation-modal-button-confirm' ) ); ?>');
+            } else {
+                $deactivateButton.text('<?php printf( WooFunnels_deactivate::load_str( 'deactivation-modal-button-deactivate' ) ); ?>');
+            }
+        }
+
+        function getCurrentPanel() {
+            return $modal.find('.woofunnels-modal-panel.active').attr('data-panel-id');
+        }
+    })(jQuery);
+</script>

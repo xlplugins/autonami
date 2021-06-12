@@ -1,0 +1,3966 @@
+# Copyright (C) 2021 BuildWooFunnels
+# This file is distributed under the same license as the Autonami Marketing Automations For WordPress plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Autonami Marketing Automations For WordPress 2.0.beta.04.14\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-marketing-automations\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-04-16T01:05:45+05:30\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: wp-marketing-automations\n"
+
+#. Plugin Name of the plugin
+msgid "Autonami Marketing Automations For WordPress"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://buildwoofunnels.com/wordpress-marketing-automation-autonami/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Power up all your essential functionalities like sending cart abandonment emails, tracking their conversions and many other marketing/ admin automated workflows."
+msgstr ""
+
+#. Author of the plugin
+msgid "BuildWooFunnels"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://buildwoofunnels.com"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:101
+msgid "<strong>Warning! Autonami is in Sandbox Mode</strong>. New Tasks will not be created & existing Tasks will not execute."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:122
+msgid "Autonami"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:124
+msgid "Dashboards"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:137
+msgid "Carts"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:147
+msgid "Analytics"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:150
+msgid "Settings"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:200
+#: rules/views/rules-basic.php:88
+msgid "OR"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:202
+msgid "Remove"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:285
+msgid "Successfully Authenticated"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:365
+#: admin/includes/class-bwfan-automations-table.php:206
+#: admin/includes/class-bwfan-automations-table.php:207
+#: admin/includes/class-bwfan-logs-table.php:119
+#: admin/includes/class-bwfan-logs-table.php:120
+#: admin/includes/class-bwfan-tasks-table.php:134
+#: admin/includes/class-bwfan-tasks-table.php:135
+#: includes/class-bwfan-common.php:3776
+#: includes/class-bwfan-logs.php:561
+#: includes/class-bwfan-logs.php:562
+#: includes/class-bwfan-tasks.php:1196
+#: includes/class-bwfan-tasks.php:1197
+msgid "Not Found"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:497
+msgid "minute"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:498
+msgid "hour"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:499
+msgid "day"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:502
+#: admin/view/integrations.php:167
+msgid "minutes"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:503
+#: admin/view/integrations.php:169
+msgid "hours"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:504
+#: admin/view/integrations.php:171
+msgid "days"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:510
+msgid "Sync Integration"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:511
+msgid "All the data of this Integration will be Synced."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:512
+#: admin/class-bwfan-admin.php:522
+#: admin/class-bwfan-admin.php:533
+#: admin/class-bwfan-admin.php:553
+#: admin/class-bwfan-admin.php:558
+msgid "Please Wait..."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:513
+msgid "Sync in progress..."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:514
+msgid "Integration Synced"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:515
+msgid "We have detected change in the integration during syncing. Please Re-save your Automations."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:516
+msgid "Oops"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:517
+#: admin/class-bwfan-admin.php:518
+#: admin/class-bwfan-admin.php:519
+msgid "There was some error. Please try again later."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:520
+msgid "Delete Connector"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:521
+msgid "All the Tasks of this Integration will be Deleted."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:523
+msgid "Disconnecting the connector ..."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:524
+msgid "Connector Disconnected"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:525
+msgid "Task Executed"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:526
+msgid "Just Executed"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:527
+msgid "Log Deleted"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:528
+msgid "Task Deleted"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:529
+msgid "Change in Event"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:530
+msgid "You are about to change the event. You would need to Re-create your automation."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:531
+msgid "Delete Automation"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:532
+msgid "All the Tasks of this automation will be deleted."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:534
+msgid "Deleting the automation..."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:535
+msgid "Automation Deleted"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:536
+msgid "Merge Tag Error"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:537
+msgid "Please Check All Your Merge Tags."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:538
+msgid "Incompatible Action"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:539
+msgid "Selected Action is not compatible with the selected Event."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:540
+msgid "Incompatible Event"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:541
+msgid "Selected Event is not compatible with the Integrations. If you proceed, then you would need to re-create your integrations."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:542
+msgid "Please select an event"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:543
+msgid "Please select a trigger"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:544
+msgid "Please select an action"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:545
+msgid "Change in Source ! You would need to re-create you automation."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:546
+msgid "Activated"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:547
+msgid "Deactivated"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:548
+msgid "Automation is in sync process"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:549
+msgid "Delete Task"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:550
+msgid "Are you sure to delete the task ?"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:551
+msgid "Are you sure to delete the batch process"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:552
+msgid "This batch process will be deleted."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:554
+msgid "Deleting the batch process..."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:555
+msgid "Batch Process Deleted"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:556
+msgid "Are you sure to terminate the batch process"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:557
+msgid "This batch process will be terminated."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:559
+msgid "Terminating the batch process..."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:560
+msgid "Batch Process Terminated"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:620
+msgid "Thanks for creating with BuildWooFunnels. Need Help? <a href=\"%s\" target=\"_blank\">Contact Support</a>."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:840
+msgid "Automations"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:844
+msgid "Task History"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:851
+msgid "Recipes"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:855
+msgid "Batch Process"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:927
+msgid "Customer order sync in progress."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:972
+msgid "Error occurred in Automation creation."
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1055
+msgid "Unsubscribers"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1059
+msgid "Endpoints"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1063
+#: admin/includes/class-bwfan-automations-table.php:443
+msgid "Actions"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1165
+msgid "Messaging"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1170
+msgid "Email"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1180
+msgid "Users"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1181
+msgid "Advanced"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1187
+msgid "Contacts"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1188
+#: admin/includes/class-bwfan-logs-table.php:250
+#: admin/includes/class-bwfan-tasks-table.php:273
+#: admin/includes/class-bwfan-unsubscribers-table.php:138
+#: includes/class-bwfan-common.php:277
+#: includes/class-bwfan-common.php:3929
+#: includes/class-bwfan-rules-loader.php:70
+msgid "Automation"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1195
+msgid "Send Data"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1200
+msgid "Post"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1293
+msgid "Total Spent"
+msgstr ""
+
+#: admin/class-bwfan-admin.php:1346
+msgid "%s order"
+msgid_plural "%s orders"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-bwfan-admin.php:1368
+msgid "Contact Profile"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:38
+msgid "All"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:39
+msgid "Active"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:40
+msgid "Inactive"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:75
+msgid "No Automation available."
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:133
+msgid "Edit"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:155
+msgid "Duplicate"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:162
+msgid "Export"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:169
+#: admin/includes/class-bwfan-automations-table.php:322
+#: admin/includes/class-bwfan-logs-table.php:211
+#: admin/includes/class-bwfan-logs-table.php:395
+#: admin/includes/class-bwfan-tasks-table.php:235
+#: admin/includes/class-bwfan-tasks-table.php:423
+#: admin/frontend/dist/48.df4fbbd6feb712035790.js:1
+#: admin/frontend/dist/57.755a7c5ab0842464ccb2.js:1
+#: admin/frontend/src/settings/components/unsubscribers/bulk-action.js:22
+#: admin/frontend/src/settings/pages/tools/index.js:37
+#: admin/frontend/src/settings/pages/tools/index.js:46
+#: admin/frontend/src/settings/pages/tools/index.js:58
+#: admin/frontend/src/settings/pages/tools/index.js:67
+msgid "Delete"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:341
+#: includes/db/class-bwfan-model-contact-automations.php:20
+msgid "N/A"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:394
+msgid "Event doesn't exists. Kindly check the Automation and re-save it"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:396
+msgid "Automation is correctly configured"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:441
+msgid "Name"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:442
+msgid "Event"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:444
+msgid "Tasks"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:445
+msgid "Total Runs"
+msgstr ""
+
+#: admin/includes/class-bwfan-automations-table.php:446
+msgid "Status"
+msgstr ""
+
+#: admin/includes/class-bwfan-header.php:147
+msgid "Join our community"
+msgstr ""
+
+#: admin/includes/class-bwfan-header.php:148
+msgid "Meet the other users"
+msgstr ""
+
+#: admin/includes/class-bwfan-header.php:154
+msgid "Get Help"
+msgstr ""
+
+#: admin/includes/class-bwfan-header.php:155
+msgid "Contact support team"
+msgstr ""
+
+#: admin/includes/class-bwfan-header.php:161
+msgid "Read Docs"
+msgstr ""
+
+#: admin/includes/class-bwfan-header.php:162
+msgid "Get help along the way"
+msgstr ""
+
+#: admin/includes/class-bwfan-header.php:299
+#: admin/frontend/dist/46.9cf19596d6e3e5b79140.js:1
+#: admin/frontend/dist/49.9cd91300ef5012bcf678.js:1
+#: admin/frontend/dist/50.6ea8f388a1fcccdbf607.js:1
+#: admin/frontend/dist/51.384a0bee18c87a53f707.js:1
+#: admin/frontend/dist/53.a92d67a5cf0a3e000372.js:1
+#: admin/frontend/dist/56.d4f52bf435a3473e012a.js:1
+#: admin/frontend/src/client/hooks/use-automation-nav.js:7
+msgid "Engagement"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:50
+msgid "There are no completed tasks"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:53
+msgid "There are no failed tasks"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:117
+#: admin/includes/class-bwfan-logs-table.php:118
+#: admin/includes/class-bwfan-logs-table.php:154
+#: admin/includes/class-bwfan-tasks-table.php:132
+#: admin/includes/class-bwfan-tasks-table.php:133
+#: admin/includes/class-bwfan-tasks-table.php:170
+#: includes/class-bwfan-logs.php:559
+#: includes/class-bwfan-logs.php:560
+#: includes/class-bwfan-logs.php:596
+#: includes/class-bwfan-tasks.php:103
+#: includes/class-bwfan-tasks.php:1194
+#: includes/class-bwfan-tasks.php:1195
+#: includes/class-bwfan-tasks.php:1232
+msgid "Data unavailable. Contact Support."
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:201
+#: admin/includes/class-bwfan-tasks-table.php:220
+msgid "Preview"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:244
+#: admin/includes/class-bwfan-tasks-table.php:267
+msgid "Task"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:245
+#: admin/includes/class-bwfan-tasks-table.php:268
+msgid "Action"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:246
+#: admin/includes/class-bwfan-tasks-table.php:269
+msgid "Data"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:253
+#: admin/includes/class-bwfan-tasks-table.php:276
+#: admin/includes/class-bwfan-unsubscribers-table.php:137
+#: admin/frontend/dist/48.df4fbbd6feb712035790.js:1
+#: admin/frontend/src/settings/components/unsubscribers/unsubscriber-list.js:71
+msgid "Date"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:271
+msgid "Selected Logs scheduled to run now"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:277
+msgid "Selected Logs Deleted"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:365
+#: admin/includes/class-bwfan-tasks-table.php:395
+msgid "Select bulk action"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:367
+#: admin/includes/class-bwfan-tasks-table.php:397
+msgid "Bulk Actions"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:377
+#: admin/includes/class-bwfan-tasks-table.php:407
+#: admin/frontend/dist/48.df4fbbd6feb712035790.js:1
+#: admin/frontend/src/settings/components/unsubscribers/bulk-action.js:71
+msgid "Apply"
+msgstr ""
+
+#: admin/includes/class-bwfan-logs-table.php:399
+msgid "Reschedule"
+msgstr ""
+
+#: admin/includes/class-bwfan-tasks-table.php:50
+msgid "There are no scheduled tasks"
+msgstr ""
+
+#: admin/includes/class-bwfan-tasks-table.php:52
+msgid "There are no paused tasks"
+msgstr ""
+
+#: admin/includes/class-bwfan-tasks-table.php:232
+msgid "Run Now"
+msgstr ""
+
+#: admin/includes/class-bwfan-tasks-table.php:298
+msgid "Selected Tasks scheduled to run now"
+msgstr ""
+
+#: admin/includes/class-bwfan-tasks-table.php:300
+msgid "Paused Tasks cannot be executed"
+msgstr ""
+
+#: admin/includes/class-bwfan-tasks-table.php:307
+msgid "Selected Tasks Deleted"
+msgstr ""
+
+#: admin/includes/class-bwfan-tasks-table.php:424
+msgid "Execute"
+msgstr ""
+
+#: admin/includes/class-bwfan-unsubscribers-table.php:39
+msgid "No unsubscribers available."
+msgstr ""
+
+#: admin/includes/class-bwfan-unsubscribers-table.php:136
+#: admin/frontend/dist/48.df4fbbd6feb712035790.js:1
+#: admin/frontend/src/settings/components/unsubscribers/unsubscriber-list.js:70
+msgid "Contact"
+msgstr ""
+
+#: admin/includes/class-bwfan-unsubscribers-table.php:209
+msgid "N.A."
+msgstr ""
+
+#: admin/view/automation-builder-view.php:10
+msgid "Automation doesn't exists, something is wrong."
+msgstr ""
+
+#: admin/view/automation-builder-view.php:20
+msgid "Now Building"
+msgstr ""
+
+#: admin/view/automation-builder-view.php:39
+msgid "Live"
+msgstr ""
+
+#: admin/view/automation-builder-view.php:40
+msgid "Sandbox"
+msgstr ""
+
+#: admin/view/automation-builder-view.php:94
+msgid "Automation Name"
+msgstr ""
+
+#: admin/view/automation-builder-view.php:97
+msgid "Enter Automation Name"
+msgstr ""
+
+#: admin/view/automation-builder-view.php:106
+#: admin/view/automation-builder-view.php:107
+msgid "Update"
+msgstr ""
+
+#: admin/view/integrations.php:12
+msgid "Immediately"
+msgstr ""
+
+#: admin/view/integrations.php:13
+msgid "After a delay"
+msgstr ""
+
+#: admin/view/integrations.php:14
+msgid "Fixed"
+msgstr ""
+
+#: admin/view/integrations.php:175
+msgid "Delay untill a specific time of day (24 hr)"
+msgstr ""
+
+#: admin/view/integrations.php:188
+msgid "Delay untill a specific day(s) of the week"
+msgstr ""
+
+#: admin/view/integrations.php:203
+msgid "Select Date"
+msgstr ""
+
+#: admin/view/integrations.php:207
+msgid "Select Time (24 hr)"
+msgstr ""
+
+#: admin/view/integrations.php:230
+msgid "immediately"
+msgstr ""
+
+#: admin/view/integrations.php:232
+msgid "after"
+msgstr ""
+
+#: admin/view/integrations.php:236
+msgid "on"
+msgstr ""
+
+#: admin/view/integrations.php:239
+msgid "with scheduled variable"
+msgstr ""
+
+#: admin/view/integrations.php:244
+msgid "Perform this action"
+msgstr ""
+
+#: admin/view/integrations.php:263
+msgid "Perform this action for a particular language."
+msgstr ""
+
+#: admin/view/integrations.php:285
+msgid "Execution Priority"
+msgstr ""
+
+#: admin/view/integrations.php:286
+#: admin/view/integrations.php:289
+msgid "Select execution priority for the task."
+msgstr ""
+
+#: admin/view/integrations.php:296
+msgid "Critical"
+msgstr ""
+
+#: admin/view/integrations.php:301
+msgid "High"
+msgstr ""
+
+#: admin/view/integrations.php:306
+msgid "Medium"
+msgstr ""
+
+#: admin/view/integrations.php:311
+msgid "Low"
+msgstr ""
+
+#: admin/view/integrations.php:323
+msgid "Search Merge Tags"
+msgstr ""
+
+#: admin/view/integrations.php:335
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:37
+msgid "Select"
+msgstr ""
+
+#: admin/view/integrations.php:351
+msgid "Please Select An Event"
+msgstr ""
+
+#: admin/view/logs-page-filter.php:13
+#: admin/view/tasks-page-filter.php:13
+msgid "Select Automation"
+msgstr ""
+
+#: admin/view/logs-page-filter.php:28
+#: admin/view/script-ui.php:8
+#: admin/view/tasks-page-filter.php:29
+msgid "Select Action"
+msgstr ""
+
+#: admin/view/logs-page-filter.php:40
+#: admin/view/tasks-page-filter.php:40
+msgid "Filter"
+msgstr ""
+
+#: admin/view/preview_email.php:20
+msgid "Loading ..."
+msgstr ""
+
+#: admin/view/recipe-admin.php:77
+msgid "Automation Recipes"
+msgstr ""
+
+#: admin/view/script-ui.php:2
+msgid "START WHEN?"
+msgstr ""
+
+#: admin/view/script-ui.php:3
+msgid "Select An Event"
+msgstr ""
+
+#: admin/view/script-ui.php:4
+msgid "Select Conditions"
+msgstr ""
+
+#: admin/view/script-ui.php:5
+msgid "WHAT'S NEXT?"
+msgstr ""
+
+#: admin/view/script-ui.php:6
+msgid "Add Condition"
+msgstr ""
+
+#: admin/view/script-ui.php:7
+msgid "Add Action"
+msgstr ""
+
+#: admin/view/script-ui.php:9
+msgid "IF"
+msgstr ""
+
+#: admin/view/script-ui.php:10
+msgid "YES"
+msgstr ""
+
+#: admin/view/script-ui.php:11
+msgid "NO"
+msgstr ""
+
+#: admin/view/script-ui.php:12
+msgid "THEN"
+msgstr ""
+
+#: admin/view/script-ui.php:13
+msgid "END"
+msgstr ""
+
+#: admin/view/script-ui.php:473
+msgid "Save Event"
+msgstr ""
+
+#: admin/view/script-ui.php:485
+msgid "Save Action"
+msgstr ""
+
+#: admin/view/script-ui.php:499
+msgid "Save Rules"
+msgstr ""
+
+#: admin/view/script-ui.php:522
+msgid "Selected action is not present."
+msgstr ""
+
+#: admin/view/script-ui.php:556
+msgid "You have copied"
+msgstr ""
+
+#: admin/view/script-ui.php:557
+msgid "Paste in the available dash section"
+msgstr ""
+
+#: admin/view/section-automation.php:27
+msgid "Automation not available"
+msgstr ""
+
+#: admin/view/section-automation.php:28
+msgid "Please check dependent Plugins/ Connectors to see if they are active. Unable to figure out? Contact Support."
+msgstr ""
+
+#: admin/view/section-automation.php:37
+msgid "Automation cannot be edited as past orders sync is in progress."
+msgstr ""
+
+#: admin/view/section-automation.php:66
+msgid "Submit"
+msgstr ""
+
+#: admin/view/tasks-info-modal.php:3
+msgid "Details"
+msgstr ""
+
+#: admin/view/tasks-info-modal.php:7
+msgid "Automation:"
+msgstr ""
+
+#: admin/view/tasks-info-modal.php:17
+msgid "Event:"
+msgstr ""
+
+#: admin/view/tasks-info-modal.php:21
+msgid "Action:"
+msgstr ""
+
+#: admin/view/tasks-info-modal.php:32
+msgid "Notes"
+msgstr ""
+
+#: admin/view/trigger-events.php:51
+msgid "Choose An Event"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-action.php:49
+msgid "Api Error: No response from API"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-action.php:95
+msgid "Merge tags"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-action.php:165
+msgid "Curl Error"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-action.php:283
+msgid "Default Resource Message"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:189
+msgid "Automation Updated"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:227
+msgid "Automation Successfully Updated"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:275
+msgid "Log Deleted Successfully"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:292
+msgid "Task Deleted Successfully"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:309
+#: includes/api/autonami/class-bwfan-api-run-automation-task.php:36
+#: includes/api/autonami/class-bwfan-api-run-automation-tasks.php:36
+#: includes/api/autonami/class-bwfan-api-run-automation-tasks.php:70
+msgid "Task Executed Successfully"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:582
+#: modules/utm/class-bwfan-unsubscribe.php:146
+msgid "Security check failed"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:593
+msgid "Sync is in process for this automation, cannot initialise another sync."
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:607
+msgid "No event found for the automation."
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:631
+#: includes/abstracts/class-bwfan-ajax-controller.php:708
+#: includes/abstracts/class-bwfan-ajax-controller.php:797
+msgid "Error"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:635
+msgid "Email not valid"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:643
+msgid "Automation ID missing"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:688
+msgid "Test email sent."
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:694
+msgid "Server does not support email facility"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:711
+msgid "Phone number can't be blank"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:729
+msgid "Twilio is not connected"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:764
+msgid "SMS sent successfully."
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:768
+msgid "SMS could not be sent"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:802
+msgid "Technical error!"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-ajax-controller.php:829
+msgid "Something went wrong while importing Recipe. Please contact support."
+msgstr ""
+
+#: includes/abstracts/class-bwfan-event.php:92
+msgid "Event has been changed in the automation"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-event.php:406
+msgid "Select From Date"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-event.php:414
+msgid "Select To Date"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-event.php:422
+msgid "Select Actions"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-event.php:433
+msgid "Please select atleast 1 action"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-event.php:446
+#: includes/abstracts/class-bwfan-event.php:447
+msgid "Sync"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-event.php:486
+msgid "Sync process for this automation is already running! Please try again later."
+msgstr ""
+
+#: includes/abstracts/class-bwfan-event.php:533
+msgid "No Data found"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-event.php:539
+msgid " records found"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-event.php:541
+msgid ". Do you want to sync the records ?"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-event.php:589
+msgid "Process Scheduled"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-event.php:1018
+#: includes/abstracts/class-bwfan-event.php:1035
+msgid "Not a valid WC order object"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:42
+msgid "Days"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:43
+msgid "Hours"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:44
+msgid "Minutes"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:49
+msgid "Select coupon"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:52
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:136
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:142
+msgid "Select Coupon"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:53
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:143
+msgid "Choose Coupon"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:59
+msgid "Coupon name"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:67
+msgid "Select Expiry Type"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:83
+msgid "Expiry"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:90
+msgid "Restrict user email with coupon"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:160
+msgid "Select Date Format"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:174
+msgid "Modify (Optional)"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:216
+msgid "Fallback"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:231
+msgid "This merge tag requires indexing of previous orders. Kindly "
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:232
+#: rules/rules/base.php:118
+msgid "Sync Now"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:248
+msgid "Copy To Clipboard"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:266
+msgid "Meta Key"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tag.php:270
+msgid "Input the correct meta key in order to get the data"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:10
+#: includes/merge_tags/class-bwfan-wc-cart-currency.php:9
+msgid "Currency Symbol"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:11
+msgid "3 Letter Currency code"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:35
+msgid "Select Item Number"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:49
+msgid "First Item"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:50
+msgid "Second Item"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:51
+msgid "Third Item"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:52
+msgid "Fourth Item"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:53
+msgid "Fifth Item"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:54
+msgid "Sixth Item"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:55
+msgid "Seventh Item"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:56
+msgid "Eighth Item"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:57
+msgid "Ninth Item"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-cart-display.php:58
+msgid "Tenth Item"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-product-display.php:23
+msgid "Select Template"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-product-display.php:46
+#: includes/merge_tags/class-bwfan-wc-order-cross-sells.php:26
+#: includes/merge_tags/class-bwfan-wc-order-related-products.php:26
+msgid "Product Grid - 2 Column"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-product-display.php:47
+#: includes/merge_tags/class-bwfan-wc-order-cross-sells.php:27
+#: includes/merge_tags/class-bwfan-wc-order-related-products.php:27
+msgid "Product Grid - 3 Column"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-product-display.php:48
+#: includes/merge_tags/class-bwfan-wc-order-cross-sells.php:28
+#: includes/merge_tags/class-bwfan-wc-order-related-products.php:28
+msgid "Product Rows"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-product-display.php:49
+msgid "Product Rows (With Review Button)"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-product-display.php:50
+#: includes/merge_tags/class-bwfan-wc-order-cross-sells.php:29
+#: includes/merge_tags/class-bwfan-wc-order-related-products.php:29
+msgid "WooCommerce Order Summary Layout"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-product-display.php:51
+msgid "Cart Table Layout"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-merge-tags-product-display.php:52
+msgid "List - Comma Separated (Product Names only)"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-recipes.php:315
+msgid "Recipe json files are missing"
+msgstr ""
+
+#: includes/abstracts/class-bwfan-recipes.php:398
+msgid "Recipe Successfully Imported"
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-create-automation.php:32
+msgid "Title is missing"
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-create-automation.php:39
+msgid "Automation created successfully."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-delete-automations.php:36
+msgid "Automations ids is missing."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-delete-automations.php:76
+msgid "Automations deleted successfully."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-delete-logs.php:34
+msgid "Logs ids is missing."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-delete-logs.php:39
+msgid "Logs deleted successfully."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-delete-tasks.php:34
+msgid "Tasks ids is missing."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-delete-tasks.php:40
+msgid "Task deleted successfully."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-duplicate-automations.php:34
+msgid "Automation id is missing"
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-duplicate-automations.php:42
+msgid "Unable to create Duplicate automation for id: "
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-duplicate-automations.php:49
+msgid "Duplicate automation created sucessfully"
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-execute-automation-tasks.php:32
+#: includes/api/autonami/class-bwfan-api-run-automation-task.php:32
+#: includes/api/autonami/class-bwfan-api-run-automation-tasks.php:32
+msgid "Task Id is missing"
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-execute-automation-tasks.php:40
+msgid "Tasks Rescheduled successfully."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-export-automation-single.php:35
+msgid "Got Single Automation Json Data."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-export-automations.php:26
+msgid "Got All Automations Json Data."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-get-automations.php:66
+msgid "Unable to fetch automations"
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-get-automations.php:71
+msgid "Got all automation list."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-get-recipes.php:34
+msgid "Got all recipes."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-get-task-filters.php:33
+msgid "Got Task Filters data."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-get-task-history.php:84
+msgid "No record found"
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-get-task-history.php:95
+msgid "Got all task history."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-import-automation.php:35
+msgid "Import File missing."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-import-automation.php:45
+msgid "Import File data missing."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-import-automation.php:51
+msgid "Automation Imported Successfully."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-import-recipe.php:34
+msgid "Recipe is missing"
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-import-recipe.php:41
+msgid "Recipe imported successfully."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-import-recipe.php:43
+msgid "Unable to import recipe."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-run-automation-task.php:62
+#: includes/api/autonami/class-bwfan-api-run-automation-tasks.php:54
+msgid "Tasks Executed successfully."
+msgstr ""
+
+#: includes/api/autonami/class-bwfan-api-toggle-automation-state.php:49
+msgid "Automation State updated successfully."
+msgstr ""
+
+#: includes/api/settings/class-bwfan-api-add-unsubscribers.php:34
+msgid "Unsubscriber data missing"
+msgstr ""
+
+#: includes/api/settings/class-bwfan-api-add-unsubscribers.php:55
+msgid "Recipient already unsubscribe : "
+msgstr ""
+
+#: includes/api/settings/class-bwfan-api-add-unsubscribers.php:60
+msgid "Recipient unsubscribe successfully."
+msgstr ""
+
+#: includes/api/settings/class-bwfan-api-delete-unsubscribers.php:34
+msgid "Unsubscribers ids missing"
+msgstr ""
+
+#: includes/api/settings/class-bwfan-api-delete-unsubscribers.php:53
+msgid "Unable to delete some of unsubscribers wih id :"
+msgstr ""
+
+#: includes/api/settings/class-bwfan-api-delete-unsubscribers.php:60
+msgid "Unsubscribers deleted successfully."
+msgstr ""
+
+#: includes/api/settings/class-bwfan-api-get-unsubscribers.php:60
+msgid "Got all unsubscribers list."
+msgstr ""
+
+#: includes/api/settings/class-bwfan-api-tools-setting.php:32
+msgid "Action type is missing"
+msgstr ""
+
+#: includes/api/settings/class-bwfan-api-tools-setting.php:37
+msgid "Unable to execute action."
+msgstr ""
+
+#: includes/api/settings/class-bwfan-api-tools-setting.php:42
+msgid "Action executed successfully."
+msgstr ""
+
+#: includes/api/settings/class-bwfan-api-update-settings.php:35
+msgid "Settings Data is missing."
+msgstr ""
+
+#: includes/api/settings/class-bwfan-api-update-settings.php:44
+msgid "Settings updated"
+msgstr ""
+
+#: includes/class-bwfan-automations.php:124
+msgid "(No title)"
+msgstr ""
+
+#: includes/class-bwfan-common.php:282
+msgid "Tools"
+msgstr ""
+
+#: includes/class-bwfan-common.php:601
+msgid "Error in generating logs"
+msgstr ""
+
+#: includes/class-bwfan-common.php:610
+msgid "No response from API"
+msgstr ""
+
+#: includes/class-bwfan-common.php:647
+msgid "Admin email"
+msgstr ""
+
+#: includes/class-bwfan-common.php:648
+msgid "Current date when task will be executed"
+msgstr ""
+
+#: includes/class-bwfan-common.php:649
+msgid "Current time when task will be executed"
+msgstr ""
+
+#: includes/class-bwfan-common.php:650
+msgid "Current date and time when task will be executed"
+msgstr ""
+
+#: includes/class-bwfan-common.php:1280
+msgid "Invalid request, security validation failed."
+msgstr ""
+
+#: includes/class-bwfan-common.php:1450
+msgid "The DISABLE_WP_CRON constant is set to true . WP-Cron is disabled and will not run on it's own."
+msgstr ""
+
+#: includes/class-bwfan-common.php:1707
+#: admin/frontend/dist/48.df4fbbd6feb712035790.js:1
+#: admin/frontend/src/settings/components/unsubscribers/unsubscriber-form.js:174
+msgid "Unsubscribe"
+msgstr ""
+
+#: includes/class-bwfan-common.php:1708
+msgid "Invalid data passed"
+msgstr ""
+
+#: includes/class-bwfan-common.php:1709
+msgid "We are sorry to see you go. You have been unsubscribed from our list."
+msgstr ""
+
+#: includes/class-bwfan-common.php:1724
+msgid "Your cart could not be restored, it may have expired."
+msgstr ""
+
+#: includes/class-bwfan-common.php:1725
+msgid "Your email and cart are saved so we can send you email reminders about this order. {{no_thanks label=\"No Thanks\"}}"
+msgstr ""
+
+#: includes/class-bwfan-common.php:1727
+msgid "Keep me up to date on news and exclusive offers."
+msgstr ""
+
+#: includes/class-bwfan-common.php:1776
+msgid "Once in a day"
+msgstr ""
+
+#: includes/class-bwfan-common.php:1780
+msgid "Once in 2 minutes"
+msgstr ""
+
+#: includes/class-bwfan-common.php:1784
+msgid "Every minute"
+msgstr ""
+
+#: includes/class-bwfan-common.php:1788
+msgid "Once in a week"
+msgstr ""
+
+#: includes/class-bwfan-common.php:1792
+msgid "Once in 10 seconds"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2056
+msgid "Scheduled (%d)"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2059
+msgid "Paused (%d)"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2061
+msgid "Completed (%d)"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2063
+msgid "Failed (%d)"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2408
+msgid " ago"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2410
+msgid "in "
+msgstr ""
+
+#: includes/class-bwfan-common.php:2884
+#: includes/class-bwfan-common.php:3170
+#: includes/class-bwfan-common.php:3223
+#: includes/native-connectors/woocommerce/class-bwfan-wc-source.php:14
+#: includes/native-connectors/woocommerce/class-bwfan-wc-source.php:16
+#: includes/native-connectors/wordpress/actions/class-bwfan-wp-sendemail.php:39
+msgid "WooCommerce"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2890
+#: includes/class-bwfan-common.php:3225
+msgid "WordPress Advanced"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2896
+#: includes/class-bwfan-common.php:3227
+msgid "ActiveCampaign"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2902
+#: includes/class-bwfan-common.php:3175
+#: includes/class-bwfan-common.php:3229
+msgid "Drip"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2908
+#: includes/class-bwfan-common.php:3232
+msgid "Google Sheets"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2914
+#: includes/class-bwfan-common.php:3230
+msgid "Slack"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2920
+#: includes/class-bwfan-common.php:3226
+msgid "Zapier"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2932
+#: includes/class-bwfan-common.php:3237
+msgid "Change Order Status"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2933
+#: includes/class-bwfan-common.php:3236
+msgid "Add Order Note"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2934
+#: includes/class-bwfan-common.php:3238
+msgid "Delete Coupon"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2937
+msgid "Create Contact"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2938
+#: includes/class-bwfan-common.php:2953
+#: includes/class-bwfan-common.php:2965
+#: includes/class-bwfan-common.php:3250
+#: includes/class-bwfan-common.php:3265
+#: includes/class-bwfan-common.php:3273
+msgid "Add Tags"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2939
+#: includes/class-bwfan-common.php:2954
+#: includes/class-bwfan-common.php:2966
+#: includes/class-bwfan-common.php:3259
+#: includes/class-bwfan-common.php:3268
+#: includes/class-bwfan-common.php:3278
+msgid "Remove Tags"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2940
+#: includes/class-bwfan-common.php:3251
+msgid "Add Contact To Automation"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2941
+msgid "Remove Contact From Automation"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2942
+#: includes/class-bwfan-common.php:3252
+msgid "Add Contact To List"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2943
+#: includes/class-bwfan-common.php:3258
+msgid "Remove Contact From List"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2944
+#: includes/class-bwfan-common.php:3253
+msgid "Create Abandoned Cart"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2945
+#: includes/class-bwfan-common.php:3256
+msgid "Create Order"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2946
+#: includes/class-bwfan-common.php:3255
+msgid "Create Deal"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2947
+#: includes/class-bwfan-common.php:3254
+msgid "Create Deal Note"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2948
+#: includes/class-bwfan-common.php:3261
+msgid "Update Deal"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2949
+#: includes/class-bwfan-common.php:3260
+msgid "Update Fields"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2952
+msgid "Create / Update Subscriber"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2955
+#: includes/class-bwfan-common.php:3274
+msgid "Add Subscriber to Campaign"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2956
+#: includes/class-bwfan-common.php:3276
+msgid "Remove Subscriber from Campaign"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2957
+#: includes/class-bwfan-common.php:3275
+msgid "Add Subscriber to Workflow"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2958
+#: includes/class-bwfan-common.php:3277
+msgid "Remove Subscriber from Workflow"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2959
+#: includes/class-bwfan-common.php:3270
+msgid "Cart Activity"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2960
+#: includes/class-bwfan-common.php:3272
+msgid "Add A New Order"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2961
+#: includes/class-bwfan-common.php:3271
+msgid "Update Custom fields of Subscriber"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2964
+#: includes/class-bwfan-common.php:3263
+msgid "Update Custom Fields"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2967
+#: includes/class-bwfan-common.php:3266
+msgid "Add Subscriber To Sequence"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2968
+#: includes/class-bwfan-common.php:3267
+msgid "Remove Subscriber from Sequence"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2969
+#: includes/class-bwfan-common.php:3264
+msgid "Create A New Purchase"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2972
+#: includes/class-bwfan-common.php:3285
+msgid "Insert Row"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2973
+#: includes/class-bwfan-common.php:3286
+msgid "Update Row"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2976
+#: includes/class-bwfan-common.php:3280
+msgid "Sends a message to a user"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2977
+#: includes/class-bwfan-common.php:3281
+msgid "Sends a message to a channel"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2980
+msgid "Send data to zapier"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2983
+#: includes/class-bwfan-common.php:3283
+msgid "Send SMS"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2986
+#: includes/class-bwfan-common.php:3247
+msgid "Create User"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2987
+#: includes/class-bwfan-common.php:3248
+msgid "Update User Meta"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2988
+#: includes/class-bwfan-common.php:3246
+msgid "HTTP Post"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2989
+#: includes/class-bwfan-common.php:3244
+msgid "Custom Callback"
+msgstr ""
+
+#: includes/class-bwfan-common.php:2990
+#: includes/class-bwfan-common.php:3245
+msgid "Debug"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3017
+#: includes/class-bwfan-common.php:3196
+msgid "Funnel Started"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3026
+#: includes/class-bwfan-common.php:3197
+msgid "Funnel Ended"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3036
+#: includes/class-bwfan-common.php:3198
+msgid "Offer Viewed"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3046
+#: includes/class-bwfan-common.php:3199
+msgid "Offer Accepted"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3056
+#: includes/class-bwfan-common.php:3201
+msgid "Offer Payment Failed"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3066
+#: includes/class-bwfan-common.php:3200
+msgid "Offer Rejected"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3171
+#: includes/class-bwfan-common.php:3224
+#: includes/native-connectors/wordpress/class-bwfan-wordpress-integration.php:10
+#: includes/native-connectors/wordpress/class-bwfan-wordpress-integration.php:11
+#: includes/native-connectors/wordpress/class-bwfan-wp-source.php:13
+#: includes/native-connectors/wordpress/class-bwfan-wp-source.php:14
+msgid "WordPress"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3172
+msgid "WooCommerce Subscription"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3173
+msgid "UpStroke"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3174
+msgid "Active Campaign"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3176
+msgid "AffiliateWp"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3177
+msgid "Gravity Forms"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3180
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-comment_post.php:10
+msgid "New Review"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3181
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-new-order.php:15
+msgid "Order Created"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3182
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-note-added.php:18
+msgid "Order Note Added"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3183
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-status-change.php:12
+msgid "Order Status Changed"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3184
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-purchased.php:15
+msgid "Order Created - Per Item"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3185
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-refunded.php:15
+msgid "Order Item Refunded"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3186
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-stock-reduced.php:14
+msgid "Order Item Stock Reduced"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3187
+msgid "Customer Win Back"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3188
+#: modules/abandoned-cart/events/class-bwfan-ab-cart-abandoned.php:18
+msgid "Cart Abandoned"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3189
+#: modules/abandoned-cart/events/class-bwfan-ab-cart-recovered.php:12
+msgid "Cart Recovered"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3190
+#: includes/native-connectors/wordpress/events/class-bwfan-wp-user-creation.php:11
+msgid "User Creation"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3191
+#: includes/native-connectors/wordpress/events/class-bwfan-wp-user-login.php:10
+msgid "User Login"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3193
+#: includes/class-bwfan-common.php:3194
+msgid "Webhook Received"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3203
+msgid "Subscriptions Created"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3204
+msgid "Subscriptions Status Changed"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3205
+msgid "Subscriptions Trial End"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3206
+msgid "Subscriptions Before Renewal"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3207
+msgid "Subscriptions Before End"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3208
+msgid "Subscriptions Renewal Payment Complete"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3209
+msgid "Subscriptions Renewal Payment Failed"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3210
+msgid "Customer Before Card Expiry"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3212
+msgid "Affiliate Digests"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3213
+msgid "Application Approved"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3214
+msgid "Application Rejected"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3215
+msgid "Affiliate Makes A Sale"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3216
+msgid "Referral Rejected"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3217
+msgid "Application Sign Up"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3219
+#: includes/native-connectors/cf7/events/class-bwfan-cf7-form-submit.php:12
+msgid "Form Submits"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3228
+msgid "ConvertKit"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3231
+msgid "Twilio"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3235
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:8
+msgid "Create Coupon"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3240
+#: includes/native-connectors/wordpress/actions/class-bwfan-wp-sendemail.php:10
+msgid "Send Email"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3242
+msgid "Send Data To Zapier"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3257
+msgid "End Automation"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3288
+msgid "Change Subscription Status"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3289
+msgid "Send Subscription Invoice"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3291
+msgid "Change Affiliate Rate"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3292
+msgid "Change Referral Status"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3928
+#: includes/class-bwfan-common.php:3932
+msgid "No Title"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3933
+msgid "Broadcast"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3935
+msgid "Manual"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3966
+msgid "All queued tasks have been scheduled to run now"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3969
+msgid "There were no tasks"
+msgstr ""
+
+#: includes/class-bwfan-common.php:3997
+msgid "All completed tasks successfully deleted."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4015
+msgid "All failed tasks successfully deleted."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4020
+msgid "A process is already scheduled for deleting old logs of this automation"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4028
+msgid "Process scheduled for deleting old logs of this automation"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4039
+msgid "A process is already scheduled for deleting expired autonami generated coupons"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4045
+msgid "Process scheduled for deleting expired autonami generated coupons"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4057
+msgid "All lost carts successfully deleted."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4070
+msgid "Autonami endpoint is successfully working"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4073
+msgid "Failed to connect with Autonami endpoint. Please contact support."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4109
+msgid "\"From\" Name"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4113
+msgid "Name that will appear in email sent."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4119
+msgid "\"From\" Address"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4123
+msgid "Email address from the email will be sent from."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4129
+msgid "\"Reply To\" Address"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4133
+msgid "Email address where user's reply will be sent to."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4139
+msgid "Email Limit Per Second"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4143
+msgid "Maximum email sent in one second."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4150
+msgid "Email Daily Limit"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4154
+msgid "Maximum email sent in one day."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4161
+msgid "Unsubscribe Text"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4195
+#: includes/merge_tags/class-bwfan-business-name.php:9
+msgid "Business Name"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4206
+#: includes/merge_tags/class-bwfan-business-address.php:9
+msgid "Business Address"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4229
+#: includes/class-bwfan-common.php:4446
+msgid "Text"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4232
+msgid "Enter Unsubscribe Text"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4245
+msgid "Enable Cart Tracking"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4247
+msgid "Enable it to live capture buyer's email and cart details."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4254
+msgid "Wait Period (minutes)"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4258
+msgid "Wait for given time before cart is marked as 'Abandoned'."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4267
+msgid "Cooling-off period (days)"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4272
+msgid "Exclude customers from cart abandonment tracking if order was placed days ago (recommended 15 days)."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4280
+msgid "Cart Tracking Notice"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4282
+msgid "Inform customers when entering their email address that their email and cart data are saved to send abandonment reminders."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4292
+msgid "Cart Tracking Notice Text"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4296
+msgid "Use merge tag {{no_thanks label='No Thanks'}} to let users opt out of cart tracking."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4304
+msgid "Track on Add to Cart"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4306
+msgid "Track abandoned cart actions when a product is added to the cart for logged in users (instead of at checkout)."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4316
+msgid "Exclude Users from Cart Tracking"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4318
+msgid "Exclude particular users from cart tracking."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4328
+msgid "Exclude User Roles"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4334
+msgid "Select user roles for whom the abandoned carts will not be tracked."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4342
+msgid "Exclude Specific Emails"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4346
+msgid ""
+"Enter emails, domains or partials to exclude from tracking abandonment separated by comma(,).\n"
+"                                            <br>You can add in full emails (i.e. foo@example.com) or domains (i.e. domain.com), and partials (i.e. john)."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4355
+msgid "Mark Cart As Lost Cart After (days)"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4360
+msgid "Considers abandoned carts as lost carts after xx days."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4368
+msgid "Notice text when cart is restored successfully"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4373
+msgid "Notice displayed when cart is successfully restored. Leave blank in case don’t want to show notice"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4381
+msgid "Notice text when cart is failed to restore"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4386
+msgid "Notice displayed when cart is not restored. Leave blank in case don’t want to show notice"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4401
+msgid "Delete personalized coupons"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4405
+msgid "Delete Autonami generated coupons after xx days of expiry (Max 30 days)."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4435
+msgid "Checkout optin"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4437
+msgid "Enable an optin on checkout to ask for the consent of marketing emails."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4438
+msgid "Note: Would be visible to users who have not opted in."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4450
+msgid "Customize the description for marketing consent optin at checkout."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4458
+msgid "Checkout Position"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4463
+msgid "Below Terms & Condition"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4464
+msgid "Below Email Field"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4474
+msgid "Behavior for EU Customers"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4479
+#: includes/class-bwfan-common.php:4496
+msgid "Checked"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4480
+#: includes/class-bwfan-common.php:4497
+msgid "Unchecked"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4483
+#: includes/class-bwfan-common.php:4500
+msgid "To respect GPDR it is recommended to keep it unchecked."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4491
+msgid "Behavior for Non-EU Customers"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4515
+msgid "Select Unsubscribe Page"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4527
+msgid "Unsubscribe Button"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4532
+msgid "Displays unsubscribe button. Use attribute 'label' to add custom text: [bwfan_unsubscribe_button label='Custom Text']"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4537
+msgid "Subscriber Recipient"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4542
+msgid "Displays subscriber email or phone number."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4547
+msgid "Subscriber Name"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4552
+msgid "Displays subscriber name."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4557
+msgid "Unsubscribe Button Label In Email"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4562
+msgid "Text displayed in email for unsubscribe."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4567
+msgid "Error message on unsubscribe button"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4572
+msgid "Error message displayed when invalid data passed while unsubscribing."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4577
+msgid "Success message on unsubscribe button"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4582
+msgid "Success message displayed when user is successfully unsubscribed."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4594
+msgid "Sandbox mode"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4596
+msgid "Enable Sandbox mode for Autonami."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4597
+msgid "In sandbox mode Automations won't create new Tasks and existing Tasks won't run."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4605
+msgid "Logging"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4607
+msgid "Enable Logging for Autonami."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4736
+msgid "Enable"
+msgstr ""
+
+#: includes/class-bwfan-common.php:4738
+msgid "Enable bounce tracking to capture bounced emails from email service provider."
+msgstr ""
+
+#: includes/class-bwfan-common.php:4745
+msgid "Select Service"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:52
+msgid "Product"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:55
+#: includes/class-bwfan-rules.php:243
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-purchased.php:245
+msgid "Order"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:58
+msgid "Order status change"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:61
+msgid "Order note"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:64
+#: includes/class-bwfan-rules-loader.php:122
+#: includes/class-bwfan-rules.php:246
+#: includes/class-bwfan-rules.php:264
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-note-added.php:27
+#: rules/rules/wc-customer.php:48
+#: rules/rules/wc-customer.php:100
+#: rules/rules/wc-customer.php:171
+msgid "Customer"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:67
+#: includes/class-bwfan-rules-loader.php:127
+#: includes/native-connectors/wordpress/events/class-bwfan-wp-user-creation.php:10
+#: includes/native-connectors/wordpress/events/class-bwfan-wp-user-login.php:9
+#: rules/rules/users.php:160
+msgid "User"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:73
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-comment_post.php:9
+msgid "Reviews"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:76
+#: modules/abandoned-cart/events/class-bwfan-ab-cart-abandoned.php:17
+#: modules/abandoned-cart/events/class-bwfan-ab-cart-recovered.php:11
+#: rules/rules/ab_cart.php:526
+msgid "Cart"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:79
+#: includes/native-connectors/cf7/class-bwfan-cf7-source.php:13
+msgid "Contact Form 7"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:93
+msgid "Items"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:94
+msgid "Item Categories"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:95
+msgid "Item Tags"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:96
+#: includes/class-bwfan-rules.php:256
+msgid "Item Count"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:97
+#: includes/class-bwfan-rules.php:257
+msgid "Item Type"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:98
+msgid "Item Price"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:99
+#: rules/rules/order.php:126
+msgid "Item Stock"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:102
+#: includes/merge_tags/class-bwfan-wc-order-total.php:10
+msgid "Order Total"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:103
+#: includes/merge_tags/class-bwfan-wc-order-items.php:11
+msgid "Order Items"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:104
+msgid "Order Coupons"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:105
+msgid "Order Coupon Text Match"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:106
+#: includes/class-bwfan-rules.php:259
+msgid "Payment Gateway"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:107
+#: includes/class-bwfan-rules.php:260
+msgid "Shipping Method"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:108
+msgid "Shipping Country"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:109
+msgid "Billing Country"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:110
+msgid "Order Custom Field"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:113
+msgid "Order Note Text Match"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:116
+msgid "When order status is"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:119
+msgid "Is a Guest"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:120
+msgid "First Order"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:121
+#: includes/merge_tags/class-bwfan-wc-customer-custom-field.php:9
+msgid "Customer Custom Field"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:123
+msgid "Customer Role"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:126
+#: rules/rules/users.php:66
+msgid "User Role"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:130
+msgid "Review rating count"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:133
+msgid "Cart Total"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:134
+#: includes/merge_tags/class-bwfan-wc-cart-items.php:11
+msgid "Cart Items"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:135
+msgid "Cart Items Category"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:136
+msgid "Cart Coupons"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:137
+msgid "Cart Coupon Text Match"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:138
+msgid "All Cart Items Purchased (in past)"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:139
+msgid "Cart Contains Any Coupon"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:140
+msgid "Cart Item Count"
+msgstr ""
+
+#: includes/class-bwfan-rules-loader.php:143
+msgid "Form Field"
+msgstr ""
+
+#: includes/class-bwfan-rules.php:255
+msgid "Total"
+msgstr ""
+
+#: includes/class-bwfan-rules.php:258
+msgid "Coupons"
+msgstr ""
+
+#: includes/class-bwfan-rules.php:263
+msgid "Is First Order"
+msgstr ""
+
+#: includes/class-bwfan-rules.php:265
+msgid "Customer User Role"
+msgstr ""
+
+#: includes/class-bwfan-shortcodes.php:42
+#: includes/class-bwfan-shortcodes.php:57
+#: includes/class-bwfan-shortcodes.php:72
+msgid "Key is a required parameter in this shortcode"
+msgstr ""
+
+#: includes/class-bwfan-shortcodes.php:67
+msgid "No, thanks"
+msgstr ""
+
+#: includes/class-bwfan-tasks.php:121
+msgid "Required data missing, event validation failed."
+msgstr ""
+
+#: includes/class-bwfan-tasks.php:167
+msgid "Attempts limit reached"
+msgstr ""
+
+#: includes/class-bwfan-tasks.php:185
+msgid "Connector settings has been deleted for this task"
+msgstr ""
+
+#: includes/class-bwfan-tasks.php:286
+msgid "Task Event, Action or Integration not found"
+msgstr ""
+
+#: includes/class-bwfan-tasks.php:445
+msgid "Connector is disconnected or action is missing."
+msgstr ""
+
+#: includes/class-bwfan-tasks.php:500
+msgid "Task Executed Successfully."
+msgstr ""
+
+#: includes/class-bwfan-tasks.php:502
+msgid " Message: "
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-admin-email.php:10
+msgid "Administration Email "
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-current-datetime.php:10
+msgid "Current datetime as per your website's specified timezone"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-site-url.php:10
+msgid "Website url"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-store-name.php:10
+msgid "Store name of website"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-unsubscribe-link.php:9
+msgid "Unsubscribe url"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-user-language.php:9
+msgid "User Language"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-abandoned-data.php:9
+msgid "Cart Abandoned data"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-abandoned-date.php:9
+msgid "Cart Abandoned Date"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-abandoned-id.php:10
+msgid "Cart Abandoned Id"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-billing-address1.php:9
+msgid "Cart Billing Address1"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-billing-address2.php:10
+msgid "Cart Billing Address2"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-billing-city.php:10
+msgid "Cart Billing City"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-billing-company.php:9
+msgid "Cart Billing Company"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-billing-country.php:10
+msgid "Cart Billing Country"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-billing-email.php:9
+msgid "Cart Billing Email"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-billing-first-name.php:9
+msgid "Cart Billing First Name"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-billing-last-name.php:9
+msgid "Cart Billing Last Name"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-billing-phone.php:9
+msgid "Cart Billing Phone"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-billing-postcode.php:9
+msgid "Cart Billing Postcode"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-billing-state.php:10
+msgid "Cart Billing State"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-recovery-link.php:9
+msgid "Cart Recovery Link"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-recovery-link.php:30
+msgid "Auto Apply Coupon Through Recovery Link"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-recovery-link.php:34
+#: rules/rules/ab_cart.php:84
+#: rules/rules/ab_cart.php:506
+#: rules/rules/wc-customer.php:17
+#: rules/rules/wc-customer.php:70
+msgid "Yes"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-recovery-link.php:35
+#: rules/rules/ab_cart.php:85
+#: rules/rules/ab_cart.php:507
+#: rules/rules/wc-customer.php:18
+#: rules/rules/wc-customer.php:71
+msgid "No"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-recovery-link.php:41
+msgid "Coupon Code"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-recovery-link.php:44
+msgid "Enter Coupon Code"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-shipping-address1.php:10
+msgid "Cart Shipping Address1"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-shipping-address2.php:10
+msgid "Cart Shipping Address2"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-shipping-city.php:10
+msgid "Cart Shipping City"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-shipping-company.php:10
+msgid "Cart Shipping Company"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-shipping-country.php:10
+msgid "Cart Shipping Country"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-shipping-first-name.php:10
+msgid "Cart Shipping First Name"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-shipping-last-name.php:10
+msgid "Cart Shipping Last Name"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-shipping-postcode.php:10
+msgid "Cart Shipping Postcode"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-shipping-state.php:10
+msgid "Cart Shipping State"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-cart-total.php:10
+msgid "Cart Items Total"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-create-coupon-code.php:12
+msgid "Create a new coupon"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-city.php:10
+msgid "Customer City"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-city.php:48
+msgid "New Delhi"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-country.php:10
+msgid "Customer Country"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-country.php:48
+msgid "India"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-custom-field.php:93
+msgid "Dummy Custom Field Value"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-email.php:9
+msgid "Customer Email Address"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-first-name.php:9
+msgid "Customer First Name"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-first-name.php:57
+msgid "John"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-full-name.php:9
+msgid "Customer Full Name"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-full-name.php:71
+msgid "John Marsh"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-last-name.php:9
+msgid "Customer Last Name"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-last-name.php:57
+msgid "Marsh"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-phone.php:9
+msgid "Customer Phone"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-postcode.php:9
+msgid "Customer Postcode"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-state.php:9
+msgid "Customer State"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-state.php:69
+msgid "Illinois"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-user-id.php:10
+msgid "Customer User Id"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-customer-username.php:10
+msgid "Customer Username"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-item-data.php:10
+msgid "Purchased Item Data"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-item-data.php:60
+#: includes/merge_tags/class-bwfan-wc-item-meta.php:59
+#: includes/merge_tags/class-bwfan-wc-order-data.php:61
+msgid "Value of the key"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-item-id.php:10
+msgid "Purchased Item ID or Variation ID"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-item-image.php:10
+msgid "Purchased Item Image"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-item-meta.php:9
+msgid "This will return the meta value of the purchased product based on the provided meta key."
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-item-name.php:10
+msgid "Purchased Product title "
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-item-name.php:60
+msgid "Beanie"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-item-price.php:10
+msgid "Purchased Item Price"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-item-quantity.php:9
+msgid "Purchased Item Quantity"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-item-sku.php:10
+msgid "Purchased Product SKU"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-item-stock.php:9
+msgid "Purchased Item Stock"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-item-url.php:10
+msgid "Purchased Item Url"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-billing-address.php:9
+msgid "Order Billing Address"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-billing-address.php:38
+#: includes/merge_tags/class-bwfan-wc-order-shipping-address.php:38
+msgid "Formatted Address"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-billing-address.php:39
+#: includes/merge_tags/class-bwfan-wc-order-shipping-address.php:39
+msgid "Address 1"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-billing-address.php:40
+#: includes/merge_tags/class-bwfan-wc-order-shipping-address.php:40
+msgid "Address 2"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-billing-address.php:43
+#: includes/merge_tags/class-bwfan-wc-order-shipping-address.php:43
+msgid "Select Address Format"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-billing-company.php:9
+msgid "Order Billing Company"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-billing-phone.php:9
+msgid "Order Billing Phone"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-cross-sells.php:11
+msgid "Order Cross Sells"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-currency.php:9
+msgid "Order Currency"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-customer-note.php:10
+msgid "Order Customer Note"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-customer-note.php:46
+msgid "this description is written by the customer."
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-data.php:10
+msgid "Order Data"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-date.php:10
+msgid "Order Date"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-id.php:10
+msgid "Order ID"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-itemscount.php:10
+msgid "Order Itemscount"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-note.php:10
+msgid "Current Order Note"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-payment-method.php:10
+msgid "Order Payment Method"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-payment-method.php:46
+msgid "Cash on delivery"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-payment-url.php:10
+msgid "Order Payment Url"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-related-products.php:11
+msgid "Order Related Products"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-shipping-address.php:9
+msgid "Order Shipping Address"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-shipping-method.php:10
+msgid "Order Shipping Method"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-shipping-method.php:27
+msgid "Title"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-shipping-method.php:28
+msgid "ID"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-shipping-method.php:32
+msgid "Select Format"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-status.php:10
+msgid "Order Status"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-status.php:51
+msgid "Processing"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-used-coupons.php:11
+msgid "Used Coupons in Order"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-used-coupons.php:30
+msgid "Select Type"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-used-coupons.php:49
+msgid "Comma Separated"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-used-coupons.php:50
+msgid "First Coupon"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-order-view-url.php:10
+msgid "Order View Url"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-add-to-cart-url.php:10
+msgid "Product Add To Cart Url"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-current-price.php:10
+msgid "Product Current Price"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-description.php:10
+msgid "Product Description"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-description.php:56
+msgid "Product full description comes from here"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-featured-image.php:10
+msgid "Product Featured Image"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-id.php:10
+msgid "Product Id"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-parent-sku.php:9
+msgid "Product Parent Sku"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-permalink.php:10
+msgid "Product Permalink"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-regular-price.php:10
+msgid "Product Regular Price"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-short-description.php:10
+msgid "Product Short Description"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-short-description.php:46
+msgid "Product short description comes from here"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-sku.php:10
+msgid "Product Sku"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-product-title.php:10
+#: includes/merge_tags/class-bwfan-wc-product-title.php:46
+msgid "Product Title"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-review-content.php:10
+msgid "Review Content"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-review-content.php:46
+msgid "This is the dummy review content"
+msgstr ""
+
+#: includes/merge_tags/class-bwfan-wc-review-rating.php:9
+msgid "Review Rating"
+msgstr ""
+
+#: includes/native-connectors/cf7/class-bwfan-cf7-source.php:14
+msgid "Forms"
+msgstr ""
+
+#: includes/native-connectors/cf7/events/class-bwfan-cf7-form-submit.php:13
+msgid "This event runs after a form is submitted"
+msgstr ""
+
+#: includes/native-connectors/cf7/events/class-bwfan-cf7-form-submit.php:15
+msgid "Form"
+msgstr ""
+
+#: includes/native-connectors/cf7/events/class-bwfan-cf7-form-submit.php:79
+msgid "Select Form"
+msgstr ""
+
+#: includes/native-connectors/cf7/events/class-bwfan-cf7-form-submit.php:81
+msgid "Choose Form"
+msgstr ""
+
+#: includes/native-connectors/cf7/events/class-bwfan-cf7-form-submit.php:100
+msgid "Select Email Field"
+msgstr ""
+
+#: includes/native-connectors/cf7/events/class-bwfan-cf7-form-submit.php:102
+msgid "Map the email field to be used by appropriate Rules and Actions."
+msgstr ""
+
+#: includes/native-connectors/cf7/events/class-bwfan-cf7-form-submit.php:106
+msgid "none"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:9
+msgid "This action creates a personalized coupon for the customer"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:83
+msgid "Restrict coupon with user email"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:138
+msgid "The selected Coupon data will be used to generate a new coupon"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:161
+msgid "New Coupon Code"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:166
+msgid "Use merge tags to generate personalized coupon"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:170
+msgid "Coupon Expiry (days)"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:175
+msgid "Leave blank for no coupon expiry"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:179
+msgid "Email Restriction"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:253
+#: includes/native-connectors/woocommerce/actions/class-bwfan-wc-create-coupon.php:261
+msgid "Coupon does not exist"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-comment_post.php:11
+msgid "This event runs after a new review is submitted on a product."
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-comment_post.php:115
+msgid "Comment ID:"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-comment_post.php:123
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-new-order.php:352
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-note-added.php:91
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-status-change.php:269
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-purchased.php:251
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-refunded.php:137
+#: includes/native-connectors/wordpress/events/class-bwfan-wp-user-creation.php:102
+#: includes/native-connectors/wordpress/events/class-bwfan-wp-user-login.php:98
+#: modules/abandoned-cart/events/class-bwfan-ab-cart-recovered.php:104
+msgid "Email:"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-new-order.php:14
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-note-added.php:17
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-status-change.php:11
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-purchased.php:14
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-refunded.php:14
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-stock-reduced.php:13
+#: admin/frontend/dist/46.9cf19596d6e3e5b79140.js:1
+#: admin/frontend/dist/49.9cd91300ef5012bcf678.js:1
+#: admin/frontend/dist/50.6ea8f388a1fcccdbf607.js:1
+#: admin/frontend/dist/51.384a0bee18c87a53f707.js:1
+#: admin/frontend/dist/53.a92d67a5cf0a3e000372.js:1
+#: admin/frontend/dist/56.d4f52bf435a3473e012a.js:1
+#: admin/frontend/src/client/hooks/use-automation-nav.js:11
+msgid "Orders"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-new-order.php:16
+msgid "This event runs after a new WooCommerce order is created. Can only run once on selected WC order statuses."
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-new-order.php:96
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-purchased.php:84
+msgid "Select Order Statuses"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-new-order.php:106
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-purchased.php:94
+msgid "Please select atleast 1 order status"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-new-order.php:346
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-note-added.php:85
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-status-change.php:263
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-refunded.php:131
+msgid "Order:"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-new-order.php:402
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-status-change.php:336
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-purchased.php:329
+msgid "Order status in automation has been changed"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-note-added.php:19
+msgid "This event runs after a new order note is added."
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-note-added.php:25
+msgid "Both"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-note-added.php:26
+msgid "Private"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-note-added.php:95
+msgid "Content:"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-note-added.php:99
+msgid "Type:"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-note-added.php:134
+msgid "Select Order Note Mode"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-status-change.php:13
+msgid "This event runs after an order status is changed."
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-status-change.php:67
+msgid "From Status"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-status-change.php:69
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-status-change.php:84
+msgid "Any"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-status-change.php:82
+msgid "To Status"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-status-change.php:273
+msgid "From Status:"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-order-status-change.php:277
+msgid "To Status:"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-purchased.php:16
+msgid "This event runs after a new WooCommerce order is created and runs per line item. Can only run once on selected WC order statuses."
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-refunded.php:16
+msgid "This event runs after an order is refunded and runs per product."
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-stock-reduced.php:15
+msgid "This event runs after an order payment is complete and its relative product items stocks reduced (runs per product item)."
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-stock-reduced.php:89
+msgid "Product :"
+msgstr ""
+
+#: includes/native-connectors/woocommerce/events/class-bwfan-wc-product-stock-reduced.php:93
+msgid "Reduced Quantity :"
+msgstr ""
+
+#: includes/native-connectors/wordpress/actions/class-bwfan-wp-sendemail.php:37
+msgid "Rich Text"
+msgstr ""
+
+#: includes/native-connectors/wordpress/actions/class-bwfan-wp-sendemail.php:41
+msgid "Raw HTML"
+msgstr ""
+
+#: includes/native-connectors/wordpress/actions/class-bwfan-wp-sendemail.php:43
+msgid "Drag & Drop"
+msgstr ""
+
+#: includes/native-connectors/wordpress/actions/class-bwfan-wp-sendemail.php:209
+msgid "User(s) are already unsubscribed, with email(s): "
+msgstr ""
+
+#: includes/native-connectors/wordpress/actions/class-bwfan-wp-sendemail.php:237
+msgid "Unknown Error occurred during Send Email"
+msgstr ""
+
+#: includes/native-connectors/wordpress/actions/class-bwfan-wp-sendemail.php:274
+msgid "Email subject missing. Please provide subject to send email."
+msgstr ""
+
+#: includes/native-connectors/wordpress/actions/class-bwfan-wp-sendemail.php:279
+msgid "Recipient email missing. Please provide email to send email."
+msgstr ""
+
+#: includes/native-connectors/wordpress/events/class-bwfan-wp-user-creation.php:12
+msgid "This event runs after a new user is created."
+msgstr ""
+
+#: includes/native-connectors/wordpress/events/class-bwfan-wp-user-creation.php:98
+#: includes/native-connectors/wordpress/events/class-bwfan-wp-user-login.php:94
+msgid "User:"
+msgstr ""
+
+#: includes/native-connectors/wordpress/events/class-bwfan-wp-user-login.php:11
+msgid "This event runs after a user logged in."
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:56
+msgid "Template"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:58
+msgid "Use this template for more control over the email body. Rich text style is auto-applied."
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:60
+msgid "Use this template for complete control by pasting any Custom HTML/CSS (usually designed using an external email editor)."
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:82
+msgid "To"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:84
+msgid "Receiver email address"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:93
+msgid "Subject"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:95
+msgid "Email subject"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:105
+msgid "Email Heading"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:112
+msgid "Body"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:114
+msgid "Email Message"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:117
+msgid "Email Message with HTML/CSS"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:123
+msgid "Generate Preview"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:126
+msgid "Send Test Mail"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:129
+msgid "Send"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:138
+msgid "Mark as Promotional"
+msgstr ""
+
+#: includes/native-connectors/wordpress/views/bwfan-wp-send-email.php:139
+msgid "Email marked as promotional will not be send to the unsubscribers."
+msgstr ""
+
+#: includes/recipes/class-bwfan-wc-cart-ab-email-series-cart-total.php:12
+msgid "Cart abandonment email series based on cart total"
+msgstr ""
+
+#: includes/recipes/class-bwfan-wc-cart-ab-email-series-cart-total.php:13
+msgid "Email sequences based on 3 cart total conditions. If cart total is more than $100 create a discount coupon of 20% and send a sequence of email, if cart total is between $50 and $100 create a discount coupon of 15% off and send a sequence of email, else send an email without a discount coupon."
+msgstr ""
+
+#: includes/recipes/class-bwfan-wc-cart-ab-email-series-cart-total.php:19
+#: includes/recipes/class-bwfan-wc-cart-ab-email-series-with-coupon.php:19
+#: includes/recipes/class-bwfan-wc-cart-ab-email-series-without-coupon.php:19
+msgid "Cart tracking is not enabled."
+msgstr ""
+
+#: includes/recipes/class-bwfan-wc-cart-ab-email-series-with-coupon.php:12
+msgid "Cart abandonment email series with coupon"
+msgstr ""
+
+#: includes/recipes/class-bwfan-wc-cart-ab-email-series-with-coupon.php:13
+msgid "A 3-part email sequence that gives users a 48 hours time-bound coupon to come back and complete their purchase."
+msgstr ""
+
+#: includes/recipes/class-bwfan-wc-cart-ab-email-series-without-coupon.php:12
+msgid "Cart abandonment email series without coupon"
+msgstr ""
+
+#: includes/recipes/class-bwfan-wc-cart-ab-email-series-without-coupon.php:13
+msgid "A 2-part email sequence to make prospects return to the store to complete their purchase."
+msgstr ""
+
+#: modules/abandoned-cart/class-bwfan-abandoned.php:124
+msgid "Cart abandonment tracking is a feature associated with WooCommerce, kindly enable the WooCommerce to use it."
+msgstr ""
+
+#: modules/abandoned-cart/class-bwfan-abandoned.php:905
+msgid "Unable to create cart for this email `"
+msgstr ""
+
+#: modules/abandoned-cart/class-bwfan-abandoned.php:953
+msgid "Checkout Form Last Edit Field"
+msgstr ""
+
+#: modules/abandoned-cart/class-bwfan-abandoned.php:954
+msgid "AeroCheckout Form Current Step"
+msgstr ""
+
+#: modules/abandoned-cart/class-bwfan-abandoned.php:955
+msgid "AeroCheckout Page ID"
+msgstr ""
+
+#: modules/abandoned-cart/class-bwfan-abandoned.php:956
+msgid "WordPress Page ID"
+msgstr ""
+
+#: modules/abandoned-cart/class-bwfan-abandoned.php:957
+msgid "AeroCheckout Page Source"
+msgstr ""
+
+#: modules/abandoned-cart/class-bwfan-abandoned.php:958
+msgid "Payment Method"
+msgstr ""
+
+#: modules/abandoned-cart/events/class-bwfan-ab-cart-abandoned.php:19
+msgid "This automation would trigger when a user abandoned the cart."
+msgstr ""
+
+#: modules/abandoned-cart/events/class-bwfan-ab-cart-abandoned.php:246
+msgid "Abandoned Email:"
+msgstr ""
+
+#: modules/abandoned-cart/events/class-bwfan-ab-cart-recovered.php:13
+msgid "This automation would trigger when the user abandoned cart is recovered."
+msgstr ""
+
+#: modules/abandoned-cart/events/class-bwfan-ab-cart-recovered.php:98
+msgid "Recovered Order:"
+msgstr ""
+
+#: modules/utm/class-bwfan-unsubscribe.php:182
+msgid "You have already unsubscribed"
+msgstr ""
+
+#: rules/inputs/cart-category-select.php:29
+#: rules/inputs/cart-product-select.php:35
+msgid "Quantity"
+msgstr ""
+
+#: rules/inputs/cart-category-select.php:30
+msgid "Categories"
+msgstr ""
+
+#: rules/inputs/cart-category-select.php:37
+msgid "Search..."
+msgstr ""
+
+#: rules/inputs/cart-product-select.php:27
+msgid "Select Product"
+msgstr ""
+
+#: rules/inputs/cart-product-select.php:36
+msgid "Products"
+msgstr ""
+
+#: rules/inputs/cart-product-select.php:44
+msgid "Choose Product"
+msgstr ""
+
+#: rules/inputs/geo-postal-code-entry.php:28
+msgid "Distance ( km )"
+msgstr ""
+
+#: rules/inputs/geo-postal-code-entry.php:29
+msgid "Zip/Postalcode ( One per line )"
+msgstr ""
+
+#: rules/inputs/html-always.php:16
+msgid "Funnel will run on every order on your store. This will override any other rule you define."
+msgstr ""
+
+#: rules/inputs/html-rule-is-downgrade.php:16
+msgid "This Funnel will initiate on orders that have downgraded subscriptions."
+msgstr ""
+
+#: rules/inputs/html-rule-is-first-order.php:16
+msgid "This Funnel will initiate on very first order for the customer."
+msgstr ""
+
+#: rules/inputs/html-rule-is-guest.php:16
+msgid "This Funnel will initiate on guest orders."
+msgstr ""
+
+#: rules/inputs/html-rule-is-renewal.php:16
+msgid "This Funnel will initiate on orders that are renewals."
+msgstr ""
+
+#: rules/inputs/html-rule-is-upgrade.php:16
+msgid "This Page will show on orders that have upgraded subscriptions."
+msgstr ""
+
+#: rules/rules/abstracts.php:119
+msgid "Order's Items"
+msgstr ""
+
+#: rules/rules/abstracts.php:138
+#: rules/rules/abstracts.php:287
+#: rules/rules/abstracts.php:362
+#: rules/rules/ab_cart.php:306
+#: rules/rules/ab_cart.php:425
+#: rules/rules/order.php:214
+#: rules/rules/order.php:264
+#: rules/rules/order.php:313
+#: rules/rules/order.php:361
+#: rules/rules/order.php:457
+#: rules/rules/order.php:840
+#: rules/rules/order.php:1055
+#: rules/rules/order.php:1236
+msgid "matches any of"
+msgstr ""
+
+#: rules/rules/abstracts.php:139
+#: rules/rules/abstracts.php:288
+#: rules/rules/ab_cart.php:426
+#: rules/rules/order.php:841
+#: rules/rules/order.php:1056
+msgid "matches all of "
+msgstr ""
+
+#: rules/rules/abstracts.php:140
+#: rules/rules/abstracts.php:363
+#: rules/rules/order.php:1237
+msgid "matches none of "
+msgstr ""
+
+#: rules/rules/abstracts.php:272
+msgid "Order's Items Category"
+msgstr ""
+
+#: rules/rules/abstracts.php:346
+msgid "Order's Shipping Country"
+msgstr ""
+
+#: rules/rules/abstracts.php:380
+msgid "Key"
+msgstr ""
+
+#: rules/rules/abstracts.php:391
+msgid "Value"
+msgstr ""
+
+#: rules/rules/abstracts.php:445
+#: rules/rules/order.php:1129
+#: rules/rules/order.php:1298
+#: rules/rules/order.php:1474
+#: rules/rules/users.php:11
+#: rules/rules/users.php:131
+#: rules/rules/wc-customer.php:185
+#: rules/rules/wc-customer.php:271
+msgid "is"
+msgstr ""
+
+#: rules/rules/abstracts.php:446
+#: rules/rules/order.php:1130
+#: rules/rules/order.php:1299
+#: rules/rules/order.php:1475
+#: rules/rules/users.php:12
+#: rules/rules/users.php:132
+#: rules/rules/wc-customer.php:186
+#: rules/rules/wc-customer.php:272
+msgid "is not"
+msgstr ""
+
+#: rules/rules/abstracts.php:447
+msgid "greater than"
+msgstr ""
+
+#: rules/rules/abstracts.php:448
+msgid "less than"
+msgstr ""
+
+#: rules/rules/ab_cart.php:59
+#: rules/rules/ab_cart.php:595
+#: rules/rules/base.php:73
+#: rules/rules/order.php:59
+#: rules/rules/order.php:138
+#: rules/rules/order.php:547
+#: rules/rules/order.php:617
+#: rules/rules/order.php:928
+#: rules/rules/order.php:1539
+msgid "is equal to"
+msgstr ""
+
+#: rules/rules/ab_cart.php:60
+#: rules/rules/ab_cart.php:596
+#: rules/rules/base.php:74
+#: rules/rules/order.php:60
+#: rules/rules/order.php:139
+#: rules/rules/order.php:548
+#: rules/rules/order.php:618
+#: rules/rules/order.php:929
+#: rules/rules/order.php:1540
+msgid "is not equal to"
+msgstr ""
+
+#: rules/rules/ab_cart.php:61
+#: rules/rules/ab_cart.php:597
+#: rules/rules/order.php:61
+#: rules/rules/order.php:140
+#: rules/rules/order.php:549
+#: rules/rules/order.php:619
+#: rules/rules/order.php:930
+#: rules/rules/order.php:1541
+msgid "is greater than"
+msgstr ""
+
+#: rules/rules/ab_cart.php:62
+#: rules/rules/ab_cart.php:598
+#: rules/rules/order.php:62
+#: rules/rules/order.php:141
+#: rules/rules/order.php:550
+#: rules/rules/order.php:620
+#: rules/rules/order.php:931
+#: rules/rules/order.php:1542
+msgid "is less than"
+msgstr ""
+
+#: rules/rules/ab_cart.php:63
+#: rules/rules/ab_cart.php:599
+#: rules/rules/order.php:63
+#: rules/rules/order.php:142
+#: rules/rules/order.php:551
+#: rules/rules/order.php:621
+#: rules/rules/order.php:932
+#: rules/rules/order.php:1543
+msgid "is greater or equal to"
+msgstr ""
+
+#: rules/rules/ab_cart.php:64
+#: rules/rules/ab_cart.php:600
+#: rules/rules/order.php:64
+#: rules/rules/order.php:143
+#: rules/rules/order.php:552
+#: rules/rules/order.php:622
+#: rules/rules/order.php:933
+#: rules/rules/order.php:1544
+msgid "is less or equal to"
+msgstr ""
+
+#: rules/rules/ab_cart.php:132
+msgid "If"
+msgstr ""
+
+#: rules/rules/ab_cart.php:138
+msgid "all cart items purchased"
+msgstr ""
+
+#: rules/rules/ab_cart.php:235
+msgid "contains at least"
+msgstr ""
+
+#: rules/rules/ab_cart.php:236
+msgid "contains less than"
+msgstr ""
+
+#: rules/rules/ab_cart.php:237
+msgid "contains exactly"
+msgstr ""
+
+#: rules/rules/ab_cart.php:291
+msgid "Cart category "
+msgstr ""
+
+#: rules/rules/ab_cart.php:307
+#: rules/rules/ab_cart.php:427
+#: rules/rules/order.php:216
+#: rules/rules/order.php:265
+#: rules/rules/order.php:314
+#: rules/rules/order.php:362
+#: rules/rules/order.php:458
+#: rules/rules/order.php:1057
+msgid "matches none of"
+msgstr ""
+
+#: rules/rules/ab_cart.php:410
+msgid "Order's Coupons"
+msgstr ""
+
+#: rules/rules/ab_cart.php:449
+#: rules/rules/order.php:1319
+#: rules/rules/order.php:1379
+msgid "Enter Few Characters..."
+msgstr ""
+
+#: rules/rules/ab_cart.php:482
+#: rules/rules/order.php:1356
+#: rules/rules/order.php:1411
+msgid "any contains"
+msgstr ""
+
+#: rules/rules/ab_cart.php:483
+#: rules/rules/order.php:1357
+#: rules/rules/order.php:1412
+msgid "any matches exactly"
+msgstr ""
+
+#: rules/rules/ab_cart.php:484
+#: rules/rules/order.php:1358
+#: rules/rules/order.php:1413
+msgid "starts with"
+msgstr ""
+
+#: rules/rules/ab_cart.php:485
+#: rules/rules/order.php:1359
+#: rules/rules/order.php:1414
+msgid "ends with"
+msgstr ""
+
+#: rules/rules/ab_cart.php:531
+msgid "contains any coupon"
+msgstr ""
+
+#: rules/rules/base.php:106
+msgid "Rule Preview here.."
+msgstr ""
+
+#: rules/rules/base.php:117
+msgid "This rule requires indexing of previous orders. Kindly "
+msgstr ""
+
+#: rules/rules/order.php:195
+msgid "Items "
+msgstr ""
+
+#: rules/rules/order.php:215
+msgid "matches exactly"
+msgstr ""
+
+#: rules/rules/order.php:249
+#: rules/rules/order.php:298
+msgid "Item's category "
+msgstr ""
+
+#: rules/rules/order.php:346
+msgid "Item's tags "
+msgstr ""
+
+#: rules/rules/order.php:667
+msgid "Order's items "
+msgstr ""
+
+#: rules/rules/order.php:716
+msgid "Order's items category "
+msgstr ""
+
+#: rules/rules/order.php:1040
+msgid "Order's coupons "
+msgstr ""
+
+#: rules/rules/order.php:1113
+msgid "Order's payment gateway "
+msgstr ""
+
+#: rules/rules/order.php:1220
+msgid "Order's shipping method"
+msgstr ""
+
+#: rules/rules/order.php:1266
+msgid "Order's Billing Country"
+msgstr ""
+
+#: rules/rules/order.php:1457
+msgid "Order's status "
+msgstr ""
+
+#: rules/rules/order.php:1528
+msgid "Review Rating count"
+msgstr ""
+
+#: rules/rules/wc-customer.php:53
+msgid "first order"
+msgstr ""
+
+#: rules/rules/wc-customer.php:105
+msgid "a guest"
+msgstr ""
+
+#: rules/rules/wc-customer.php:257
+msgid "Customer role"
+msgstr ""
+
+#: rules/views/metabox-rules-rule-template-basic.php:35
+#: rules/views/rules-basic.php:71
+msgid "Loading..."
+msgstr ""
+
+#: rules/views/metabox-rules-rule-template-basic.php:36
+#: rules/views/rules-basic.php:74
+msgid "AND"
+msgstr ""
+
+#: rules/views/rules-basic.php:22
+msgid "Advanced Rules"
+msgstr ""
+
+#: rules/views/rules-basic.php:37
+msgid "Initiate this automation when these conditions are matched:"
+msgstr ""
+
+#: rules/views/rules-basic.php:78
+msgid "Remove condition"
+msgstr ""
+
+#: rules/views/rules-basic.php:88
+msgid "Add a set of conditions"
+msgstr ""
+
+#: templates/review-grid-2-col.php:62
+#: templates/review-grid-3-col.php:56
+#: templates/review-rows.php:43
+msgid "Leave a review"
+msgstr ""
+
+#: admin/frontend/dist/40.df52732844906ef788f9.js:1
+#: admin/frontend/src/client/pages/carts/lost.js:238
+msgid "Lost"
+msgstr ""
+
+#: admin/frontend/dist/41.66120a95cb62586b2d95.js:1
+#: admin/frontend/src/client/pages/carts/recoverable.js:264
+msgid "Pending"
+msgstr ""
+
+#: admin/frontend/dist/41.66120a95cb62586b2d95.js:1
+#: admin/frontend/src/client/pages/carts/recoverable.js:269
+msgid "In-Progress"
+msgstr ""
+
+#: admin/frontend/dist/41.66120a95cb62586b2d95.js:1
+#: admin/frontend/src/client/pages/carts/recoverable.js:276
+msgid "Pending (No Tasks Found) "
+msgstr ""
+
+#: admin/frontend/dist/41.66120a95cb62586b2d95.js:1
+#: admin/frontend/src/client/pages/carts/recoverable.js:289
+msgid "Retry Cart"
+msgstr ""
+
+#: admin/frontend/dist/41.66120a95cb62586b2d95.js:1
+#: admin/frontend/src/client/pages/carts/recoverable.js:296
+msgid "Re-Scheduled"
+msgstr ""
+
+#: admin/frontend/dist/45.5a5db67f5404783e911a.js:1
+#: admin/frontend/src/client/pages/carts/recovered.js:214
+msgid "Recovered"
+msgstr ""
+
+#: admin/frontend/dist/47.82f28d2c527e26838913.js:1
+#: admin/frontend/dist/74.d26369b0a7c10ac9fc6b.js:1
+#: admin/frontend/src/campaign/components/report/index.js:53
+#: admin/frontend/src/campaign/pages/campaign-list/index.js:166
+msgid "Settings > Emails"
+msgstr ""
+
+#: admin/frontend/dist/48.df4fbbd6feb712035790.js:1
+#: admin/frontend/src/settings/components/unsubscribers/unsubscriber-form.js:106
+msgid "Invalid Email : "
+msgstr ""
+
+#: admin/frontend/dist/48.df4fbbd6feb712035790.js:1
+#: admin/frontend/src/settings/components/unsubscribers/unsubscriber-form.js:75
+msgid "Please enter some emails to unsubscribe."
+msgstr ""
+
+#: admin/frontend/dist/48.df4fbbd6feb712035790.js:1
+#: admin/frontend/src/settings/components/unsubscribers/unsubscriber-form.js:156
+msgid "Enter emails comma (,) separated to unsubscribe multiple emails."
+msgstr ""
+
+#: admin/frontend/dist/48.df4fbbd6feb712035790.js:1
+#: admin/frontend/src/settings/components/unsubscribers/bulk-action.js:18
+msgid "Bulk Action"
+msgstr ""
+
+#: admin/frontend/dist/48.df4fbbd6feb712035790.js:1
+#: admin/frontend/src/settings/components/unsubscribers/unsubscriber-list.js:72
+msgid "Source"
+msgstr ""
+
+#: admin/frontend/dist/57.755a7c5ab0842464ccb2.js:1
+#: admin/frontend/src/settings/pages/tools/index.js:19
+msgid "Run All Queued Tasks"
+msgstr ""
+
+#: admin/frontend/dist/57.755a7c5ab0842464ccb2.js:1
+#: admin/frontend/src/settings/pages/tools/index.js:20
+msgid "This will schedule all the queued tasks to run now"
+msgstr ""
+
+#: admin/frontend/dist/57.755a7c5ab0842464ccb2.js:1
+#: admin/frontend/src/settings/pages/tools/index.js:25
+msgid "Schedule"
+msgstr ""
+
+#: admin/frontend/dist/57.755a7c5ab0842464ccb2.js:1
+#: admin/frontend/src/settings/pages/tools/index.js:28
+msgid "Delete All Completed Tasks"
+msgstr ""
+
+#: admin/frontend/dist/57.755a7c5ab0842464ccb2.js:1
+#: admin/frontend/src/settings/pages/tools/index.js:32
+msgid "This will schedule the deletion of all the so far completed tasks."
+msgstr ""
+
+#: admin/frontend/dist/57.755a7c5ab0842464ccb2.js:1
+#: admin/frontend/src/settings/pages/tools/index.js:40
+msgid "Delete All Failed Tasks"
+msgstr ""
+
+#: admin/frontend/dist/57.755a7c5ab0842464ccb2.js:1
+#: admin/frontend/src/settings/pages/tools/index.js:41
+msgid "This will schedule the deletion of all the so far failed tasks."
+msgstr ""
+
+#: admin/frontend/dist/57.755a7c5ab0842464ccb2.js:1
+#: admin/frontend/src/settings/pages/tools/index.js:49
+msgid "Delete Autonami Generated Expired Coupons"
+msgstr ""
+
+#: admin/frontend/dist/57.755a7c5ab0842464ccb2.js:1
+#: admin/frontend/src/settings/pages/tools/index.js:53
+msgid "This will schedule the deletion of all the expired coupons generated by Autonami"
+msgstr ""
+
+#: admin/frontend/dist/57.755a7c5ab0842464ccb2.js:1
+#: admin/frontend/src/settings/pages/tools/index.js:61
+msgid "Delete Lost Carts"
+msgstr ""
+
+#: admin/frontend/dist/57.755a7c5ab0842464ccb2.js:1
+#: admin/frontend/src/settings/pages/tools/index.js:62
+msgid "This will schedule the deletion of all lost carts in the system"
+msgstr ""
+
+#: admin/frontend/dist/61.882a6f861179ac9eb6d6.js:1
+#: admin/frontend/dist/67.f149b2e78704fda06ca1.js:1
+#: admin/frontend/src/campaign/components/content/editor.js:47
+#: admin/frontend/src/components/bwf-email-content-editor/editor.js:52
+msgid "Email Editor"
+msgstr ""
+
+#: admin/frontend/dist/73.543afebadd84b485f6c7.js:1
+#: admin/frontend/src/settings/pages/general/index.js:75
+msgid " field is required !"
+msgstr ""
+
+#: admin/frontend/src/settings/pages/status/index.js:111
+msgid "woofunnels/v1/worker"
+msgstr ""
+
+#: admin/frontend/src/settings/pages/status/index.js:112
+msgid "This tool verifies Woofunnels Worker endpoint."
+msgstr ""
+
+#: admin/frontend/src/settings/pages/status/index.js:119
+msgid "autonami/v1/worker"
+msgstr ""
+
+#: admin/frontend/src/settings/pages/status/index.js:120
+#: admin/frontend/src/settings/pages/status/index.js:128
+msgid "This tool verifies Autonami worker endpoints."
+msgstr ""
+
+#: admin/frontend/src/settings/pages/status/index.js:127
+msgid "autonami/v1/events"
+msgstr ""
+
+#: admin/frontend/src/settings/pages/status/index.js:158
+msgid " Api Endpoints"
+msgstr ""
+
+#: admin/frontend/src/settings/pages/status/index.js:224
+msgid "Tables"
+msgstr ""
+
+#: admin/frontend/src/settings/pages/status/index.js:242
+msgid "Regenerate Tables"
+msgstr ""

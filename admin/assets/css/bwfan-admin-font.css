@@ -1,0 +1,2 @@
+@font-face{font-family:'wfcore';src:url(../fonts/woof.eot?yjfmpn);src:url(../fonts/woof.eot?yjfmpn#iefix) format("embedded-opentype"),url(../fonts/woof.ttf?yjfmpn) format("truetype"),url(../fonts/woof.woff?yjfmpn) format("woff"),url(../fonts/woof.svg?yjfmpn#woof) format("svg");font-weight:400;font-style:normal}
+#adminmenu .wp-has-submenu.toplevel_page_woofunnels .wp-menu-image:before{font-family:'wfcore'!important;content:"\e900";font-size:16px;padding:8px 0 0}

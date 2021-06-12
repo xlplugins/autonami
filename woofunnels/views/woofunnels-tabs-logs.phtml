@@ -1,0 +1,104 @@
+<?php if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+$current_page = 'woofunnels';
+// Exit if accessed directly
+?>
+
+<style type="text/css">
+    .woofunnels_dashboard_tab_content #support-request {
+        margin-left: 10px;
+    }
+</style>
+<div class="woofunnels_plugins_wrap">
+    <h1><?php esc_html_e( 'Logs', 'woofunnels' ); ?></h1>
+	<?php if ( $model ) { ?>
+    <div class="wp-filter">
+        <ul class="filter-links woofunnels_plugins_license_links">
+			<?php
+			$licenses = WooFunnels_licenses::get_instance();
+			$licenses->get_plugins_list();
+			if ( ! empty( $licenses->plugins_list ) ) {
+				?>
+                <li class="plugin-install-featured <?php echo ( isset( $model->current_tab ) && $model->current_tab === 'licenses' ) ? 'current' : ''; ?>">
+                    <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=licenses' );  ?>"><?php esc_html_e( 'Licenses', 'woofunnels' ); ?></a>
+                </li>
+			<?php } ?>
+            <li class="plugin-install-popular <?php echo ( isset( $model->current_tab ) && $model->current_tab === 'support' ) ? 'current' : ''; ?>">
+                <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=support' );  ?>"
+                   class=""><?php esc_html_e( 'Support', 'woofunnels' ); ?></a>
+            </li>
+			<?php if ( isset( $model->additional_tabs ) && is_array( $model->additional_tabs ) && count( $model->additional_tabs ) > 0 ): ?>
+				<?php foreach ( $model->additional_tabs as $tab ): ?>
+                    <li class="<?php echo ( isset( $model->current_tab ) && $model->current_tab === $tab['slug'] ) ? "current" : "" ?>">
+                        <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=' . $tab['slug'] );  ?>"><?php echo esc_html( $tab['label'] ); ?></a>
+                    </li>
+				<?php endforeach; ?>
+			<?php endif; ?>
+        </ul>
+    </div>
+    <br class="clear">
+
+    <div id="col-container" class="about-wrap">
+		<?php
+		$file_content      = '';
+		$selected_log_file = '';
+
+		// Handle the post submission and create the fileapi object
+		if ( is_array( $_POST ) && isset( $_POST['log_selected'] ) && ! empty( $_POST['log_selected'] ) ) {
+			$selected_log_file = $_POST['log_selected'];
+			$folder_prefix     = explode( '/', $selected_log_file );
+			$folder_file_name  = $folder_prefix[1];
+			$folder_prefix     = $folder_prefix[0];
+			$file_api          = new WooFunnels_File_Api( $folder_prefix );
+		}
+
+		// View log submit is clicked, get the content from the selected file
+		if ( isset( $_POST['view_log'] ) && ! empty( $_POST['view_log'] ) ) {
+			$file_content = $file_api->get_contents( $folder_file_name );
+		}
+
+		// Delete log submit is clicked, delete the selected file
+		if ( isset( $_POST['delete_log'] ) && ! empty( $_POST['delete_log'] ) ) {
+			$file_api->delete_file( $folder_file_name );
+		}
+
+		$wp_dir            = wp_upload_dir();
+		$logger_obj        = BWF_Logger::get_instance();
+		$final_logs_result = $logger_obj->get_log_options();
+
+		?>
+        <form method="post">
+            <div class="woofunnels_row">
+                <select name="log_selected" required>
+                    <option value=""><?php echo esc_html__( 'Select log file', 'woofunnels' ); ?></option>
+					<?php
+					foreach ( $final_logs_result as $plugin_folder => $plugin_log_files ) {
+						$optgroup_head = str_replace( '-', ' ', $plugin_folder );
+						$optgroup_head = ucfirst( $optgroup_head );
+						?>
+                        <optgroup label="<?php echo $optgroup_head; ?>">
+							<?php
+							foreach ( $plugin_log_files as $file_slug => $file_name ) {
+								$option_value = $plugin_folder . '/' . $file_slug;
+								$selected     = ( $selected_log_file === $option_value ) ? 'selected' : '';
+								echo '<option value="' . $option_value . '" ' . $selected . '>' . $file_name . '</option>';
+							}
+							?>
+                        </optgroup>
+						<?php
+					}
+					?>
+                </select>
+
+                <input type="submit" value="<?php echo esc_attr__( 'View log', 'woofunnels' ); ?>" name="view_log" class="button"/>
+                <input type="submit" onclick="return confirm('Are you sure you want to permanently delete this file?')" value="<?php echo esc_attr__( 'Delete log', 'woofunnels' ); ?>" name="delete_log" class="button" style="float: right;"/>
+            </div>
+            <div class="woofunnels_row">
+                <div style="padding: 10px; min-height: 400px;background: white;border: 1px solid #d3cdcd;margin-top: 5px;">
+                    <pre style="font-family: monospace;white-space: pre-wrap;word-wrap: break-word; font-size: 13px;"><?php echo trim( $file_content ); ?></pre>
+                </div>
+            </div>
+        </form>
+		<?php } ?>
+    </div>

@@ -1,0 +1,50 @@
+<?php if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+$current_page = 'woofunnels';
+// Exit if accessed directly
+?>
+
+<style type="text/css">
+    .woofunnels_dashboard_tab_content #support-request {
+        margin-left: 10px;
+    }
+</style>
+<div class="woofunnels_plugins_wrap">
+    <h1><?php esc_html_e( 'Tools', 'woofunnels' ); ?></h1>
+	<?php if ( $model ) { ?>
+    <div class="wp-filter">
+        <ul class="filter-links woofunnels_plugins_license_links">
+			<?php
+			$licenses = WooFunnels_licenses::get_instance();
+			$licenses->get_plugins_list();
+			if ( ! empty( $licenses->plugins_list ) ) {
+				?>
+                <li class="plugin-install-featured <?php echo ( isset( $model->current_tab ) && $model->current_tab === 'licenses' ) ? 'current' : ''; ?>">
+                    <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=licenses' );  ?>"><?php esc_html_e( 'Licenses', 'woofunnels' ); ?></a>
+                </li>
+			<?php } ?>
+            <li class="plugin-install-popular <?php echo ( isset( $model->current_tab ) && $model->current_tab === 'support' ) ? 'current' : ''; ?>">
+                <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=support' );  ?>"
+                   class=""><?php esc_html_e( 'Support', 'woofunnels' ); ?></a>
+            </li>
+			<?php if ( isset( $model->additional_tabs ) && is_array( $model->additional_tabs ) && count( $model->additional_tabs ) > 0 ): ?>
+				<?php foreach ( $model->additional_tabs as $tab ): ?>
+                    <li class="<?php echo ( isset( $model->current_tab ) && $model->current_tab === $tab['slug'] ) ? "current" : "" ?>">
+                        <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=' . $tab['slug'] );  ?>"><?php echo esc_html( $tab['label'] ); ?></a>
+                    </li>
+				<?php endforeach; ?>
+			<?php endif; ?>
+        </ul>
+    </div>
+    <br class="clear">
+
+    <div id="col-container" class="about-wrap">
+        <div class="woofunnels_dashboard_tab_content" id="tools">
+			<?php do_action( 'woofunnels_tools_after_content' ); ?>
+        </div>
+        <div class="woofunnels-area-right" style="width: 100%">
+			<?php do_action( 'woofunnels_tools_right_area' ); ?>
+        </div>
+		<?php } ?>
+    </div>
