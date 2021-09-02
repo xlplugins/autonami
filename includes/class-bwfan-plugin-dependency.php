@@ -95,9 +95,9 @@ class BWFAN_Plugin_Dependency {
 			}
 
 			$reflector = new \ReflectionClass( 'BWFAN_Pro' );
-			$pro_data      = get_plugin_data( $reflector->getFileName() );
+			$pro_data  = get_plugin_data( $reflector->getFileName() );
 
-			return is_array($pro_data) && isset($pro_data['Version']) && version_compare($pro_data['Version'], '1.9') > 0;
+			return is_array( $pro_data ) && isset( $pro_data['Version'] ) && version_compare( $pro_data['Version'], '1.9' ) > 0;
 		}
 
 		return in_array( 'autonami-automations-pro/autonami-automations-pro.php', self::$active_plugins, true ) || array_key_exists( 'autonami-automations-pro/autonami-automations-pro.php', self::$active_plugins );
@@ -201,6 +201,21 @@ class BWFAN_Plugin_Dependency {
 		}
 
 		return in_array( 'translatepress-multilingual/index.php', self::$active_plugins, true ) || array_key_exists( 'translatepress-multilingual/index.php', self::$active_plugins );
+	}
+
+	/**
+	 * Checking if tutorlms plugin active
+	 * @return bool
+	 */
+	public static function tutorlms_active_check() {
+		if ( ! self::$active_plugins ) {
+			self::init();
+		}
+		if ( class_exists( '\TUTOR\Tutor' ) ) {
+			return true;
+		}
+
+		return in_array( 'tutor/tutor.php', self::$active_plugins, true ) || array_key_exists( 'tutor/tutor.php', self::$active_plugins );
 	}
 
 }

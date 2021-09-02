@@ -935,11 +935,17 @@ class BWFAN_Common {
 		$string = self::strip_merge_tags( $string, $is_crm );
 		$string = apply_filters( 'bwfan_pre_decode_merge_tags', $string );
 
+		$string = str_replace( '[if', '[bwfno_if', $string );
+		$string = str_replace( '[endif', '[bwfno_endif', $string );
+
 		do_action( 'bwfan_before_decode_merge_tags', $string );
 
 		$string = BWFAN_Merge_Tag::maybe_parse_nested_merge_tags( $string );
 
 		do_action( 'bwfan_after_decode_merge_tags', $string );
+
+		$string = str_replace( '[bwfno_if', '[if', $string );
+		$string = str_replace( '[bwfno_endif', '[endif', $string );
 
 		$string = apply_filters( 'bwfan_post_decode_merge_tags', $string );
 

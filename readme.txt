@@ -4,7 +4,7 @@ Tags: crm, marketing automation, cart abandonment, cart recovery, woocommerce, e
 Requires at least: 5.0
 Tested up to: 5.7.2
 Requires PHP: 7.0
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -188,6 +188,11 @@ The abandoned user will also see their filled date restored on the recovery link
 
 
 == Change log ==
+
+= 2.0.4 (Jul 06, 2021) =
+* Fixed: Email HTML body, sometimes [if mso] like tags failing, fixed. (#814)
+* Fixed: Pro support: Allows 'enter' key during note addition on the single contact. (#806)
+* Fixed: Pro support: Contacts import, remove file checking on the JS end. (#810)
 
 = 2.0.3 (Jul 05, 2021) =
 * Added: Pro support: Templates cloning feature added. (#788)

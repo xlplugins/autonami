@@ -54,8 +54,7 @@ if ( ! function_exists( 'bwfan_is_woofunnels_upstroke_active' ) ) {
  */
 if ( ! function_exists( 'bwfan_is_autonami_pro_active' ) ) {
 	function bwfan_is_autonami_pro_active() {
-		$pro_activated = BWFAN_Plugin_Dependency::autonami_pro_active_check();
-		return $pro_activated;
+		return BWFAN_Plugin_Dependency::autonami_pro_active_check();
 	}
 }
 
@@ -76,7 +75,7 @@ if ( ! function_exists( 'bwfan_is_autonami_pro_old' ) ) {
 		$reflector = new \ReflectionClass( 'BWFAN_Pro' );
 		$pro_data  = get_plugin_data( $reflector->getFileName() );
 
-		return !is_array( $pro_data ) || !isset( $pro_data['Version'] ) || version_compare( $pro_data['Version'], '1.9' ) <= 0;
+		return ! is_array( $pro_data ) || ! isset( $pro_data['Version'] ) || version_compare( $pro_data['Version'], '1.9' ) <= 0;
 	}
 }
 
@@ -168,5 +167,14 @@ if ( ! function_exists( 'bwfan_is_tve_active' ) ) {
 if ( ! function_exists( 'bwfan_is_translatepress_active' ) ) {
 	function bwfan_is_translatepress_active() {
 		return BWFAN_Plugin_Dependency::translatepress_active_check();
+	}
+}
+
+/**
+ * TutorLMS Detection
+ */
+if ( ! function_exists( 'bwfan_is_tutorlms_active' ) ) {
+	function bwfan_is_tutorlms_active() {
+		return BWFAN_Plugin_Dependency::tutorlms_active_check();
 	}
 }
