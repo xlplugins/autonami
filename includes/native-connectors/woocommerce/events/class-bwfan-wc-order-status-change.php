@@ -173,6 +173,9 @@ final class BWFAN_WC_Order_Status_Change extends BWFAN_Event {
 	}
 
 	public function order_status_changed( $order_id, $from_status, $to_status ) {
+		if ( BWFAN_Common::bwf_check_to_skip_child_order( $order_id ) ) {
+		    return;
+		}
 		BWFAN_Core()->public->load_active_automations( $this->get_slug() );
 
 		$this->process( $order_id, $from_status, $to_status );

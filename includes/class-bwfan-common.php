@@ -5398,4 +5398,20 @@ class BWFAN_Common {
 			'task_history' => $task_history_count
 		];
 	}
+
+	/**
+	 * Skip child order
+	 *
+	 * @param $id int order id
+	 *
+	 * @return bool
+	 */
+	public static function bwf_check_to_skip_child_order( $id ) {
+		$skip = false;
+		if ( apply_filters( 'bwf_skip_sub_order', false ) && wp_get_post_parent_id( $id ) ) {
+			$skip = true;
+		}
+
+		return $skip;
+	}
 }

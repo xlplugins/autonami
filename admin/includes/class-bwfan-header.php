@@ -568,37 +568,40 @@ final class BWFAN_Header {
 			return;
 		}
 		foreach ( $navigation as $key => $item ) {
-		    if( isset( $item['isExpandable'] ) && $item['isExpandable'] == true ) {
-			    $dropdown_data = '';
-				$active = false;
-			    if ( isset( $item['items'] ) && !empty( $item['items'] ) ) {
-                    $dropdown_data = '<span class="bwf-hover-suheader-menu">';
-                        foreach ( $item['items'] as $key => $data ) {
-							$class = $active_slug == $key ? 'bwfan_navigation_active' : '';
-                            $dropdown_data .= '<a href="' . esc_url( $data['link'] ) . '" class="' . $class . '" data-link-type="bwf-crm">' . $data['name'] . '</a>';
+			if ( isset( $item['isExpandable'] ) && $item['isExpandable'] == true ) {
+				$dropdown_data = '';
+				$active        = false;
+				if ( isset( $item['items'] ) && ! empty( $item['items'] ) ) {
+					$dropdown_data = '<span class="bwf-hover-suheader-menu">';
+					foreach ( $item['items'] as $key => $data ) {
+						$class         = $active_slug == $key ? 'bwfan_navigation_active' : '';
+						$dropdown_data .= '<a href="' . esc_url( $data['link'] ) . '" class="' . $class . '" data-link-type="bwf-crm">' . $data['name'] . '</a>';
 
-							if ( $active_slug == $key ) {
-								$active = true;
-							}
-                        }
-                    $dropdown_data .= '</span>';
-			    }
+						if ( $active_slug == $key ) {
+							$active = true;
+						}
+					}
+					$dropdown_data .= '</span>';
+				}
 				$mainclass = $active ? 'bwfan_navigation_active' : '';
-		        echo '<span class="bwf-hover-submenu bwf-hover-submenu-php">
-                    <span class="'.$mainclass.'">'. $item['name'] . '</span>
+				echo '<span class="bwf-hover-submenu bwf-hover-submenu-php">
+                    <span class="' . $mainclass . '">' . $item['name'] . '</span>
                     <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                         <path d="M12,14.071L8.179,10.25c-0.414-0.414-1.086-0.414-1.5,0l0,0c-0.414,0.414-0.414,1.086,0,1.5l4.614,4.614 c0.391,0.391,1.024,0.391,1.414,0l4.614-4.614c0.414-0.414,0.414-1.086,0-1.5v0c-0.414-0.414-1.086-0.414-1.5,0L12,14.071z"></path>
-                    </svg> '. $dropdown_data . '
+                    </svg> ' . $dropdown_data . '
                 </span>';
-		    } else {
-                $active = ( ! empty( $active_slug ) && $key === $active_slug ) ? 'bwfan_navigation_active' : '';
+			} else {
+				$active = ( ! empty( $active_slug ) && $key === $active_slug ) ? 'bwfan_navigation_active' : '';
 
-                $icon = ( isset( $item['icon'] ) && ! empty( $item['icon'] ) ) ? wp_remote_retrieve_body( wp_remote_get( esc_url( plugin_dir_url( BWFAN_PLUGIN_FILE ) . 'admin/assets/img/menu/' . $item['icon'] . '.svg' ) ) ) : '';
+				$icon = ( isset( $item['icon'] ) && ! empty( $item['icon'] ) ) ? wp_remote_retrieve_body( wp_remote_get( esc_url( plugin_dir_url( BWFAN_PLUGIN_FILE ) . 'admin/assets/img/menu/' . $item['icon'] . '.svg' ) ) ) : '';
 
-                $target = ( isset( $item['target'] ) && ! empty( $item['target'] ) ) ? ' target="' . $item['target'] . '"' : '';
+				$target = ( isset( $item['target'] ) && ! empty( $item['target'] ) ) ? ' target="' . $item['target'] . '"' : '';
 
-                echo '<span><a href="' . $item['link'] . '" class="' . $active . '"' . $target . '>' . $icon . $item['name'] . '</a></span>';
-            }
+				$item_link = isset( $item['link'] ) ? $item['link'] : '#';
+				$item_name = isset( $item['name'] ) ? $item['name'] : '';
+
+				echo '<span><a href="' . $item_link . '" class="' . $active . '"' . $target . '>' . $icon . $item_name . '</a></span>';
+			}
 
 		}
 		$active = null;

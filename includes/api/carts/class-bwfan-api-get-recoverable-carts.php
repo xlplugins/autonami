@@ -62,15 +62,15 @@ class BWFAN_API_Get_Recoverable_Carts extends BWFAN_API_Base {
 		if ( ! class_exists( 'WooCommerce' ) ) {
 			return $this->success_response( $result, __( 'Got all recoverable carts.', 'wp-marketing-automations-crm' ) );
 		}
-		$nowDate = new DateTime('now', new DateTimeZone("UTC"));
+		$nowDate = new DateTime( 'now', new DateTimeZone( "UTC" ) );
 		foreach ( $recoverable_carts as $item ) {
 			$cartDate = new DateTime( $item->last_modified );
 
-			$diff = date_diff( $nowDate, $cartDate, true );
-			$diffstr = $diff ? $this->get_difference_string($diff) : '';
+			$diff    = date_diff( $nowDate, $cartDate, true );
+			$diffstr = $diff ? $this->get_difference_string( $diff ) : '';
 
 			$result[] = [
-				'id'            => $item->ID,
+				'id'            => ! is_null( $item->ID ) ? $item->ID : 0,
 				'email'         => $item->email,
 				'phone'         => $this->get_phone( $item ),
 				'preview'       => $this->get_preview_data( $item ),
@@ -83,12 +83,12 @@ class BWFAN_API_Get_Recoverable_Carts extends BWFAN_API_Base {
 				'buyer_name'    => $this->get_order_name( $item ),
 				'order_id'      => $this->get_order_id( $item ),
 				'user_id'       => ! empty( $item->user_id ) ? $item->user_id : 0,
-				'checkout_data' => $item->checkout_data,
+				'checkout_data' => ! is_null( $item->checkout_data ) ? $item->checkout_data : '',
 			];
 
 		}
 
-		$result = BWFAN_Recoverable_Carts::populate_contact_info( $result );
+		$result           = BWFAN_Recoverable_Carts::populate_contact_info( $result );
 		$this->count_data = BWFAN_Common::get_carts_count();
 
 		return $this->success_response( $result, __( 'Got all recoverable carts.', 'wp-marketing-automations-crm' ) );
@@ -102,18 +102,19 @@ class BWFAN_API_Get_Recoverable_Carts extends BWFAN_API_Base {
 	public function get_difference_string( $difftime ) {
 		$dif_str = '';
 		if ( $difftime->y > 0 ) {
-			$dif_str = $difftime->y.' year ago';
+			$dif_str = $difftime->y . ' year ago';
 		} elseif ( $difftime->m > 0 ) {
-			$dif_str = $difftime->m.' months ago';
+			$dif_str = $difftime->m . ' months ago';
 		} elseif ( $difftime->d > 0 ) {
-			$dif_str = $difftime->d.' days ago';
+			$dif_str = $difftime->d . ' days ago';
 		} elseif ( $difftime->h > 0 ) {
-			$dif_str = $difftime->h.' hours ago';
+			$dif_str = $difftime->h . ' hours ago';
 		} elseif ( $difftime->i > 0 ) {
-			$dif_str = $difftime->i.' minutes ago';
+			$dif_str = $difftime->i . ' minutes ago';
 		} elseif ( $difftime->m > 0 ) {
-			$dif_str = $difftime->s.' seconds ago';
+			$dif_str = $difftime->s . ' seconds ago';
 		}
+
 		return $dif_str;
 	}
 
@@ -259,7 +260,7 @@ class BWFAN_API_Get_Recoverable_Carts extends BWFAN_API_Base {
 			}
 		}
 
-		$product_total              = $product_total - floatval($data['discount']);
+		$product_total              = $product_total - floatval( $data['discount'] );
 		$data['total']              = round( $product_total, 2 );
 		$shipping_total             = $item->shipping_total + $item->shipping_tax_total;
 		$data['total']              = $data['total'] + $shipping_total;

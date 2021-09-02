@@ -16,25 +16,26 @@ if ( true === $disable_product_thumbnail ) {
 	$colspan      = '';
 	$colspan_foot = ' colspan="2"';
 }
-?>
-<style>
+
+add_action( 'bwfan_output_email_style', function () { ?>
     #template_header {
-        width: 100%;
+    width: 100%;
     }
 
     .bwfan-order-table {
-        border: 2px solid #e5e5e5;
-        border-collapse: collapse;
+    border: 2px solid #e5e5e5;
+    border-collapse: collapse;
+    max-width:700px;
     }
 
     .bwfan-order-table img {
-        max-width: 75px;
+    width: 75px;
     }
 
     .bwfan-order-table tr th, .bwfan-order-table tr td {
-        border: 2px solid #e5e5e5;
+    border: 2px solid #e5e5e5;
     }
-</style>
+<?php } ); ?>
 
 <table cellspacing="0" cellpadding="6" border="1" class="bwfan-order-table" width="100%">
     <thead>
@@ -47,8 +48,8 @@ if ( true === $disable_product_thumbnail ) {
     <tbody>
 
 	<?php
+	$tax_display = get_option( 'woocommerce_tax_display_cart' );
 	if ( false !== $cart ) {
-		$tax_display = get_option( 'woocommerce_tax_display_cart' );
 		foreach ( $cart as $item ) :
 			$product = wc_get_product( $item['data']->get_id() );
 			if ( ! $product ) {
@@ -142,6 +143,7 @@ if ( true === $disable_product_thumbnail ) {
 			}
 			$coupon_names = implode( ', ', $coupon_names );
 			$coupon_names = apply_filters( 'bwfan_modify_coupon_names', $coupon_names, $data['coupons'] );
+			$total        = isset( $data['total'] ) ? $data['total'] : 0;
 			?>
             <th scope="row" <?php echo $colspan_foot ?> style="<?php echo is_rtl() ? 'text-align:right' : 'text-align:left'; ?>">
 				<?php esc_html_e( 'Discount:', 'woocommerce' ); ?>
@@ -167,7 +169,7 @@ if ( true === $disable_product_thumbnail ) {
                 <small><?php echo wp_kses_post( '( ' . BWFAN_Common::price( esc_attr( $subtotal_tax ), $currency ) . ' ' . get_option( 'woocommerce_price_display_suffix' ) . ' )' ) ?></small>
 			<?php endif; ?>
         </th>
-        <td><?php echo wp_kses_post( BWFAN_Common::price( $data['total'], $currency ) ); ?></td>
+        <td><?php echo wp_kses_post( BWFAN_Common::price( $total, $currency ) ); ?></td>
     </tr>
     </tfoot>
 

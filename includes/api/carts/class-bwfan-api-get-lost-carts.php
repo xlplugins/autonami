@@ -59,17 +59,17 @@ class BWFAN_API_Get_Lost_Carts extends BWFAN_API_Base {
 			unset( $lost_carts['total_count'] );
 		}
 
-		$result = [];
-		$nowDate = new DateTime('now', new DateTimeZone("UTC"));
+		$result  = [];
+		$nowDate = new DateTime( 'now', new DateTimeZone( "UTC" ) );
 		foreach ( $lost_carts as $item ) {
 
 			$cartDate = new DateTime( $item->last_modified );
 
-			$diff = date_diff( $nowDate, $cartDate, true );
-			$diffstr = $diff ? $this->get_difference_string($diff) : '';
+			$diff    = date_diff( $nowDate, $cartDate, true );
+			$diffstr = $diff ? $this->get_difference_string( $diff ) : '';
 
 			$result[] = [
-				'id'            => $item->ID,
+				'id'            => ! is_null( $item->ID ) ? $item->ID : 0,
 				'email'         => $item->email,
 				'phone'         => $this->get_phone( $item ),
 				'preview'       => $this->get_preview_data( $item ),
@@ -82,12 +82,13 @@ class BWFAN_API_Get_Lost_Carts extends BWFAN_API_Base {
 				'buyer_name'    => $this->get_order_name( $item ),
 				'order_id'      => $this->get_order_id( $item ),
 				'user_id'       => ! empty( $item->user_id ) ? $item->user_id : 0,
-				'checkout_data' => $item->checkout_data,
+				'checkout_data' => ! is_null( $item->checkout_data ) ? $item->checkout_data : '',
 			];
 		}
 
-		$result = BWFAN_Recoverable_Carts::populate_contact_info( $result );
+		$result           = BWFAN_Recoverable_Carts::populate_contact_info( $result );
 		$this->count_data = BWFAN_Common::get_carts_count();
+
 		return $this->success_response( $result, __( 'Got all lost carts.', 'wp-marketing-automations-crm' ) );
 	}
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pelago\Emogrifier\HtmlProcessor;
+namespace BWF_Pelago\Emogrifier\HtmlProcessor;
 
 /**
  * Base class for HTML processor that e.g., can remove, add or modify nodes or attributes.

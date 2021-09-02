@@ -7,42 +7,42 @@ $n = 1;
 $button_background_color = apply_filters( 'bwfan_wc_email_get_base_color', get_option( 'woocommerce_email_base_color' ) );
 $button_text_color       = apply_filters( 'bwfan_wc_email_get_text_color', get_option( 'woocommerce_email_text_color' ) );
 
-if ( is_array( $products ) ) : ?>
+if ( is_array( $products ) ) :
 
-    <style>
-        /** don't inline this css - hack for gmail */
+	add_action( 'bwfan_output_email_style', function () { ?>
+
         .bwfan-product-grid .bwfan-product-grid-item-3-col img {
-            height: auto !important;
+        height: auto !important;
         }
 
         .autonami-button {
-            font-weight: bold;
-            background-color: <?php echo esc_attr($button_background_color); ?>;
-            border-radius: 4px;
-            display: inline-block;
-            padding: 12px 35px 13px;
-            margin: 8px auto;
-            font-size: 14px;
-            text-align: center;
-            color: <?php echo esc_attr($button_text_color); ?>;
-            text-decoration: none;
+        font-weight: bold;
+        background-color: <?php echo esc_attr( $button_background_color ); ?>;
+        border-radius: 4px;
+        display: inline-block;
+        padding: 12px 35px 13px;
+        margin: 8px auto;
+        font-size: 14px;
+        text-align: center;
+        color: <?php echo esc_attr( $button_text_color ); ?>;
+        text-decoration: none;
         }
 
         .bwfan-product-grid-item-3-col {
-            width: 28.5%;
-            display: inline-block;
-            text-align: left;
-            padding: 0 0 30px;
-            vertical-align: top;
-            word-wrap: break-word;
-            margin-right: 4%;
-            font-size: 14px;
+        width: 28.5%;
+        display: inline-block;
+        text-align: left;
+        padding: 0 0 30px;
+        vertical-align: top;
+        word-wrap: break-word;
+        margin-right: 4%;
+        font-size: 14px;
         }
 
         .bwfan-product-grid .bwfan-product-image {
-            width: 100%;
+        width: 100%;
         }
-    </style>
+	<?php } ); ?>
 
     <table cellspacing="0" cellpadding="0" class="bwfan-product-grid bwfan-reviews-grid">
         <tbody>

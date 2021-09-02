@@ -1,6 +1,6 @@
 <?php
 
-namespace Pelago\Emogrifier\HtmlProcessor;
+namespace BWF_Pelago\Emogrifier\HtmlProcessor;
 
 /**
  * Normalizes HTML:

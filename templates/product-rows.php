@@ -3,20 +3,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $currency = is_array( $data ) && isset( $data['currency'] ) ? $data['currency'] : '';
-if ( is_array( $products ) ) : ?>
+if ( is_array( $products ) ) :
 
-    <style>
-        /** don't inline this css - hack for gmail */
+	add_action( 'bwfan_output_email_style', function () { ?>
+
         .bwfan-product-rows {
-            width: 100%;
-            border: 2px solid #e5e5e5;
-            border-collapse: collapse;
+        width: 100%;
+        border: 2px solid #e5e5e5;
+        border-collapse: collapse;
+        max-width:700px;
         }
 
         .bwfan-product-rows img {
-            max-width: 75px;
+        width:75px;
+        height: auto!important;
         }
-    </style>
+	<?php } ); ?>
 
     <table cellspacing="0" cellpadding="0" style="width: 100%;" class="bwfan-product-rows">
         <tbody>

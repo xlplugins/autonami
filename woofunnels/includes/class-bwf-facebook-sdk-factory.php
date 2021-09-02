@@ -17,7 +17,7 @@ class BWF_Facebook_Sdk_Factory {
 	 *
 	 * @return boolean
 	 */
-	public static function setup( $pixel_id, $access_token, $version = 'v10.0' ) {
+	public static function setup( $pixel_id, $access_token, $version = 'v11.0' ) {
 
 		if ( empty( $pixel_id ) || empty( $access_token ) ) {
 			return false;

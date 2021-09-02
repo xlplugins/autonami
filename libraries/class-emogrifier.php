@@ -1,6 +1,6 @@
 <?php
 
-namespace Pelago;
+namespace BWF_Pelago;
 
 /**
  * This class provides functions for converting CSS styles into inline style attributes in your HTML code.
@@ -1339,7 +1339,7 @@ class Emogrifier
         }
 
         // support use without autoload
-        if (!\class_exists('Pelago\\Emogrifier\\CssConcatenator')) {
+        if (!\class_exists('BWF_Pelago\\Emogrifier\\CssConcatenator')) {
             require_once __DIR__ . '/Emogrifier/CssConcatenator.php';
         }
 

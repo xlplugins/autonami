@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class BWFCRM_Base_React_Page {
 	public $frontend_dir = ( 1 === BWFCRM_REACT_ENVIRONMENT ) ? BWFAN_REACT_PROD_URL : BWFCRM_REACT_DEV_URL;
-	public $admin_dir    = BWFAN_PLUGIN_DIR . '/admin';
+	public $admin_dir = BWFAN_PLUGIN_DIR . '/admin';
 
 	public function get_header_data() {
 		if ( class_exists( 'BWFAN_Header' ) ) {
@@ -32,19 +32,24 @@ abstract class BWFCRM_Base_React_Page {
 		$this->page_data['daily_email_limit']      = class_exists( 'BWFCRM_Core' ) ? BWFCRM_Core()->campaigns->get_daily_limit_status_array() : 0;
 
 		/** Carts */
-		$this->page_data['abandoned_wait_time']     = $this->get_abandoned_wait_time();
-		$this->page_data['is_tax_enabled']          = bwfan_is_woocommerce_active() && wc_tax_enabled();
-		$this->page_data['siteTitle']               = get_bloginfo();
-		$this->page_data['is_wc_active']            = false;
-		$this->page_data['is_connector_active']     = false;
-		$this->page_data['is_funnel_active']        = false;
-		$this->page_data['disable_wp_importer']     = apply_filters( 'bwfcrm_disable_wp_importer', false );
-		$this->page_data['date_format']             = get_option( 'date_format' );
-		$this->page_data['time_format']             = get_option( 'time_format' );
-		$this->page_data['timezone']                = get_option( 'timezone_string' );
-		$this->page_data['gmt_offset']              = get_option( 'gmt_offset' );
-		$this->page_data['currrent_logged_user']    = get_current_user_id();
-		$this->page_data['is_twilio_connected']     = class_exists( 'BWFCRM_Core' ) ? BWFCRM_Core()->sms->is_twilio_connected() : false;
+		$this->page_data['abandoned_wait_time']  = $this->get_abandoned_wait_time();
+		$this->page_data['is_tax_enabled']       = bwfan_is_woocommerce_active() && wc_tax_enabled();
+		$this->page_data['siteTitle']            = get_bloginfo();
+		$this->page_data['is_wc_active']         = false;
+		$this->page_data['is_connector_active']  = false;
+		$this->page_data['is_funnel_active']     = false;
+		$this->page_data['disable_wp_importer']  = apply_filters( 'bwfcrm_disable_wp_importer', false );
+		$this->page_data['date_format']          = get_option( 'date_format' );
+		$this->page_data['time_format']          = get_option( 'time_format' );
+		$this->page_data['timezone']             = get_option( 'timezone_string' );
+		$this->page_data['gmt_offset']           = get_option( 'gmt_offset' );
+		$this->page_data['currrent_logged_user'] = get_current_user_id();
+
+		if ( bwfan_is_autonami_pro_active() ) {
+			$this->page_data['is_twilio_connected'] = class_exists( 'BWFCRM_Core' ) ? BWFCRM_Core()->sms->is_twilio_connected() : false;
+			$this->page_data['active_sms_provider'] = method_exists( 'BWFCRM_Common', 'get_sms_provider_slug' ) ? BWFCRM_Common::get_sms_provider_slug() : false;
+		}
+
 		$this->page_data['crm_contact_note_types']  = apply_filters(
 			'bwfcrm_contact_add_note_types',
 			array(
@@ -76,7 +81,8 @@ abstract class BWFCRM_Base_React_Page {
 		);
 		$this->page_data['is_conversation_enabled'] = ( class_exists( 'BWFAN_Email_Conversations' ) && isset( BWFAN_Core()->conversations ) && BWFAN_Core()->conversations instanceof BWFAN_Email_Conversations );
 		$this->page_data['app_path']                = BWFAN_REACT_PROD_URL . '/';
-		$this->page_data['icons']                   = array(
+
+		$this->page_data['icons'] = array(
 			'error'   => '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2" class="wffn_loader wffn_loader_error">
                         <circle fill="none" stroke="#ffb7bf" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1" class="path circle"></circle>
                         <line fill="none" stroke="#e64155" stroke-width="8" stroke-linecap="round" stroke-miterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3" class="path line"></line>
@@ -171,12 +177,9 @@ abstract class BWFCRM_Base_React_Page {
 		$deps        = ( isset( $assets['dependencies'] ) ? array_merge( $assets['dependencies'], array( 'jquery' ) ) : array( 'jquery' ) );
 		$version     = ( isset( $assets['version'] ) ? $assets['version'] : BWFAN_VERSION );
 
-		$script_deps = array_filter(
-			$deps,
-			function ( $dep ) use ( &$style_deps ) {
-				return false === strpos( $dep, 'css' );
-			}
-		);
+		$script_deps = array_filter( $deps, function ( $dep ) use ( &$style_deps ) {
+			return false === strpos( $dep, 'css' );
+		} );
 
 		return array(
 			'dependencies' => $script_deps,

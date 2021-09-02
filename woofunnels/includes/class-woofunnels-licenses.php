@@ -62,39 +62,65 @@ class WooFunnels_Licenses {
 		if ( empty( $get_plugins_data ) ) {
 			return;
 		}
-		$plugins_need_license_woofunnels = [];
-		$plugins_need_license_autonami   = [];
+		$plugins_need_license_woofunnels = $this->get_data( 'woofunnels' );
+		$plugins_need_license_autonami   = $this->get_data( 'autonami' );
 
-		foreach ( $get_plugins_data as $plugin_data ) {
+		$plugins_need_license_woofunnels_titles = [];
+		$plugins_need_license_autonami_titles = [];
+		foreach ( $plugins_need_license_woofunnels as $plugin_data ) {
 
 			if ( 'active' !== $plugin_data['product_status'] || $this->is_expired( $plugin_data ) || $this->is_disabled( $plugin_data ) ) {
 
 
-				if ( 'Autonami Marketing Automations Connectors' === $plugin_data['plugin'] || 'Autonami Marketing Automations Pro' === $plugin_data['plugin'] ) {
-					array_push( $plugins_need_license_autonami, $plugin_data['plugin'] );
-				} else {
-					array_push( $plugins_need_license_woofunnels, $plugin_data['plugin'] );
-				}
+				array_push( $plugins_need_license_woofunnels_titles, $plugin_data['plugin'] );
 
 
 			}
 		}
 
-		if ( ! empty( $plugins_need_license_woofunnels ) ) {
-			$this->show_invalid_license_notice( $plugins_need_license_woofunnels,'woofunnels' );
+		foreach ( $plugins_need_license_autonami as $plugin_data ) {
+
+			if ( 'active' !== $plugin_data['product_status'] || $this->is_expired( $plugin_data ) || $this->is_disabled( $plugin_data ) ) {
+
+
+				array_push( $plugins_need_license_autonami_titles, $plugin_data['plugin'] );
+
+
+			}
 		}
-		if ( ! empty( $plugins_need_license_autonami ) ) {
-			$this->show_invalid_license_notice( $plugins_need_license_autonami, 'autonami' );
+
+		if ( ! empty( $plugins_need_license_woofunnels_titles ) ) {
+			$this->show_invalid_license_notice( $plugins_need_license_woofunnels_titles, 'woofunnels' );
+		}
+		if ( ! empty( $plugins_need_license_autonami_titles ) ) {
+			$this->show_invalid_license_notice( $plugins_need_license_autonami_titles, 'autonami' );
 		}
 	}
 
-	public function get_data() {
-		if ( ! is_null( $this->plugins_list ) ) {
+	public function get_data( $type = 'all' ) {
+		if ( is_null( $this->plugins_list ) ) {
+			$this->get_plugins_list();
+		}
+
+		if ( 'all' === $type ) {
 			return $this->plugins_list;
 		}
-		$this->get_plugins_list();
+		if ( 'autonami' === $type || 'woofunnels' === $type ) {
+			$plugins_autonami   = [];
+			$plugins_woofunnels = $this->plugins_list;
+			if ( is_array( $this->plugins_list ) && count( $this->plugins_list ) ) {
+				foreach ( $this->plugins_list as $key => $license ) {
+					if ( false !== strpos( $license['plugin'], 'Automations' ) ) {
+						$plugins_autonami[ $key ] = $license;
+						unset( $plugins_woofunnels[ $key ] );
+					}
+				}
 
-		return $this->plugins_list;
+			}
+
+			return ( 'autonami' === $type ) ? $plugins_autonami : $plugins_woofunnels;
+		}
+
 	}
 
 	public function get_plugins_list() {
@@ -130,17 +156,17 @@ class WooFunnels_Licenses {
 		<div class="bwf-notice notice error">
 			<p>
 				<?php
-				echo sprintf( __( '<strong>Invalid License Key: </strong> You are <i>not receiving</i> Latest Updates, New Features, Security Updates &amp; Bug Fixes for <strong>%1$s</strong>. <a href="%2$s">Click Here To Fix This</a>.', 'buildwoofunnels' ), implode( ', ', $plugins ), $this->license_url($type) );
+				echo sprintf( __( '<strong>Invalid License Key: </strong> You are <i>not receiving</i> Latest Updates, New Features, Security Updates &amp; Bug Fixes for <strong>%1$s</strong>. <a href="%2$s">Click Here To Fix This</a>.', 'buildwoofunnels' ), implode( ', ', $plugins ), $this->license_url( $type ) );
 				?>
 			</p>
 		</div>
 		<?php
 	}
 
-	public function license_url($type) {
+	public function license_url( $type ) {
 		if ( $type === 'woofunnels' && defined( 'WFFN_VERSION' ) ) {
 			return admin_url( '/admin.php?page=bwf&path=/settings/woofunnels_general_settings' );
-		} elseif ( $type === 'autonami' && defined( 'BWFAN_VERSION' ) && version_compare(BWFAN_VERSION,'2.0','>=') ) {
+		} elseif ( $type === 'autonami' && defined( 'BWFAN_VERSION' ) && version_compare( BWFAN_VERSION, '2.0', '>=' ) ) {
 			return admin_url( '/admin.php?page=autonami&path=%2Fsettings' );
 		} else {
 			return admin_url( 'admin.php?page=woofunnels&tab=licenses' );

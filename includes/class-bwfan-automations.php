@@ -752,7 +752,7 @@ class BWFAN_Automations {
 		$abandoned_table = $wpdb->prefix . 'bwfan_abandonedcarts';
 		$contact_table   = $wpdb->prefix . 'bwf_contact';
 
-		$query = "SELECT abandon.email,abandon.checkout_data, abandon.total as revenue, COALESCE(con.id, 0) as id, COALESCE(con.f_name, '') as f_name, COALESCE(con.l_name, '') as l_name from $abandoned_table as abandon LEFT JOIN $contact_table as con ON abandon.email = con.email ORDER BY abandon.ID DESC LIMIT 5 OFFSET 0";
+		$query = "SELECT abandon.email,COALESCE(abandon.checkout_data,'')as checkout_data, abandon.total as revenue, COALESCE(con.id, 0) as id, COALESCE(con.f_name, '') as f_name, COALESCE(con.l_name, '') as l_name from $abandoned_table as abandon LEFT JOIN $contact_table as con ON abandon.email = con.email ORDER BY abandon.ID DESC LIMIT 5 OFFSET 0";
 
 		return $wpdb->get_results( $query );
 	}

@@ -16,7 +16,7 @@ class BWF_Facebook_Sdk {
 	protected $event_data = array();
 	private $access_token = '';
 
-	public function __construct( $pixel_id, $access_token, $version = 'v10.0' ) {
+	public function __construct( $pixel_id, $access_token, $version = 'v11.0' ) {
 		if ( ! empty( $pixel_id ) ) {
 			$this->pixel_id = $pixel_id;
 		}
@@ -337,7 +337,7 @@ class BWF_Facebook_Sdk {
 		return $this->container['doby'];
 	}
 
-	public static function create( $pixel_id, $access_token, $version = 'v9.0' ) {
+	public static function create( $pixel_id, $access_token, $version = 'v11.0' ) {
 
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self( $pixel_id, $access_token, $version );

@@ -1,15 +1,15 @@
 <?php
 
-namespace Pelago\Emogrifier;
+namespace BWF_Pelago\Emogrifier;
 
-use Pelago\Emogrifier\HtmlProcessor\AbstractHtmlProcessor;
+use BWF_Pelago\Emogrifier\HtmlProcessor\AbstractHtmlProcessor;
 use Symfony\Component\CssSelector\CssSelectorConverter;
 use Symfony\Component\CssSelector\Exception\SyntaxErrorException;
 
 /**
  * This class provides functions for converting CSS styles into inline style attributes in your HTML code.
  *
- * For Emogrifier 3.0.0, this will be the successor to the \Pelago\Emogrifier class (which then will be deprecated).
+ * For Emogrifier 3.0.0, this will be the successor to the \BWF_Pelago\Emogrifier class (which then will be deprecated).
  *
  * For more information, please see the README.md file.
  *

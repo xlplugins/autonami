@@ -141,7 +141,7 @@ final class BWFAN_WC_Product_Purchased extends BWFAN_Event {
 	public function new_order( $order_id, $posted_data = [], $order ) {
 		$automations_for_current_event = $this->get_current_event_automations();
 
-		if ( ! is_array( $automations_for_current_event ) || count( $automations_for_current_event ) === 0 ) {
+		if ( ! is_array( $automations_for_current_event ) || count( $automations_for_current_event ) === 0 || BWFAN_Common::bwf_check_to_skip_child_order( $order_id ) ) {
 			BWFAN_Core()->logger->log( 'No active automations for order ID - ' . $order_id . ', Event - ' . $this->get_slug() . ' and function name ' . __FUNCTION__, $this->log_type );
 
 			return;

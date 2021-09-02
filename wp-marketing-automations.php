@@ -3,7 +3,7 @@
  * Plugin Name: Autonami Marketing Automations For WordPress
  * Plugin URI: https://buildwoofunnels.com/wordpress-marketing-automation-autonami/
  * Description: Power up all your essential functionalities like sending cart abandonment emails, tracking their conversions and many other marketing/ admin automated workflows.
- * Version: 2.0.1
+ * Version: 2.0.2
  * Author: BuildWooFunnels
  * Author URI: https://buildwoofunnels.com
  * License: GPLv3 or later
@@ -137,15 +137,27 @@ final class BWFAN_Core {
 		 * Load dependency classes like bwfan-functions.php
 		 */
 		$this->load_dependencies_support();
-
-		if ( bwfan_is_autonami_pro_old() ) {
-			return;
-		}
-
 		/**
 		 * Initiates and loads WooFunnels start file
 		 */
 		$this->load_woofunnels_core_classes();
+
+		if ( bwfan_is_autonami_pro_old() ) {
+			add_action( 'plugins_loaded', function () {
+				WooFunnel_Loader::include_core();
+			}, - 99 );
+
+			define( 'BWFAN_PRO_VERSION', '1.3.0' );
+			define( 'BWFAN_PRO_FULL_NAME', 'Autonami Marketing Automations Pro' );
+			define( 'BWFAN_PRO_PLUGIN_FILE', WP_PLUGIN_DIR . '/wp-marketing-automations-pro/wp-marketing-automations-pro.php' );
+			define( 'BWFAN_PRO_PLUGIN_DIR', WP_PLUGIN_DIR . '/wp-marketing-automations-pro' );
+			define( 'BWFAN_PRO_PLUGIN_URL', untrailingslashit( plugin_dir_url( BWFAN_PRO_PLUGIN_FILE ) ) );
+			define( 'BWFAN_PRO_PLUGIN_BASENAME', plugin_basename( BWFAN_PRO_PLUGIN_FILE ) );
+			include WP_PLUGIN_DIR . '/wp-marketing-automations-pro/includes/class-bwfan-pro-woofunnel-support.php';
+
+			return;
+		}
+
 		/**
 		 * Loads common file
 		 */
@@ -170,13 +182,13 @@ final class BWFAN_Core {
 		}
 
 		?>
-		<div class="notice notice-warning" style="display: block!important;">
-			<p>
+        <div class="notice notice-warning" style="display: block!important;">
+            <p>
 				<?php
 				echo __( '<strong>Warning! Old version of Autonami Pro is detected.</strong> We strongly recommend to update the latest version of Autonami Pro to unlock all the features.', 'wp-marketing-automations' );
 				?>
-			</p>
-		</div>
+            </p>
+        </div>
 		<?php
 	}
 
@@ -184,15 +196,21 @@ final class BWFAN_Core {
 	 * Defining constants
 	 */
 	public function define_plugin_properties() {
-		define( 'BWFAN_VERSION', '2.0.1' );
+		define( 'BWFAN_VERSION', '2.0.2' );
 		define( 'BWFAN_MIN_WC_VERSION', '3.0' );
 		define( 'BWFAN_SLUG', 'bwfan' );
 		define( 'BWFAN_FULL_NAME', 'Autonami Marketing Automations' );
-		define( 'BWFAN_BWF_VERSION', '1.9.71' );
+		define( 'BWFAN_BWF_VERSION', '1.9.72' );
 		define( 'BWFAN_PLUGIN_FILE', __FILE__ );
 		define( 'BWFAN_PLUGIN_DIR', __DIR__ );
 		define( 'BWFAN_TEMPLATE_DIR', plugin_dir_path( BWFAN_PLUGIN_FILE ) . 'templates' );
-		define( 'BWFAN_PLUGIN_URL', untrailingslashit( plugin_dir_url( BWFAN_PLUGIN_FILE ) ) );
+
+		$plugin_url = untrailingslashit( plugin_dir_url( BWFAN_PLUGIN_FILE ) );
+		if ( is_ssl() ) {
+			$plugin_url = preg_replace( "/^http:/i", "https:", $plugin_url );
+		}
+
+		define( 'BWFAN_PLUGIN_URL', $plugin_url );
 		define( 'BWFAN_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 		define( 'BWFAN_DB_VERSION', '1.0' );
 		define( 'BWAN_API_VERSION', 'v1' );

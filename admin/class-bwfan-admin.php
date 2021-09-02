@@ -76,11 +76,54 @@ class BWFAN_Admin {
 		add_action( 'manage_shop_order_posts_custom_column', array( $this, 'bwfan_add_order_contact_column_content' ), 20, 2 );
 		add_action( 'add_meta_boxes', array( $this, 'bwf_add_single_order_meta_box' ), 50, 2 );
 		add_filter( 'user_row_actions', array( $this, 'bwf_user_list_add_contact_link' ), 10, 2 );
+
+		/** Validating & removing scripts on page load */
+		add_action( 'admin_print_styles', array( $this, 'bwfan_removing_scripts_single_ui' ), - 1 );
+		add_action( 'admin_print_scripts', array( $this, 'bwfan_removing_scripts_single_ui' ), - 1 );
+		add_action( 'admin_print_footer_scripts', array( $this, 'bwfan_removing_scripts_single_ui' ), - 1 );
 	}
 
 	public function include_admin_pages() {
 		include_once $this->admin_path . '/class-bwfcrm-base-react-page.php';
 		include_once $this->admin_path . '/view/class-bwfcrm-dashboard.php';
+	}
+
+	/** removing the script from other plugin on single ui */
+	function bwfan_removing_scripts_single_ui() {
+		global $wp_scripts, $wp_styles;
+
+		if ( ! BWFAN_Common::is_load_admin_assets( 'automation' ) ) {
+			return;
+		}
+
+		$mod_wp_scripts = $wp_scripts;
+		$assets         = $wp_scripts;
+
+		if ( 'admin_print_styles' == current_action() ) {
+			$mod_wp_scripts = $wp_styles;
+			$assets         = $wp_styles;
+		}
+
+		if ( is_object( $assets ) && isset( $assets->registered ) && count( $assets->registered ) > 0 ) {
+			foreach ( $assets->registered as $handle => $script_obj ) {
+				if ( ! isset( $script_obj->src ) || empty( $script_obj->src ) ) {
+					continue;
+				}
+
+				$src = $script_obj->src;
+
+				/** Remove scripts of massive VC addons plugin */
+				if ( strpos( $src, 'wp-cloudflare-page-cache/' ) !== false ) {
+					unset( $mod_wp_scripts->registered[ $handle ] );
+				}
+			}
+		}
+
+		if ( 'admin_print_styles' == current_action() ) {
+			$wp_styles = $mod_wp_scripts;
+		} else {
+			$wp_scripts = $mod_wp_scripts;
+		}
 	}
 
 	public function init_admin_pages() {
@@ -95,13 +138,13 @@ class BWFAN_Admin {
 		}
 
 		?>
-		<div class="notice notice-warning" style="display: block!important;">
-			<p>
+        <div class="notice notice-warning" style="display: block!important;">
+            <p>
 				<?php
 				echo __( '<strong>Warning! Autonami is in Sandbox Mode</strong>. New Tasks will not be created & existing Tasks will not execute.', 'wp-marketing-automations' );
 				?>
-			</p>
-		</div>
+            </p>
+        </div>
 		<?php
 	}
 
@@ -123,7 +166,19 @@ class BWFAN_Admin {
 
 		add_submenu_page( 'autonami', __( 'Dashboards', 'wp-marketing-automations' ), __( 'Dashboards', 'wp-marketing-automations' ), 'manage_options', 'autonami', false, 10 );
 
-		add_submenu_page( 'autonami', 'Contacts', 'Contacts', 'manage_options', 'autonami&path=/contacts', array( $this, 'autonami_page' ), 20 );
+		if ( true === bwfan_is_autonami_pro_active() ) {
+			add_submenu_page( 'autonami', 'Contacts', 'Contacts', 'manage_options', 'autonami&path=/contacts', array( $this, 'autonami_page' ), 20 );
+		}
+
+		if ( false !== BWFAN_Plugin_Dependency::woocommerce_active_check() ) {
+			add_submenu_page( 'autonami', __( 'Carts', 'wp-marketing-automations' ), 'Carts', 'manage_options', 'autonami&path=/carts/recoverable', function () {
+			}, 27 );
+
+			$position = apply_filters( 'bwfan_cart_submenu_position', 5 );
+			$position = ( empty( absint( $position ) ) ) ? 5 : absint( $position );
+
+			add_submenu_page( 'woocommerce', __( 'Carts', 'wp-marketing-automations' ), __( 'Carts', 'wp-marketing-automations' ), 'manage_woocommerce', 'admin.php?page=autonami&path=/carts/recoverable', false, $position );
+		}
 
 		$title = 'Automations';
 
@@ -133,25 +188,24 @@ class BWFAN_Admin {
 		}
 		add_submenu_page( 'autonami', 'Automations', $title, 'manage_options', 'autonami-automations', array( $this, 'autonami_automations_page' ), 25 );
 
-		if ( false !== BWFAN_Plugin_Dependency::woocommerce_active_check() ) {
-			add_submenu_page( 'autonami', __( 'Carts', 'wp-marketing-automations' ), 'Carts', 'manage_options', 'autonami&path=/carts/recoverable', function () {
-			}, 27 );
+		if ( true === bwfan_is_autonami_pro_active() ) {
+			add_submenu_page( 'autonami', 'Broadcasts', 'Broadcasts', 'manage_options', 'autonami&path=/broadcasts/email', function () {
+			}, 30 );
+
+			add_submenu_page( 'autonami', 'Templates', 'Templates', 'manage_options', 'autonami&path=/templates', function () {
+			}, 30 );
+
+			add_submenu_page( 'autonami', 'Forms', 'Forms', 'manage_options', 'autonami&path=/forms', function () {
+			}, 50 );
 		}
-
-		add_submenu_page( 'autonami', 'Broadcasts', 'Broadcasts', 'manage_options', 'autonami&path=/broadcasts/email', function () {
-		}, 30 );
-
-		add_submenu_page( 'autonami', 'Templates', 'Templates', 'manage_options', 'autonami&path=/templates', function () {
-		}, 30 );
-
-		add_submenu_page( 'autonami', 'Forms', 'Forms', 'manage_options', 'autonami&path=/forms', function () {
-		}, 50 );
 
 		add_submenu_page( 'autonami', __( 'Analytics', 'wp-marketing-automations' ), __( 'Analytics', 'wp-marketing-automations' ), 'manage_options', 'autonami&path=/analytics', function () {
 		}, 15 );
 
-		add_submenu_page( 'autonami', __( 'Connectors', 'wp-marketing-automations' ), __( 'Connectors', 'wp-marketing-automations' ), 'manage_options', 'autonami&path=/connectors', function () {
-		}, 15 );
+		if ( true === bwfan_is_autonami_pro_active() ) {
+			add_submenu_page( 'autonami', __( 'Connectors', 'wp-marketing-automations' ), __( 'Connectors', 'wp-marketing-automations' ), 'manage_options', 'autonami&path=/connectors', function () {
+			}, 15 );
+		}
 
 		add_submenu_page( 'autonami', __( 'Settings', 'wp-marketing-automations' ), __( 'Settings', 'wp-marketing-automations' ), 'manage_options', 'autonami&path=/settings', function () {
 		}, 45 );
@@ -227,38 +281,38 @@ class BWFAN_Admin {
 			wp_enqueue_script( 'wp-util' );
 
 			//if ( $this->is_autonami_page() && BWFAN_Common::is_load_admin_assets( 'automation' ) ) {
-				wp_dequeue_script( 'wpml-select-2' );
-				wp_dequeue_script( 'select2' );
-				wp_deregister_script( 'select2' );
-				wp_enqueue_style( 'bwfan-select2-css', $this->admin_url . '/assets/css/select2.min.css', array(), BWFAN_VERSION_DEV );
-				wp_enqueue_style( 'bwfan-sweetalert2-style', $this->admin_url . '/assets/css/sweetalert2.min.css', array(), BWFAN_VERSION_DEV );
-				wp_enqueue_style( 'bwfan-toast-style', $this->admin_url . '/assets/css/toast.min.css', array(), BWFAN_VERSION_DEV );
-				wp_register_script( 'select2', $this->admin_url . '/assets/js/select2.min.js', array( 'jquery' ), BWFAN_VERSION_DEV, true );
-				wp_enqueue_script( 'select2' );
-				wp_enqueue_script( 'bwfan-sweetalert2-script', $this->admin_url . '/assets/js/sweetalert2.js', array( 'jquery' ), BWFAN_VERSION_DEV, true );
-				wp_enqueue_script( 'bwfan-toast-script', $this->admin_url . '/assets/js/toast.min.js', array( 'jquery' ), BWFAN_VERSION_DEV, true );
-				wp_enqueue_editor();
-				wp_enqueue_script( 'jquery-ui-datepicker' );
+			wp_dequeue_script( 'wpml-select-2' );
+			wp_dequeue_script( 'select2' );
+			wp_deregister_script( 'select2' );
+			wp_enqueue_style( 'bwfan-select2-css', $this->admin_url . '/assets/css/select2.min.css', array(), BWFAN_VERSION_DEV );
+			wp_enqueue_style( 'bwfan-sweetalert2-style', $this->admin_url . '/assets/css/sweetalert2.min.css', array(), BWFAN_VERSION_DEV );
+			wp_enqueue_style( 'bwfan-toast-style', $this->admin_url . '/assets/css/toast.min.css', array(), BWFAN_VERSION_DEV );
+			wp_register_script( 'select2', $this->admin_url . '/assets/js/select2.min.js', array( 'jquery' ), BWFAN_VERSION_DEV, true );
+			wp_enqueue_script( 'select2' );
+			wp_enqueue_script( 'bwfan-sweetalert2-script', $this->admin_url . '/assets/js/sweetalert2.js', array( 'jquery' ), BWFAN_VERSION_DEV, true );
+			wp_enqueue_script( 'bwfan-toast-script', $this->admin_url . '/assets/js/toast.min.js', array( 'jquery' ), BWFAN_VERSION_DEV, true );
+			wp_enqueue_editor();
+			wp_enqueue_script( 'jquery-ui-datepicker' );
 
-				// jQuery UI theme css file
-				wp_register_style( 'jquery-ui', $this->admin_url . '/assets/css/jquery-ui.css', array(), BWFAN_VERSION_DEV );
-				wp_enqueue_style( 'jquery-ui' );
+			// jQuery UI theme css file
+			wp_register_style( 'jquery-ui', $this->admin_url . '/assets/css/jquery-ui.css', array(), BWFAN_VERSION_DEV );
+			wp_enqueue_style( 'jquery-ui' );
 
-				$all_events_merge_tags = BWFAN_Common::get_all_events_merge_tags();
-				$all_events_rules      = BWFAN_Common::get_all_events_rules();
-				$all_merge_tags        = BWFAN_Core()->merge_tags->get_localize_tags_with_source();
+			$all_events_merge_tags = BWFAN_Common::get_all_events_merge_tags();
+			$all_events_rules      = BWFAN_Common::get_all_events_rules();
+			$all_merge_tags        = BWFAN_Core()->merge_tags->get_localize_tags_with_source();
 
-				/**
-				 * @todo: Since we are including default merge tags at the bottom of every merge tags then we need to do sorting in JS.
-				 */
-				$all_events_merge_tags = BWFAN_Common::attach_default_merge_to_events( $all_events_merge_tags, $all_merge_tags );
+			/**
+			 * @todo: Since we are including default merge tags at the bottom of every merge tags then we need to do sorting in JS.
+			 */
+			$all_events_merge_tags = BWFAN_Common::attach_default_merge_to_events( $all_events_merge_tags, $all_merge_tags );
 
-				$data['events_merge_tags'] = $all_events_merge_tags;
-				$data['events_rules']      = $all_events_rules;
+			$data['events_merge_tags'] = $all_events_merge_tags;
+			$data['events_rules']      = $all_events_rules;
 
-				wp_enqueue_style( 'bwfan-admin-app', $this->admin_url . '/assets/css/bwfan-admin-app' . $min . '.css', array(), BWFAN_VERSION_DEV );
-				wp_enqueue_style( 'bwfan-admin', $this->admin_url . '/assets/css/bwfan-admin' . $min . '.css', array(), BWFAN_VERSION_DEV );
-				wp_enqueue_style( 'bwfan-admin-sub', $this->admin_url . '/assets/css/bwfan-admin-sub' . $min . '.css', array(), BWFAN_VERSION_DEV );
+			wp_enqueue_style( 'bwfan-admin-app', $this->admin_url . '/assets/css/bwfan-admin-app' . $min . '.css', array(), BWFAN_VERSION_DEV );
+			wp_enqueue_style( 'bwfan-admin', $this->admin_url . '/assets/css/bwfan-admin' . $min . '.css', array(), BWFAN_VERSION_DEV );
+			wp_enqueue_style( 'bwfan-admin-sub', $this->admin_url . '/assets/css/bwfan-admin-sub' . $min . '.css', array(), BWFAN_VERSION_DEV );
 			//}
 			/** Common open function */
 			wp_enqueue_script( 'bwfan-admin-common', $this->admin_url . '/assets/js/bwfan-admin-common.js', array(), BWFAN_VERSION_DEV, true );
@@ -1363,7 +1417,7 @@ class BWFAN_Admin {
 	}
 
 	public function bwf_add_single_order_meta_box( $post_type, $post ) {
-		if( ! bwfan_is_autonami_pro_active() ) {
+		if ( ! bwfan_is_autonami_pro_active() ) {
 			return;
 		}
 

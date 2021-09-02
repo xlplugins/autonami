@@ -246,7 +246,7 @@ abstract class BWFAN_Merge_Tag {
 	public function get_copy_button() {
 		?>
 		<!-- <div style="padding: 5px 20px 15px;"> -->
-			<span style="margin: 5px 20px 15px;" class="bwfan-use-merge-tag"><?php esc_html_e( 'Copy To Clipboard', 'wp-marketing-automations' ); ?></span>
+			<span style="line-height: 70px;" class="bwfan-use-merge-tag"><?php esc_html_e( 'Copy To Clipboard', 'wp-marketing-automations' ); ?></span>
 			<input type="submit" class="bwfan-display-none"/>
 		<!-- </div> -->
 		<?php

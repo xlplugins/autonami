@@ -2,37 +2,36 @@
 $n        = 1;
 $currency = is_array( $data ) && isset( $data['currency'] ) ? $data['currency'] : '';
 if ( is_array( $products ) ) :
-	?>
 
-    <style>
-        /** don't inline this css - hack for gmail */
+	add_action( 'bwfan_output_email_style', function () { ?>
+
         .bwfan-product-grid {
-            width: 100%;
+        width: 100%;
         }
 
         .bwfan-product-grid .bwfan-product-grid-item-2-col img {
-            height: auto !important;
+        height: auto !important;
         }
 
         .bwfan-product-grid-item-2-col {
-            width: 46%;
-            display: inline-block;
-            text-align: left;
-            padding: 0 0 20px;
-            vertical-align: top;
-            word-wrap: break-word;
-            margin-right: 6%;
-            font-size: 14px;
+        width: 46%;
+        display: inline-block;
+        text-align: left;
+        padding: 0 0 20px;
+        vertical-align: top;
+        word-wrap: break-word;
+        margin-right: 6%;
+        font-size: 14px;
         }
 
         .bwfan-product-grid .bwfan-product-image {
-            width: 100%;
+        width: 100%;
         }
 
         .bwfan-product-grid img {
-            width: 100%;
+        width: 100%;
         }
-    </style>
+	<?php } ); ?>
 
     <table cellspacing="0" cellpadding="0" class="bwfan-product-grid">
         <tbody>

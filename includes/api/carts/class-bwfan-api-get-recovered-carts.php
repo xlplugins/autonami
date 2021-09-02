@@ -58,16 +58,16 @@ class BWFAN_API_Get_Recovered_Carts extends BWFAN_API_Base {
 		if ( ! isset( $recovered_carts['items'] ) ) {
 			return $this->success_response( [], __( 'No recovered carts found.', 'wp-marketing-automations-crm' ) );
 		}
-		$orders = $recovered_carts['items'];
-		$nowDate = new DateTime('now', new DateTimeZone("UTC"));
+		$orders  = $recovered_carts['items'];
+		$nowDate = new DateTime( 'now', new DateTimeZone( "UTC" ) );
 		foreach ( $orders as $item ) {
 			if ( ! $item instanceof WC_Order ) {
 				continue;
 			}
 			$cartDate = new DateTime( $item->get_date_created()->date( 'Y-m-d H:i:s' ) );
 
-			$diff = date_diff( $nowDate, $cartDate, true );
-			$diffstr = $diff ? $this->get_difference_string($diff) : '';
+			$diff    = date_diff( $nowDate, $cartDate, true );
+			$diffstr = $diff ? $this->get_difference_string( $diff ) : '';
 
 			$result[] = [
 				'id'            => get_post_meta( $item->get_id(), '_bwfan_recovered_ab_id', true ),
@@ -82,7 +82,7 @@ class BWFAN_API_Get_Recovered_Carts extends BWFAN_API_Base {
 				'currency'      => $this->get_currency( $item ),
 				'buyer_name'    => $this->get_order_name( $item ),
 				'user_id'       => ! empty( $item->get_customer_id() ) ? $item->get_customer_id() : 0,
-				'checkout_data' => $item->get_meta(),
+				'checkout_data' => ! is_null( $item->get_meta() ) ? $item->get_meta() : '',
 			];
 		}
 
@@ -104,18 +104,19 @@ class BWFAN_API_Get_Recovered_Carts extends BWFAN_API_Base {
 	public function get_difference_string( $difftime ) {
 		$dif_str = '';
 		if ( $difftime->y > 0 ) {
-			$dif_str = $difftime->y.' year ago';
+			$dif_str = $difftime->y . ' year ago';
 		} elseif ( $difftime->m > 0 ) {
-			$dif_str = $difftime->m.' months ago';
+			$dif_str = $difftime->m . ' months ago';
 		} elseif ( $difftime->d > 0 ) {
-			$dif_str = $difftime->d.' days ago';
+			$dif_str = $difftime->d . ' days ago';
 		} elseif ( $difftime->h > 0 ) {
-			$dif_str = $difftime->h.' hours ago';
+			$dif_str = $difftime->h . ' hours ago';
 		} elseif ( $difftime->i > 0 ) {
-			$dif_str = $difftime->i.' minutes ago';
+			$dif_str = $difftime->i . ' minutes ago';
 		} elseif ( $difftime->m > 0 ) {
-			$dif_str = $difftime->s.' seconds ago';
+			$dif_str = $difftime->s . ' seconds ago';
 		}
+
 		return $dif_str;
 	}
 

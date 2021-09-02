@@ -35,7 +35,7 @@ class BWFAN_WC_Order_Total extends BWFAN_Merge_Tag {
 		);
 		?>
         <label for="" class="bwfan-label-title"><?php esc_html_e( 'Tax', 'wp-marketing-automations' ); ?></label>
-        <select id="" class="bwfan-input-wrapper bwfan-mb-15 bwfan_tag_select" name="price" required>
+        <select id="" class="bwfan-input-wrapper bwfan-mb-15 bwfan_tag_select" name="price">
 			<?php
 			foreach ( $templates as $slug => $name ) {
 				echo '<option value="' . esc_attr__( $slug ) . '">' . esc_html__( $name ) . '</option>';

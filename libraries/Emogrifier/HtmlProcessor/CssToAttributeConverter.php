@@ -1,6 +1,6 @@
 <?php
 
-namespace Pelago\Emogrifier\HtmlProcessor;
+namespace BWF_Pelago\Emogrifier\HtmlProcessor;
 
 /**
  * This HtmlProcessor can convert style HTML attributes to the corresponding other visual HTML attributes,

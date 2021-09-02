@@ -1,10 +1,10 @@
 === Autonami Marketing Automations For WordPress ===
 Contributors: xlplugins, amans2k
-Tags: automation, marketing automation, cart abandonment, cart recovery, woocommerce, email marketing
+Tags: crm, marketing automation, cart abandonment, cart recovery, woocommerce, email marketing
 Requires at least: 5.0
 Tested up to: 5.7.2
 Requires PHP: 7.0
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -188,6 +188,15 @@ The abandoned user will also see their filled date restored on the recovery link
 
 
 == Change log ==
+
+= 2.0.2 (Jun 23, 2021) =
+* Added: Compatibility added with Dokan type plugin. Disallow Order created and status change event automation to run if the order is a child order. (#763)
+* Improved: Tag selection UI in filters for products, tags or lists. Found issues with multiple selections, code improved. (#745)
+* Improved: Basic UI improvements for RTL user. (#740)
+* Improved: Dynamic merge tags CSS improved when an email is sent through Raw HTML or Drag and Drop method. (#736)
+* Fixed: Autonami Pro updates were impacting in a case where the Autonami Pro version is older than 2.0. (fix/749)
+* Fixed: Contact unsubscribe table wasn't created at some servers, fixed. (#744)
+* Fixed: Fetching Tags and Lists order by name now, fixed. (#763)
 
 = 2.0.1 (Jun 11, 2021) =
 * Fixed: Connectors calls were failing, due to a file inclusion error. Fixed (fix/728)

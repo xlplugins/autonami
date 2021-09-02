@@ -9,26 +9,26 @@ if ( is_array( $products ) ) :
 	$button_background_color = apply_filters( 'bwfan_wc_email_get_base_color', get_option( 'woocommerce_email_base_color' ) );
 	$button_text_color = BWFAN_Common::color_light_or_dark( $button_background_color, '#202020', '#ffffff' );
 	$button_text_color = apply_filters( 'bwfan_wc_email_get_text_color', $button_text_color );
-	?>
-    <style>
-        /** don't inline this css - hack for gmail */
+
+	add_action( 'bwfan_output_email_style', function () { ?>
+
         .autonami-button {
-            font-weight: bold;
-            background-color: <?php echo esc_attr($button_background_color); ?>;
-            border-radius: 4px;
-            display: inline-block;
-            padding: 12px 35px 13px;
-            margin: 8px auto;
-            font-size: 14px;
-            text-align: center;
-            color: <?php echo esc_attr($button_text_color); ?>;
-            text-decoration: none;
+        font-weight: bold;
+        background-color: <?php echo esc_attr( $button_background_color ); ?>;
+        border-radius: 4px;
+        display: inline-block;
+        padding: 12px 35px 13px;
+        margin: 8px auto;
+        font-size: 14px;
+        text-align: center;
+        color: <?php echo esc_attr( $button_text_color ); ?>;
+        text-decoration: none;
         }
 
         .bwfan-product-rows img {
-            max-width: 75px;
+        max-width: 75px;
         }
-    </style>
+	<?php } ); ?>
     <table cellspacing="0" cellpadding="0" style="width: 100%;" class="bwfan-product-rows">
         <tbody>
 		<?php foreach ( $products as $product ) : ?>
