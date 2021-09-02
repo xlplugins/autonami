@@ -12,7 +12,7 @@ final class BWFAN_CF7_Form_Submit extends BWFAN_Event {
 		$this->event_name             = esc_html__( 'Form Submits', 'wp-marketing-automations' );
 		$this->event_desc             = esc_html__( 'This event runs after a form is submitted', 'wp-marketing-automations' );
 		$this->event_rule_groups      = array( 'cf7', 'bwf_contact' );
-		$this->optgroup_label         = esc_html__( 'Form', 'wp-marketing-automations' );
+		$this->optgroup_label         = esc_html__( 'Contact Form 7', 'wp-marketing-automations' );
 		$this->priority               = 10;
 		$this->customer_email_tag     = '';
 	}

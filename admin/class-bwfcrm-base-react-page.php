@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class BWFCRM_Base_React_Page {
 	public $frontend_dir = ( 1 === BWFCRM_REACT_ENVIRONMENT ) ? BWFAN_REACT_PROD_URL : BWFCRM_REACT_DEV_URL;
 	public $admin_dir = BWFAN_PLUGIN_DIR . '/admin';
+	public $build_dir = BWFAN_PLUGIN_DIR . '/admin/frontend/dist';
 
 	public function get_header_data() {
 		if ( class_exists( 'BWFAN_Header' ) ) {
@@ -50,35 +51,32 @@ abstract class BWFCRM_Base_React_Page {
 			$this->page_data['active_sms_provider'] = method_exists( 'BWFCRM_Common', 'get_sms_provider_slug' ) ? BWFCRM_Common::get_sms_provider_slug() : false;
 		}
 
-		$this->page_data['crm_contact_note_types']  = apply_filters(
-			'bwfcrm_contact_add_note_types',
+		$this->page_data['crm_contact_note_types']  = apply_filters( 'bwfcrm_contact_add_note_types', array(
 			array(
-				array(
-					'value' => 'billing',
-					'label' => __( 'Billing', 'wp-marketing-automations-crm' ),
-				),
-				array(
-					'value' => 'shipping',
-					'label' => __( 'Shipping', 'wp-marketing-automations-crm' ),
-				),
-				array(
-					'value' => 'refund',
-					'label' => __( 'Refund', 'wp-marketing-automations-crm' ),
-				),
-				array(
-					'value' => 'subscription',
-					'label' => __( 'Subscription', 'wp-marketing-automations-crm' ),
-				),
-				array(
-					'value' => 'feedback',
-					'label' => __( 'Feedback', 'wp-marketing-automations-crm' ),
-				),
-				array(
-					'value' => 'others',
-					'label' => __( 'Others', 'wp-marketing-automations-crm' ),
-				),
-			)
-		);
+				'value' => 'billing',
+				'label' => __( 'Billing', 'wp-marketing-automations-crm' ),
+			),
+			array(
+				'value' => 'shipping',
+				'label' => __( 'Shipping', 'wp-marketing-automations-crm' ),
+			),
+			array(
+				'value' => 'refund',
+				'label' => __( 'Refund', 'wp-marketing-automations-crm' ),
+			),
+			array(
+				'value' => 'subscription',
+				'label' => __( 'Subscription', 'wp-marketing-automations-crm' ),
+			),
+			array(
+				'value' => 'feedback',
+				'label' => __( 'Feedback', 'wp-marketing-automations-crm' ),
+			),
+			array(
+				'value' => 'others',
+				'label' => __( 'Others', 'wp-marketing-automations-crm' ),
+			),
+		) );
 		$this->page_data['is_conversation_enabled'] = ( class_exists( 'BWFAN_Email_Conversations' ) && isset( BWFAN_Core()->conversations ) && BWFAN_Core()->conversations instanceof BWFAN_Email_Conversations );
 		$this->page_data['app_path']                = BWFAN_REACT_PROD_URL . '/';
 
@@ -188,6 +186,22 @@ abstract class BWFCRM_Base_React_Page {
 	}
 
 	public function enqueue_app_assets( $app_name ) {
+		if ( ! is_dir( $this->build_dir ) || ! file_exists( $this->build_dir . "/$app_name.js" ) || ! file_exists( $this->build_dir . "/$app_name.css" ) ) {
+			?>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    var appLoader = document.getElementById('bwfcrm-page');
+                    if (appLoader) {
+                        appLoader.innerHTML = "<div class='notice notice-error'>" +
+                            "<p><strong>Warning! Build files are missing.</strong></p>" +
+                            "</div>";
+                    }
+                });
+            </script>
+			<?php
+			return;
+		}
+
 		/** Broadcasts */
 		wp_enqueue_editor();
 		wp_tinymce_inline_scripts();

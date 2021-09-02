@@ -618,7 +618,7 @@ abstract class BWFAN_Event {
 	 */
 	public function insert_sync_record( $automation_id, $offset, $processed, $total, $data ) {
 		$new_data = array(
-			'sync_date' => strtotime( current_time( 'mysql', 1 ) ),
+			'sync_date' => current_time( 'timestamp', 1 ),
 			'a_id'      => $automation_id,
 			'total'     => $total,
 			'processed' => $processed,
@@ -945,7 +945,7 @@ abstract class BWFAN_Event {
 
 	public function check_language_support( $action_data, $data ) {
 		/** checking for language plugin **/
-		if(! function_exists( 'icl_get_languages' ) && !function_exists('pll_the_languages') && !bwfan_is_translatepress_active()){
+		if ( ! function_exists( 'icl_get_languages' ) && ! function_exists( 'pll_the_languages' ) && ! bwfan_is_translatepress_active() && function_exists( 'bwfan_is_weglot_active' ) && ! bwfan_is_weglot_active() ) {
 			return true;
 		}
 
@@ -1061,7 +1061,7 @@ abstract class BWFAN_Event {
 		BWFAN_Common::convert_to_gmt( $record_date );
 
 		$record_date_timestamp = $record_date->getTimestamp();
-		$current_timestamp     = strtotime( current_time( 'mysql', 1 ) );
+		$current_timestamp     = current_time( 'timestamp', 1 );
 		$datetime1             = new DateTime( date( 'Y-m-d H:i:s', $record_date_timestamp ) );//start time
 		$datetime2             = new DateTime( date( 'Y-m-d H:i:s', $current_timestamp ) );//end time
 		$interval              = $datetime1->diff( $datetime2 );

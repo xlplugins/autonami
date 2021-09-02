@@ -31,7 +31,7 @@ class BWFAN_Logs {
 	 */
 	public function insert_log( $automation_id, $log_data ) {
 		$new_log_data = array(
-			'e_date'             => strtotime( current_time( 'mysql', 1 ) ),
+			'e_date'             => current_time( 'timestamp', 1 ),
 			'c_date'             => current_time( 'mysql', 1 ),
 			'status'             => $log_data['status'],
 			'integration_slug'   => $log_data['integration_slug'],
@@ -104,7 +104,7 @@ class BWFAN_Logs {
 			unset( $log_details['c_date'] );
 
 			$log_details['c_date'] = current_time( 'mysql', 1 );
-			$log_details['e_date'] = strtotime( current_time( 'mysql', 1 ) );
+			$log_details['e_date'] = current_time( 'timestamp', 1 );
 			$log_details['status'] = 0;
 			$new_task_data         = $log_details;
 

@@ -41,8 +41,8 @@ add_action( 'bwfan_output_email_style', function () { ?>
     <thead>
     <tr>
         <th class="td" scope="col" <?php echo $colspan ?> style="<?php echo is_rtl() ? 'text-align:right;' : 'text-align:left;'; ?>"><?php esc_html_e( 'Product', 'woocommerce' ); ?></th>
-        <th class="td" scope="col" style="<?php echo is_rtl() ? 'text-align:right;' : 'text-align:left;'; ?>"><?php esc_html_e( 'Quantity', 'woocommerce' ); ?></th>
-        <th class="td" scope="col" style="<?php echo is_rtl() ? 'text-align:right;' : 'text-align:left;'; ?>"><?php esc_html_e( 'Price', 'woocommerce' ); ?></th>
+        <th class="td" scope="col" style="width:90px;<?php echo is_rtl() ? 'text-align:right;' : 'text-align:left;'; ?>"><?php esc_html_e( 'Quantity', 'woocommerce' ); ?></th>
+        <th class="td" scope="col" style="width:90px;<?php echo is_rtl() ? 'text-align:right;' : 'text-align:left;'; ?>"><?php esc_html_e( 'Price', 'woocommerce' ); ?></th>
     </tr>
     </thead>
     <tbody>

@@ -195,13 +195,6 @@ class BWFAN_Rule_Cart_Product extends BWFAN_Rule_Products {
 
 		$found_quantity = absint( $found_quantity );
 
-		/**
-		 *  if quantity 0 then result false
-		 */
-		if ( 0 === $found_quantity ) {
-			return $this->return_is_match( $result, $rule_data );
-		}
-
 		switch ( $type ) {
 			case '<':
 				$result = $quantity >= $found_quantity;
@@ -211,6 +204,9 @@ class BWFAN_Rule_Cart_Product extends BWFAN_Rule_Products {
 				break;
 			case '==':
 				$result = $quantity === $found_quantity;
+				break;
+			case '!=':
+				$result = $quantity !== $found_quantity;
 				break;
 		}
 
@@ -235,6 +231,7 @@ class BWFAN_Rule_Cart_Product extends BWFAN_Rule_Products {
 			'>'  => __( 'contains at least', 'wp-marketing-automations' ),
 			'<'  => __( 'contains less than', 'wp-marketing-automations' ),
 			'==' => __( 'contains exactly', 'wp-marketing-automations' ),
+			'!=' => __( 'does not contain', 'wp-marketing-automations' ),
 		);
 
 		return $operators;

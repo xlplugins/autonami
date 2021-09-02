@@ -907,6 +907,8 @@ class BWFAN_Abandoned_Cart {
 		} elseif ( bwfan_is_translatepress_active() ) {
 			global $TRP_LANGUAGE;
 			$data['lang'] = $TRP_LANGUAGE;
+		} elseif ( function_exists( 'bwfan_is_weglot_active' ) && bwfan_is_weglot_active() ) {
+			$data['lang'] = weglot_get_current_language();
 		}
 
 		$abandoned_cart_id = $this->process_abandoned_cart( $email, $data );

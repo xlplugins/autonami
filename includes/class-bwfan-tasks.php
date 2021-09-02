@@ -361,7 +361,7 @@ class BWFAN_Tasks {
 			$action_details['status'] = 0; // 0 = Failed status. This status tells that connector or source or event was removed from task.
 			$task_log_message         = [];
 
-			$task_log_message[ strtotime( current_time( 'mysql', 1 ) ) ] = $task_data['message'];
+			$task_log_message[ current_time( 'timestamp', 1 ) ] = $task_data['message'];
 
 			$log_id = BWFAN_Core()->logs->insert_log( $automation_id, $action_details );
 			if ( isset( $task_meta['task_message'] ) ) {
@@ -564,7 +564,7 @@ class BWFAN_Tasks {
 			return;
 		}
 
-		$current_logs[ strtotime( current_time( 'mysql', 1 ) ) ] = $new_log;
+		$current_logs[ current_time( 'timestamp', 1 ) ] = $new_log;
 
 		if ( count( $current_logs ) > 1 ) {
 			$this->update_taskmeta( $task_id, 'task_message', $current_logs );
@@ -644,7 +644,7 @@ class BWFAN_Tasks {
 		 * @todo This can be inserted on external server to release load
 		 */
 		$new_task_data           = array();
-		$new_task_data['e_date'] = strtotime( current_time( 'mysql', 1 ) );
+		$new_task_data['e_date'] = current_time( 'timestamp', 1 );
 
 		if ( isset( $task_data['time']['delay_type'] ) && 'after_delay' === $task_data['time']['delay_type'] ) {
 			$actual_timestamp = strtotime( current_time( 'mysql', 1 ) . '+' . (int) $task_data['time']['time_number'] . ' ' . $task_data['time']['time_type'] );

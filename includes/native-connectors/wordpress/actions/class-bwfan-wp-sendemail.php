@@ -587,7 +587,7 @@ final class BWFAN_Wp_Sendemail extends BWFAN_Action {
 			return $body;
 		}
 
-		$pre_header    = '<span class="preheader" style="display: none; mso-hide: all; width: 0px; height: 0px; max-width: 0px; max-height: 0px; font-size: 0px; line-height: 0px;">' . BWFAN_Common::decode_merge_tags( $pre_header ) . '</span>';
+		$pre_header    = '<span class="preheader" style="display:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">' . BWFAN_Common::decode_merge_tags( $pre_header ) . '</span>';
 		$appended_body = $body;
 
 		if ( strpos( $body, '</body>' ) ) {

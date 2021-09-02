@@ -584,7 +584,7 @@ class BWFAN_Common {
 	 */
 	public static function save_integration_data( $data, $slug, $status ) {
 		$new_task_data                     = array();
-		$new_task_data['last_sync']        = strtotime( current_time( 'mysql', 1 ) );
+		$new_task_data['last_sync']        = current_time( 'timestamp', 1 );
 		$new_task_data['integration_slug'] = $slug;
 		$new_task_data['api_data']         = maybe_serialize( $data );
 		$new_task_data['status']           = $status;
@@ -602,7 +602,7 @@ class BWFAN_Common {
 	public static function update_integration_data( $data, $id ) {
 		$meta_data              = array();
 		$meta_data['api_data']  = maybe_serialize( $data );
-		$meta_data['last_sync'] = strtotime( current_time( 'mysql', 1 ) );
+		$meta_data['last_sync'] = current_time( 'timestamp', 1 );
 		$where                  = array(
 			'ID' => $id,
 		);
@@ -2929,6 +2929,17 @@ class BWFAN_Common {
 			), $url );
 		}
 
+		if ( function_exists( 'bwfan_is_weglot_active' ) && bwfan_is_weglot_active() ) {
+			$language_code = weglot_get_original_language();
+
+			if ( ! empty( $lang ) ) {
+				$language_code = $lang;
+			}
+
+			$site_url = home_url();
+			$url      = str_replace( $site_url, $site_url . '/' . $language_code, $url );
+		}
+
 		return $url;
 	}
 
@@ -3631,18 +3642,18 @@ class BWFAN_Common {
 			}
 		}
 
-		$country_code            = WC()->countries->get_base_country();
+		$country_code            = self::maybe_get_user_country_code();
 		$tax_supported_countries = WC()->countries->get_european_union_countries();
 		$check                   = in_array( $country_code, $tax_supported_countries, true );
 
 		if ( true === $check ) {
 			$checked = 'checked';
-			if ( empty( $global_settings['bwfan_user_consent_non_eu'] ) ) {
+			if ( empty( $global_settings['bwfan_user_consent_eu'] ) ) {
 				$checked = '';
 			}
 		} else {
 			$checked = 'checked';
-			if ( empty( $global_settings['bwfan_user_consent_eu'] ) ) {
+			if ( empty( $global_settings['bwfan_user_consent_non_eu'] ) ) {
 				$checked = '';
 			}
 		}
@@ -5413,5 +5424,39 @@ class BWFAN_Common {
 		}
 
 		return $skip;
+	}
+
+	/**
+	 * may be get user country from woocommerce session
+	 * @return array|mixed|string
+	 */
+	public static function maybe_get_user_country_code() {
+
+		if ( ! is_null( WC()->session ) ) {
+			$country_code = WC()->session->get( 'bwfan_user_checkout_country', '' );
+			if ( ! empty( $country_code ) ) {
+				return $country_code;
+			}
+
+			$country_code = self::get_user_country();
+			WC()->session->set( 'bwfan_user_checkout_country', $country_code );
+
+			return $country_code;
+
+		}
+
+		$country_code = self::get_user_country();
+
+		return $country_code;
+	}
+
+	/** get user country
+	 * @return mixed
+	 */
+	public static function get_user_country() {
+		$user_location = WC_Geolocation::geolocate_ip();
+		$country_code  = $user_location['country'];
+
+		return $country_code;
 	}
 }

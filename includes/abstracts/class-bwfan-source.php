@@ -53,7 +53,7 @@ abstract class BWFAN_Source {
 		return $this->slug;
 	}
 
-	public function get_group_slug(){
+	public function get_group_slug() {
 		return $this->group_slug;
 	}
 

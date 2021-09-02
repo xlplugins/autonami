@@ -4,7 +4,7 @@ Tags: crm, marketing automation, cart abandonment, cart recovery, woocommerce, e
 Requires at least: 5.0
 Tested up to: 5.7.2
 Requires PHP: 7.0
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -188,6 +188,16 @@ The abandoned user will also see their filled date restored on the recovery link
 
 
 == Change log ==
+
+= 2.0.3 (Jul 05, 2021) =
+* Added: Pro support: Templates cloning feature added. (#788)
+* Improved: Cart item: Doesn't contain rule option added. (#770)
+* Improved: Cart table dynamic merge tag CSS improved for Drag and drop template type. (#775)
+* Improved: Some admin UI improvements. (#781)
+* Fixed: Pro support: Contact audiences: unable to fetch contacts from a purchased products. (#778)
+* Fixed: Pro support: Checkout consent: auto-checked in case EU or non EU, issue fixed. (#785)
+* Fixed: Pro support: Create audience error in case audience already exists, fixed. (#786)
+* Fixed: Pro support: Engagements in filters, dependency with WooCommerce removed. (#792)
 
 = 2.0.2 (Jun 23, 2021) =
 * Added: Compatibility added with Dokan type plugin. Disallow Order created and status change event automation to run if the order is a child order. (#763)
