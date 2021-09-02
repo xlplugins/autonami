@@ -76,7 +76,6 @@ abstract class BWFAN_Event {
 	}
 
 	public function load_hooks() {
-		//
 	}
 
 	public function get_automation_event_validation() {
@@ -141,10 +140,10 @@ abstract class BWFAN_Event {
 		}
 
 		/** Extra checking for certain event like form events */
-		$this->automations_arr = $this->validate_event_data_before_creating_task($this->automations_arr);
+		$this->automations_arr = $this->validate_event_data_before_creating_task( $this->automations_arr );
 
 		if ( ! is_array( $this->automations_arr ) || count( $this->automations_arr ) === 0 ) {
-		    return false;
+			return false;
 		}
 
 		$automation_actions = [];
@@ -314,7 +313,7 @@ abstract class BWFAN_Event {
 				continue;
 			}
 			foreach ( $actions as $key1 => $action_detail ) {
-				if( empty( $action_detail['action_slug'] ) || empty( $action_detail['integration_slug'] ) ) {
+				if ( empty( $action_detail['action_slug'] ) || empty( $action_detail['integration_slug'] ) ) {
 					continue;
 				}
 				$action_detail['group_id']  = $group_id;
@@ -770,7 +769,7 @@ abstract class BWFAN_Event {
 		$event         = $this->sync_event;
 		$sync_id       = $this->sync_id;
 
-		// unschedule the recurring wp event.
+		// un-schedule the recurring wp event.
 		$data = array(
 			'automation_id' => intval( $automation_id ),
 			'source'        => $source,
@@ -815,48 +814,50 @@ abstract class BWFAN_Event {
 
 		/** Set user_id, if email is available */
 		if ( ( ! isset( $data['global']['user_id'] ) || empty( $data['global']['user_id'] ) ) && is_email( $data['global']['email'] ) ) {
-		    $user = get_user_by( 'email', $data['global']['email'] );
-		    if( $user instanceof WP_User ) {
-		        $data['global']['user_id'] = $user->ID;
-		    }
+			$user = get_user_by( 'email', $data['global']['email'] );
+			if ( $user instanceof WP_User ) {
+				$data['global']['user_id'] = $user->ID;
+			}
 
-		    /** @var get $contact for all event if there email id available*/
-		    $user_id = isset($data['global']['user_id'])?$data['global']['user_id']:null;
-		    $contact = bwf_get_contact( $user_id, $data['global']['email']  );
-            if ( $contact instanceof WooFunnels_Contact && absint( $contact->get_id() ) > 0 ) {
-                $data['global']['contact_id'] = $contact->get_id();
-                $data['global']['cid'] = $contact->get_id();
-            }
+			/** @var get $contact for all event if there email id available */
+			$user_id = isset( $data['global']['user_id'] ) ? $data['global']['user_id'] : null;
+			$contact = bwf_get_contact( $user_id, $data['global']['email'] );
+			if ( $contact instanceof WooFunnels_Contact && absint( $contact->get_id() ) > 0 ) {
+				$data['global']['contact_id'] = $contact->get_id();
+				$data['global']['cid']        = $contact->get_id();
+			}
 		}
 
 		/** Set Phone if User ID is available */
-		if( isset( $data['global']['user_id'] ) && ! empty( $data['global']['user_id'] ) && ( ! isset( $data['global']['phone'] ) || empty( $data['global']['phone'] ) ) ) {
-            $phone = get_user_meta( $data['global']['user_id'], 'billing_phone', true );
-            if( ! empty( $phone ) ) {
-                $country = get_user_meta( $data['global']['user_id'], 'billing_country', true );
-                if( ! empty( $country ) ) {
-                    $phone = BWFAN_Phone_Numbers::add_country_code( $phone, $country );
-                }
-                $data['global']['phone'] = $phone;
-            }
+		if ( isset( $data['global']['user_id'] ) && ! empty( $data['global']['user_id'] ) && ( ! isset( $data['global']['phone'] ) || empty( $data['global']['phone'] ) ) ) {
+			$phone = get_user_meta( $data['global']['user_id'], 'billing_phone', true );
+			if ( ! empty( $phone ) ) {
+				$country = get_user_meta( $data['global']['user_id'], 'billing_country', true );
+				if ( ! empty( $country ) ) {
+					$phone = BWFAN_Phone_Numbers::add_country_code( $phone, $country );
+				}
+				$data['global']['phone'] = $phone;
+			}
 		}
 
 		/** Set Phone if no User ID is set, but email is set */
 		if ( is_email( $data['global']['email'] ) && ( ! isset( $data['global']['phone'] ) || empty( $data['global']['phone'] ) ) ) {
-            $order = BWFAN_Common::get_latest_order_by_email( $data['global']['email'] );
-            if ( $order instanceof WC_Order ) {
-                $phone = $order->get_billing_phone();
-                if ( ! empty( $phone ) ) {
-                    $country = $order->get_billing_country();
-                    if ( ! empty( $country ) ) {
-                        $phone = BWFAN_Phone_Numbers::add_country_code( $phone, $country );
-                    }
-                    $data['global']['phone'] = $phone;
-                }
-            }
+			$order = BWFAN_Common::get_latest_order_by_email( $data['global']['email'] );
+			if ( $order instanceof WC_Order ) {
+				$phone = $order->get_billing_phone();
+				if ( ! empty( $phone ) ) {
+					$country = $order->get_billing_country();
+					if ( ! empty( $country ) ) {
+						$phone = BWFAN_Phone_Numbers::add_country_code( $phone, $country );
+					}
+					$data['global']['phone'] = $phone;
+				}
+			}
 		}
 
 		do_action( 'bwfan_before_creating_tasks', $automation_id, $actions, $event_data, $data );
+
+		$immediate_actions = [];
 
 		foreach ( $actions as $index => $action ) {
 			$should_task_create = $this->should_task_create( $action, $data );
@@ -894,9 +895,17 @@ abstract class BWFAN_Event {
 			do_action( 'bwfan_task_created_' . $this->get_slug(), $index, $task_id );
 
 			$total_tasks_made[] = $task_id;
+
+			/** Checking immediately executable actions */
+			if ( ! isset( $action['time']['delay_type'] ) || 'immediately' === $action['time']['delay_type'] ) {
+				$immediate_actions[] = $task_id;
+			}
 		}
 
 		do_action( 'bwfan_after_creating_tasks', $automation_id, $actions, $event_data, $data, $total_tasks_made );
+
+		/** Executing immediately executable actions */
+		$this->execute_immediate_tasks( $immediate_actions );
 
 		// Increase the automation run count and fire contact creation async call only when async process in not running
 		if ( empty( $this->user_selected_actions ) ) {
@@ -923,7 +932,7 @@ abstract class BWFAN_Event {
 			return false;
 		}
 
-		$action_instance   = BWFAN_Core()->integration->get_action( $action_data['action_slug'] );
+		$action_instance = BWFAN_Core()->integration->get_action( $action_data['action_slug'] );
 
 		if ( ! $action_instance instanceof BWFAN_Action ) {
 			return false;
@@ -999,15 +1008,15 @@ abstract class BWFAN_Event {
 			return;
 		}
 
-		$user_id = $this->get_user_id_event();
-		$url  = rest_url('/autonami/v1/update-contact-automation');
+		$user_id   = $this->get_user_id_event();
+		$url       = rest_url( '/autonami/v1/update-contact-automation' );
 		$body_data = array(
-				'automation_id' => $automation_id,
-				'email'         => $email,
-				'user_id'       => $user_id,
-				'unique_key'    => get_option( 'bwfan_u_key', false ),
-			);
-		$args = bwf_get_remote_rest_args( $body_data );
+			'automation_id' => $automation_id,
+			'email'         => $email,
+			'user_id'       => $user_id,
+			'unique_key'    => get_option( 'bwfan_u_key', false ),
+		);
+		$args      = bwf_get_remote_rest_args( $body_data );
 
 		wp_remote_post( $url, $args );
 	}
@@ -1158,18 +1167,18 @@ abstract class BWFAN_Event {
 			return;
 		}
 
-		if( true === $is_form_submission ) {
-			$data[ 'is_form_submission' ] = 1;
+		if ( true === $is_form_submission ) {
+			$data['is_form_submission'] = 1;
 		}
 
 		$lifecycle_automation_id = BWFAN_Core()->automations->current_lifecycle_automation_id;
-		if( ! empty( $lifecycle_automation_id ) ) {
+		if ( ! empty( $lifecycle_automation_id ) ) {
 			$data['aid'] = $lifecycle_automation_id;
 		}
 
 		$data['unique_key'] = get_option( 'bwfan_u_key', false );
-		$url                = rest_url('/autonami/v1/events');
-		$data = apply_filters('bwfan_send_async_call_data',$data);
+		$url                = rest_url( '/autonami/v1/events' );
+		$data               = apply_filters( 'bwfan_send_async_call_data', $data );
 
 		$args = bwf_get_remote_rest_args( $data );
 
@@ -1336,22 +1345,20 @@ abstract class BWFAN_Event {
 		$this->source_type = $type;
 	}
 
+	public function execute_immediate_tasks( $task_ids ) {
+		if ( empty( $task_ids ) ) {
+			return;
+		}
+
+		/** @var BWFAN_Tasks $task_ins */
+		$task_ins = BWFAN_Tasks::get_instance();
+		foreach ( $task_ids as $id ) {
+			$task_ins->bwfan_ac_execute_task( $id );
+		}
+	}
+
 	public function capture_async_data() {
 		throw new ErrorException( 'This function `' . __FUNCTION__ . '` Must be override in child class' );
-	}
-
-	/**
-	 * to avoid unserialize of the current class
-	 */
-	public function __wakeup() {
-		throw new ErrorException( 'BWFAN_Core can`t converted to string' );
-	}
-
-	/**
-	 * to avoid serialize of the current class
-	 */
-	public function __sleep() {
-		throw new ErrorException( 'BWFAN_Core can`t converted to string' );
 	}
 
 	protected function validate_order( $data ) {
@@ -1381,9 +1388,22 @@ abstract class BWFAN_Event {
 	}
 
 	/**
+	 * to avoid unserialize of the current class
+	 */
+	public function __wakeup() {
+		throw new ErrorException( 'BWFAN_Core can`t converted to string' );
+	}
+
+	/**
+	 * to avoid serialize of the current class
+	 */
+	public function __sleep() {
+		throw new ErrorException( 'BWFAN_Core can`t converted to string' );
+	}
+
+	/**
 	 * To avoid cloning of current class
 	 */
 	protected function __clone() {
 	}
-
 }

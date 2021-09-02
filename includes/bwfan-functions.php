@@ -178,3 +178,13 @@ if ( ! function_exists( 'bwfan_is_tutorlms_active' ) ) {
 		return BWFAN_Plugin_Dependency::tutorlms_active_check();
 	}
 }
+
+/**
+ * MemberPress Detection
+ */
+if ( ! function_exists( 'bwfan_is_mepr_active' ) ) {
+	function bwfan_is_mepr_active() {
+		return BWFAN_Plugin_Dependency::mepr_active_check();
+	}
+}
+

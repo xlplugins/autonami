@@ -5,7 +5,6 @@ class BWFAN_Rule_Order_Total extends BWFAN_Rule_Base {
 
 	public function __construct() {
 		parent::__construct( 'order_total' );
-//		$this->description = 'test description';
 	}
 
 	public function get_condition_input_type() {
@@ -46,7 +45,7 @@ class BWFAN_Rule_Order_Total extends BWFAN_Rule_Base {
 
 	public function ui_view() {
 		?>
-        Order total
+        Order Total
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
         <%= ops[operator] %>
@@ -145,7 +144,6 @@ class BWFAN_Rule_Product_Stock extends BWFAN_Rule_Base {
 
 		return $operators;
 	}
-
 }
 
 class BWFAN_Rule_Product_Item extends BWFAN_Rule_Products {
@@ -192,7 +190,7 @@ class BWFAN_Rule_Product_Item extends BWFAN_Rule_Products {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Items ', 'wp-marketing-automations' );
+		esc_html_e( 'Item ', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -246,7 +244,7 @@ class BWFAN_Rule_Order_Taxonomy extends BWFAN_Rule_Term_Taxonomy {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Item\'s category ', 'wp-marketing-automations' );
+		esc_html_e( 'Order Items Taxonomy ', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -295,7 +293,7 @@ class BWFAN_Rule_Product_Category extends BWFAN_Rule_Term_Taxonomy {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Item\'s category ', 'wp-marketing-automations' );
+		esc_html_e( 'Item Category ', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -343,7 +341,7 @@ class BWFAN_Rule_Product_Tags extends BWFAN_Rule_Term_Taxonomy {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Item\'s tags ', 'wp-marketing-automations' );
+		esc_html_e( 'Item Tags ', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -439,7 +437,7 @@ class BWFAN_Rule_Product_Item_Type extends BWFAN_Rule_Base {
 
 	public function ui_view() {
 		?>
-        Item's type
+        Item Type
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
         <%= ops[operator] %>
@@ -534,7 +532,7 @@ class BWFAN_Rule_Product_Item_Count extends BWFAN_Rule_Base {
 
 	public function ui_view() {
 		?>
-        Item's count
+        Item Count
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
         <%= ops[operator] %>
@@ -604,7 +602,7 @@ class BWFAN_Rule_Product_Item_Price extends BWFAN_Rule_Base {
 
 	public function ui_view() {
 		?>
-        Item's price
+        Item Price
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
         <%= ops[operator] %>
@@ -664,7 +662,7 @@ class BWFAN_Rule_Order_Item extends BWFAN_Rule_Products {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Order\'s items ', 'wp-marketing-automations' );
+		esc_html_e( 'Orders Items ', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -713,7 +711,7 @@ class BWFAN_Rule_Order_Category extends BWFAN_Rule_Term_Taxonomy {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Order\'s items category ', 'wp-marketing-automations' );
+		esc_html_e( 'Orders Items Category ', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -822,7 +820,7 @@ class BWFAN_Rule_Order_Item_Type extends BWFAN_Rule_Base {
 
 	public function ui_view() {
 		?>
-        Order's items
+        Orders Items
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
         <%= ops[operator] %>
@@ -915,7 +913,7 @@ class BWFAN_Rule_Order_Item_Count extends BWFAN_Rule_Base {
 
 	public function ui_view() {
 		?>
-        Order's item count
+        Orders Items Count
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
         <%= ops[operator] %>
@@ -972,7 +970,7 @@ class BWFAN_Rule_Product_Item_Custom_Field extends BWFAN_Rule_Custom_Field {
 
 	public function ui_view() {
 		?>
-        Item's Custom Field
+        Item Custom Field
         '<%= condition['key'] %>' <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
         <%= ops[operator] %> '<%= condition['value'] %>'
 		<?php
@@ -1078,7 +1076,7 @@ class BWFAN_Rule_Order_Coupons extends BWFAN_Dynamic_Option_Base {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Order\'s coupons ', 'wp-marketing-automations' );
+		esc_html_e( 'Order Coupon Code ', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -1151,7 +1149,7 @@ class BWFAN_Rule_Order_Payment_Gateway extends BWFAN_Rule_Base {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Order\'s payment gateway ', 'wp-marketing-automations' );
+		esc_html_e( 'Order Payment Gateway ', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -1197,7 +1195,20 @@ class BWFAN_Rule_Order_Shipping_Country extends BWFAN_Rule_Country {
 		return $shipping_country;
 	}
 
+	public function ui_view() {
+		esc_html_e( 'Order Shipping Country', 'wp-marketing-automations' );
+		?>
+        <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
+        <%= ops[operator] %>
+        <% var chosen = []; %>
+        <% _.each(condition, function( value, key ){ %>
+        <% chosen.push(uiData[value]); %>
+
+        <% }); %>
+        <%= chosen.join("/ ") %>
+		<?php
+	}
 }
 
 class BWFAN_Rule_Order_Shipping_Method extends BWFAN_Rule_Base {
@@ -1258,7 +1269,7 @@ class BWFAN_Rule_Order_Shipping_Method extends BWFAN_Rule_Base {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Order\'s shipping method', 'wp-marketing-automations' );
+		esc_html_e( 'Order Shipping Method', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -1304,7 +1315,7 @@ class BWFAN_Rule_Order_Billing_Country extends BWFAN_Rule_Country {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Order\'s Billing Country', 'wp-marketing-automations' );
+		esc_html_e( 'Order Billing Country', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -1317,8 +1328,6 @@ class BWFAN_Rule_Order_Billing_Country extends BWFAN_Rule_Country {
         <%= chosen.join("/ ") %>
 		<?php
 	}
-
-
 }
 
 class BWFAN_Rule_Order_Custom_Field extends BWFAN_Rule_Custom_Field {
@@ -1384,18 +1393,18 @@ class BWFAN_Rule_Order_Coupon_Text_Match extends BWFAN_Rule_Base {
 
 	public function ui_view() {
 		?>
-        Order's coupon text
+        Order Coupon Code
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
         <%= ops[operator] %>
-        <%= condition %>
+        '<%= condition %>'
 		<?php
 	}
 
 	public function get_possible_rule_operators() {
 		$operators = array(
-			'contains'    => __( 'any contains', 'wp-marketing-automations' ),
-			'is'          => __( 'any matches exactly', 'wp-marketing-automations' ),
+			'contains'    => __( 'contains', 'wp-marketing-automations' ),
+			'is'          => __( 'matches exactly', 'wp-marketing-automations' ),
 			'starts_with' => __( 'starts with', 'wp-marketing-automations' ),
 			'ends_with'   => __( 'ends with', 'wp-marketing-automations' ),
 		);
@@ -1439,18 +1448,17 @@ class BWFAN_Rule_Order_Note_Text_Match extends BWFAN_Rule_Base {
 
 	public function ui_view() {
 		?>
-        Order's notes text
+        Order Note Text
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
-
         <%= ops[operator] %>
-        <%= condition %>
+        '<%= condition %>'
 		<?php
 	}
 
 	public function get_possible_rule_operators() {
 		$operators = array(
-			'contains'    => __( 'any contains', 'wp-marketing-automations' ),
-			'is'          => __( 'any matches exactly', 'wp-marketing-automations' ),
+			'contains'    => __( 'contains', 'wp-marketing-automations' ),
+			'is'          => __( 'matches exactly', 'wp-marketing-automations' ),
 			'starts_with' => __( 'starts with', 'wp-marketing-automations' ),
 			'ends_with'   => __( 'ends with', 'wp-marketing-automations' ),
 		);
@@ -1495,7 +1503,7 @@ class BWFAN_Rule_Order_Status_Change extends BWFAN_Rule_Base {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Order\'s status ', 'wp-marketing-automations' );
+		esc_html_e( 'Older Order Status ', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 

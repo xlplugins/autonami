@@ -119,7 +119,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 		}
 
 		public function ui_view() {
-			esc_html_e( 'Order\'s Items', 'wp-marketing-automations' );
+			esc_html_e( 'Orders Items', 'wp-marketing-automations' );
 			?>
             <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -272,7 +272,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 		}
 
 		public function ui_view() {
-			esc_html_e( 'Order\'s Items Category', 'wp-marketing-automations' );
+			esc_html_e( 'Order Items Taxonomy', 'wp-marketing-automations' );
 			?>
             <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -292,83 +292,84 @@ if ( class_exists( 'WooCommerce' ) ) {
 			);
 		}
 	}
-
-	class BWFAN_Rule_Country extends BWFAN_Rule_Base {
-
-		public function get_possible_rule_values() {
-			$result = WC()->countries->get_allowed_countries();
-
-			return $result;
-		}
-
-		public function get_condition_input_type() {
-			return 'Chosen_Select';
-		}
-
-		public function is_match( $rule_data ) {
-			$type             = $rule_data['operator'];
-			$shipping_country = $this->get_objects_country();
-
-			if ( ! $shipping_country ) {
-				return $shipping_country;
-			}
-			$result = false;
-			switch ( $type ) {
-				case 'any':
-					if ( is_array( $rule_data['condition'] ) && is_array( $shipping_country ) ) {
-						$result = count( array_intersect( $rule_data['condition'], $shipping_country ) ) >= 1;
-					}
-					break;
-				case 'none':
-					if ( is_array( $rule_data['condition'] ) && is_array( $shipping_country ) ) {
-						$result = count( array_intersect( $rule_data['condition'], $shipping_country ) ) === 0;
-					}
-					break;
-				default:
-					$result = false;
-					break;
-			}
-
-			return $this->return_is_match( $result, $rule_data );
-		}
-
-		public function get_objects_country() {
-			$order            = BWFAN_Core()->rules->getRulesData( 'wc_order' );
-			$shipping_country = BWFAN_WooCommerce_Compatibility::get_shipping_country_from_order( $order );
-
-			if ( empty( $shipping_country ) ) {
-				return false;
-			}
-
-			$shipping_country = array( $shipping_country );
-
-			return $shipping_country;
-		}
-
-		public function ui_view() {
-			esc_html_e( 'Order\'s Shipping Country', 'wp-marketing-automations' );
-			?>
-            <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
-
-            <%= ops[operator] %>
-            <% var chosen = []; %>
-            <% _.each(condition, function( value, key ){ %>
-            <% chosen.push(uiData[value]); %>
-
-            <% }); %>
-            <%= chosen.join("/ ") %>
-			<?php
-		}
-
-		public function get_possible_rule_operators() {
-			return array(
-				'any'  => __( 'matches any of', 'wp-marketing-automations' ),
-				'none' => __( 'matches none of ', 'wp-marketing-automations' ),
-			);
-		}
-	}
 }
 
+class BWFAN_Rule_Country extends BWFAN_Rule_Base {
+
+	public function get_possible_rule_values() {
+		$countries_data = array();
+		/** get countries using get countries data from woofunnels core */
+		if ( function_exists( 'bwf_get_countries_data' ) ) {
+			$countries_data = bwf_get_countries_data();
+		}
+
+		return $countries_data;
+	}
+
+	public function get_condition_input_type() {
+		return 'Chosen_Select';
+	}
+
+	public function is_match( $rule_data ) {
+		$type    = $rule_data['operator'];
+		$country = $this->get_objects_country();
+
+		if ( ! $country ) {
+			return $country;
+		}
+		$result = false;
+		switch ( $type ) {
+			case 'any':
+				if ( is_array( $rule_data['condition'] ) && is_array( $country ) ) {
+					$result = count( array_intersect( $rule_data['condition'], $country ) ) >= 1;
+				}
+				break;
+			case 'none':
+				if ( is_array( $rule_data['condition'] ) && is_array( $country ) ) {
+					$result = count( array_intersect( $rule_data['condition'], $country ) ) === 0;
+				}
+				break;
+			default:
+				$result = false;
+				break;
+		}
+
+		return $this->return_is_match( $result, $rule_data );
+	}
+
+	public function get_objects_country() {
+		if ( ! bwfan_is_woocommerce_active() ) {
+			return false;
+		}
+
+		$order   = BWFAN_Core()->rules->getRulesData( 'wc_order' );
+		$country = BWFAN_WooCommerce_Compatibility::get_billing_country_from_order( $order );
+
+		return empty( $country ) ? false : array( $country );
+	}
+
+	public function ui_view() {
+		esc_html_e( 'Order Shipping Country', 'wp-marketing-automations' );
+		?>
+        <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
+
+        <%= ops[operator] %>
+        <% var chosen = []; %>
+        <% _.each(condition, function( value, key ){ %>
+        <% chosen.push(uiData[value]); %>
+
+        <% }); %>
+        <%= chosen.join("/ ") %>
+		<?php
+	}
+
+	public function get_possible_rule_operators() {
+		return array(
+			'any'  => __( 'matches any of', 'wp-marketing-automations' ),
+			'none' => __( 'matches none of ', 'wp-marketing-automations' ),
+		);
+	}
+}
 
 class BWFAN_Rule_Custom_Field extends BWFAN_Rule_Base {
 
@@ -437,7 +438,7 @@ class BWFAN_Rule_Custom_Field extends BWFAN_Rule_Base {
 
 	public function ui_view() {
 		?>
-        Order's Custom Field
+        Order Custom Field
         '<%= condition['key'] %>' <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
         <%= ops[operator] %> '<%= condition['value'] %>'
 		<?php

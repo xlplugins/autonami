@@ -11,8 +11,8 @@ final class BWFAN_WC_Order_Status_Change extends BWFAN_Event {
 		$this->optgroup_label         = esc_html__( 'Orders', 'wp-marketing-automations' );
 		$this->event_name             = esc_html__( 'Order Status Changed', 'wp-marketing-automations' );
 		$this->event_desc             = esc_html__( 'This event runs after an order status is changed.', 'wp-marketing-automations' );
-		$this->event_merge_tag_groups = array( 'wc_customer', 'wc_order' );
-		$this->event_rule_groups      = array( 'wc_order', 'wc_customer', 'automation', 'wc_order_state' );
+		$this->event_merge_tag_groups = array( 'bwf_contact', 'wc_order' );
+		$this->event_rule_groups      = array( 'wc_order', 'aerocheckout', 'wc_order_state', 'bwf_contact_segments', 'bwf_contact_fields', 'bwf_contact_user', 'bwf_contact_wc', 'bwf_contact_geo' );
 		$this->priority               = 15.2;
 		$this->support_lang           = true;
 	}
@@ -174,7 +174,7 @@ final class BWFAN_WC_Order_Status_Change extends BWFAN_Event {
 
 	public function order_status_changed( $order_id, $from_status, $to_status ) {
 		if ( BWFAN_Common::bwf_check_to_skip_child_order( $order_id ) ) {
-		    return;
+			return;
 		}
 		BWFAN_Core()->public->load_active_automations( $this->get_slug() );
 

@@ -218,4 +218,20 @@ class BWFAN_Plugin_Dependency {
 		return in_array( 'tutor/tutor.php', self::$active_plugins, true ) || array_key_exists( 'tutor/tutor.php', self::$active_plugins );
 	}
 
+	/**
+	 * Checking if memberpress plugin active
+	 * @return bool
+	 */
+	public static function mepr_active_check() {
+		if ( ! self::$active_plugins ) {
+			self::init();
+		}
+
+		if ( class_exists( 'MeprCtrlFactory' ) ) {
+			return true;
+		}
+
+		return in_array( 'memberpress/memberpress.php', self::$active_plugins, true ) || array_key_exists( 'memberpress/memberpress.php', self::$active_plugins );
+	}
+
 }

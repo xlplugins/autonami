@@ -224,7 +224,7 @@ abstract class BWFAN_Merge_Tag {
 
 	public function get_preview() {
 		?>
-		<textarea style="margin: 5px 20px 15px;  width: 93%;" class="bwfan-preview-merge-tag bwfan-input-wrapper" readonly></textarea>
+        <textarea style="margin: 5px 20px 15px;  width: 93%;" class="bwfan-preview-merge-tag bwfan-input-wrapper" readonly></textarea>
 		<?php
 		if ( true === $this->need_order_sync && 0 === $this->sync_order() ) {
 			echo '<div class="error" style="position:relative;" class="bwfan-display-none">';
@@ -245,10 +245,8 @@ abstract class BWFAN_Merge_Tag {
 
 	public function get_copy_button() {
 		?>
-		<!-- <div style="padding: 5px 20px 15px;"> -->
-			<span style="line-height: 70px;" class="bwfan-use-merge-tag"><?php esc_html_e( 'Copy To Clipboard', 'wp-marketing-automations' ); ?></span>
-			<input type="submit" class="bwfan-display-none"/>
-		<!-- </div> -->
+        <span style="line-height: 70px;" class="bwfan-use-merge-tag"><?php esc_html_e( 'Copy To Clipboard', 'wp-marketing-automations' ); ?></span>
+        <input type="submit" class="bwfan-display-none"/>
 		<?php
 	}
 
@@ -372,6 +370,40 @@ abstract class BWFAN_Merge_Tag {
 		}
 
 		return '';
+	}
+
+	/**
+	 * Get date value in WordPress set date format
+	 *
+	 * @param $date_value
+	 *
+	 * @return string
+	 */
+	public function get_formatted_date_value( $date_value ) {
+		if ( empty( $date_value ) ) {
+			return '';
+		}
+		if ( false === $this->validate_date( $date_value ) ) {
+			return $date_value;
+		}
+		$date_format = get_option( 'date_format' ); // e.g. "F j, Y"
+		$date_value  = date( $date_format, strtotime( $date_value ) );
+
+		return $date_value;
+	}
+
+	/**
+	 * Validate date
+	 *
+	 * @param $date
+	 * @param string $format
+	 *
+	 * @return bool
+	 */
+	public function validate_date( $date, $format = 'Y-m-d' ) {
+		$d = DateTime::createFromFormat( $format, $date );
+
+		return $d && $d->format( $format ) === $date;
 	}
 
 	/**

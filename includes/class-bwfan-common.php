@@ -96,7 +96,6 @@ class BWFAN_Common {
 		 * removing abandoned cart tags on cart restoration
 		 */
 		add_action( 'abandoned_cart_recovered', array( __CLASS__, 'bwfan_remove_abandoned_cart_tags' ), 10, 3 );
-
 	}
 
 	public static function display_marketing_optin_checkbox() {
@@ -109,7 +108,7 @@ class BWFAN_Common {
 					self::add_user_consent_after_terms_and_conditions();
 				}
 			}, 99, 2 );
-		} else if ( isset( self::$general_options['bwfan_user_consent_position'] ) && 'below_phone' === self::$general_options['bwfan_user_consent_position'] ) {
+		} elseif ( isset( self::$general_options['bwfan_user_consent_position'] ) && 'below_phone' === self::$general_options['bwfan_user_consent_position'] ) {
 			/** Below Phone */
 			add_filter( 'woocommerce_form_field', function ( $field, $key, $args, $value ) {
 				if ( 'billing_phone' === $key ) {
@@ -969,7 +968,7 @@ class BWFAN_Common {
 		return implode( '</style>', $stripped_merge_tags );
 	}
 
-	public static function get_product_image( $product, $size = 'shop_catalog', $only_url = false ) {
+	public static function get_product_image( $product, $size = 'shop_catalog', $only_url = false, $img_width = '' ) {
 		$image_id = $product->get_image_id();
 		if ( $image_id ) {
 			$image_url = wp_get_attachment_image_url( $image_id, $size );
@@ -977,7 +976,8 @@ class BWFAN_Common {
 			if ( $only_url ) {
 				$image = $image_url;
 			} else {
-				$image = '<img src="' . $image_url . '" class="bwfan-product-image" alt="' . sanitize_text_field( self::get_name( $product ) ) . '">';
+				$style = ! empty( $img_width ) ? "width='{$img_width}'" : '';
+				$image = '<img src="' . $image_url . '" ' . $style . ' class="bwfan-product-image" alt="' . sanitize_text_field( self::get_name( $product ) ) . '">';
 			}
 		} else {
 			$image = wc_placeholder_img( $size );
@@ -1743,24 +1743,6 @@ class BWFAN_Common {
 	}
 
 	public static function get_default_global_settings() {
-
-		$customer_country = '';
-		$customer_state   = '';
-
-		if ( bwfan_is_woocommerce_active() ) {
-			global $woocommerce;
-			$base_country1 = get_option( 'woocommerce_default_country', false );
-			$countries_obj = new WC_Countries();
-			$countries     = $countries_obj->__get( 'countries' );
-			if ( false !== $base_country1 ) {
-				$base_country     = substr( $base_country1, 0, 2 );
-				$base_state       = substr( $base_country1, 3 );
-				$customer_country = $countries[ $base_country ];
-				$states           = $countries_obj->get_states( $base_country );
-				$customer_state   = is_array( $states ) && isset( $states[ $base_state ] ) ? $states[ $base_state ] : $customer_state;
-			}
-		}
-
 		$email_settings = self::get_global_email_settings();
 
 		$defaults = array_replace( array(
@@ -1794,11 +1776,6 @@ class BWFAN_Common {
 			'bwfan_user_consent_non_eu'                    => '0',
 			'bwfan_delete_autonami_generated_coupons_time' => 1,
 			'bwfan_user_consent_position'                  => 'below_term',
-			'bwfan_setting_street_address'                 => ( bwfan_is_woocommerce_active() ) ? get_option( 'woocommerce_store_address', false ) : '',
-			'bwfan_setting_city'                           => ( bwfan_is_woocommerce_active() ) ? get_option( 'woocommerce_store_city', false ) : '',
-			'bwfan_setting_state'                          => ( bwfan_is_woocommerce_active() ) ? $customer_state : '',
-			'bwfan_setting_zipcode'                        => ( bwfan_is_woocommerce_active() ) ? get_option( 'woocommerce_store_postcode', false ) : '',
-			'bwfan_setting_country'                        => ( bwfan_is_woocommerce_active() ) ? $customer_country : '',
 			'bwfan_email_footer_setting'                   => '<p>{{business_name}}, {{business_address}}</p>
 			<p>Don\'t want to stay in the loop? We\'ll be sad to see you go, but you can click here to <a href="{{unsubscribe_link}}">unsubscribe</a></p>',
 			'bwfan_sms_unsubscribe_text'                   => 'Reply STOP to unsubscribe',
@@ -2837,7 +2814,7 @@ class BWFAN_Common {
 
 		if ( ! empty( $coupon ) ) {
 			$url = add_query_arg( array(
-				'bwfan-coupon' => $coupon,
+				'bwfan-coupon' => preg_replace( "/&#?[a-z0-9]{2,8};/i", "", $coupon ),
 			), $url );
 		}
 
@@ -4957,7 +4934,7 @@ class BWFAN_Common {
 			),
 		);
 
-		return $settings;
+		return apply_filters( 'bwfan_admin_settings_schema', $settings );
 	}
 
 	/**
@@ -5303,16 +5280,16 @@ class BWFAN_Common {
 		$bwf_contact->set_f_name( $f_name );
 		$bwf_contact->set_l_name( $l_name );
 		$bwf_contact->set_contact_no( $contact_no );
-		$bwf_contact->save();
 
 		if ( bwfan_is_autonami_pro_active() && class_exists( 'BWFCRM_Contact' ) ) {
 			$bwfcrm_contact = new BWFCRM_Contact( $bwf_contact );  // getting bwfcrm_contact object to add tags
 			/** add tag in case of available in cart settings */
 			if ( ! empty( $abandoned_tag ) ) {
-				$bwfcrm_contact->add_tags( $abandoned_tag );
+				$bwfcrm_contact->set_tags( $abandoned_tag );
 			}
 		}
-
+		
+		$bwf_contact->save();
 	}
 
 	/**
@@ -5360,6 +5337,7 @@ class BWFAN_Common {
 		}
 
 		$bwfcrm_contact->remove_tags( $remove_tag_data );
+		$bwfcrm_contact->save();
 
 	}
 

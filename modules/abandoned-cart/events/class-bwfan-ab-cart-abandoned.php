@@ -17,8 +17,8 @@ final class BWFAN_AB_Cart_Abandoned extends BWFAN_Event {
 		$this->optgroup_label         = __( 'Cart', 'wp-marketing-automations' );
 		$this->event_name             = __( 'Cart Abandoned', 'wp-marketing-automations' );
 		$this->event_desc             = __( 'This automation would trigger when a user abandoned the cart.', 'wp-marketing-automations' );
-		$this->event_merge_tag_groups = array( 'wc_ab_cart' );
-		$this->event_rule_groups      = array( 'ab_cart', 'aerocheckout' );
+		$this->event_merge_tag_groups = array( 'wc_ab_cart', 'bwf_contact' );
+		$this->event_rule_groups      = array( 'ab_cart', 'aerocheckout', 'bwf_contact_segments', 'bwf_contact_fields', 'bwf_contact_user', 'bwf_contact_wc', 'bwf_contact_geo' );
 		$this->support_lang           = true;
 		$this->priority               = 5;
 		$this->customer_email_tag     = '{{cart_billing_email}}';
@@ -356,6 +356,36 @@ final class BWFAN_AB_Cart_Abandoned extends BWFAN_Event {
 			);
 			BWFAN_Merge_Tag_Loader::set_data( $set_data );
 		}
+	}
+
+	/**
+	 * checking if the abandoned cart contain empty cart
+	 */
+	public function validate_event_data_before_executing_task( $data ) {
+		return $this->validate_cart_details( $data );
+	}
+
+	/** validating abandoned cart contain item or not
+	 *
+	 * @param $data
+	 *
+	 * @return bool
+	 */
+	public function validate_cart_details( $data ) {
+		if ( ! isset( $data['cart_abandoned_id'] ) ) {
+			return false;
+		}
+
+		$cart_data  = BWFAN_Model_Abandonedcarts::get( $data['cart_abandoned_id'] );
+		$cart_items = maybe_unserialize( $cart_data['items'] );
+
+		if ( empty( $cart_items ) ) {
+			$this->message_validate_event = __( 'Cart does not contain any item.', 'wp-marketing-automations' );
+
+			return false;
+		}
+
+		return true;
 	}
 
 }

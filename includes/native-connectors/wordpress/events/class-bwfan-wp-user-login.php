@@ -9,8 +9,8 @@ final class BWFAN_WP_User_Login extends BWFAN_Event {
 		$this->optgroup_label         = esc_html__( 'User', 'wp-marketing-automations' );
 		$this->event_name             = esc_html__( 'User Login', 'wp-marketing-automations' );
 		$this->event_desc             = esc_html__( 'This event runs after a user logged in.', 'wp-marketing-automations' );
-		$this->event_merge_tag_groups = array( 'wc_customer' );
-		$this->event_rule_groups      = array( 'wp_user' );
+		$this->event_merge_tag_groups = array( 'bwf_contact' );
+		$this->event_rule_groups      = array( 'wp_user', 'bwf_contact_segments', 'bwf_contact_fields', 'bwf_contact_user', 'bwf_contact_wc', 'bwf_contact_geo' );
 		$this->priority               = 105.1;
 	}
 

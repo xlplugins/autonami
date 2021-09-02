@@ -21,7 +21,7 @@ abstract class BWFCRM_Base_React_Page {
 
 	public function prepare_data_for_enqueue() {
 		/** Menu Data */
-		$this->page_data['header_data'] = $this->get_header_data();
+		$this->page_data['header_data'] = apply_filters( 'bwfan_filter_app_header_data', $this->get_header_data() );
 
 		/** Forms */
 		$this->page_data['form_nice_names'] = class_exists( 'BWFCRM_Core' ) ? BWFCRM_Core()->forms->get_forms_nice_names() : '';
@@ -148,6 +148,8 @@ abstract class BWFCRM_Base_React_Page {
 			$this->page_data['is_connector_active'] = true;
 		}
 
+		$this->page_data['wp_user_roles'] = get_editable_roles();
+
 		$this->page_data['is_whatsapp_service_available'] = bwfan_is_autonami_pro_active() ? BWFCRM_Core()->conversation->is_whatsapp_service_available() : false;
 
 		$this->page_data['is_whatsapp_enabled'] = BWFAN_Common::is_whatsapp_services_enabled();
@@ -222,6 +224,8 @@ abstract class BWFCRM_Base_React_Page {
 
 		wp_localize_script( "bwfcrm_$app_name", 'bwfcrm_contacts_data', $this->page_data );
 		wp_enqueue_script( "bwfcrm_$app_name" );
+
+		do_action( 'bwfan_after_app_script_loaded' );
 	}
 
 	public function get_global_email_settings() {

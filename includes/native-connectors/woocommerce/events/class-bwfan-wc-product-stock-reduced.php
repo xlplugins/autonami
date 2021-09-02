@@ -13,8 +13,8 @@ final class BWFAN_WC_Product_Stock_Reduced extends BWFAN_Event {
 		$this->optgroup_label         = esc_html__( 'Orders', 'wp-marketing-automations' );
 		$this->event_name             = esc_html__( 'Order Item Stock Reduced', 'wp-marketing-automations' );
 		$this->event_desc             = esc_html__( 'This event runs after an order payment is complete and its relative product items stocks reduced (runs per product item).', 'wp-marketing-automations' );
-		$this->event_merge_tag_groups = array( 'wc_customer', 'wc_items' );
-		$this->event_rule_groups      = array( 'wc_customer', 'wc_items', 'automation' );
+		$this->event_merge_tag_groups = array( 'bwf_contact', 'wc_items' );
+		$this->event_rule_groups      = array( 'wc_items', 'bwf_contact_segments', 'bwf_contact_fields', 'bwf_contact_user', 'bwf_contact_wc', 'bwf_contact_geo' );
 		$this->priority               = 15.4;
 	}
 

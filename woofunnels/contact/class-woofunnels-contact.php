@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WooFunnels_Contact {
 	/**
-	 * public db_operations $db_operations
+	 * @var WooFunnels_DB_Operations
 	 */
 	public $db_operations;
 
@@ -53,66 +53,152 @@ class WooFunnels_Contact {
 	 */
 	public $db_contact;
 
+	/**
+	 * @var bool $blank_values_update
+	 */
 	public $blank_values_update = false;
 
 	/**
 	 * Get the contact details for the email passed if this email exits other create a new contact with this email
 	 *
-	 * @param  $wp_id
-	 * @param  $email
-	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-	 *
+	 * @param string|int $wp_id WordPress User ID
+	 * @param string $email email
+	 * @param string $phone contact number
+	 * @param string|int $cid contact id,
+	 * @param string $uid Unique ID
 	 */
-	public function __construct( $wp_id, $email ) {
+	public function __construct( $wp_id = '', $email = '', $phone = '', $cid = '', $uid = '' ) {
+		/** Set blank properties */
+		$this->set_blank_props();
+
+		$this->email = $email;
+		$this->wp_id = $wp_id;
+
+		/** If CID given */
+		if ( ! empty( $cid ) && absint( $cid ) > 0 ) {
+			$this->db_contact = $this->get_contact_by_id( absint( $cid ) );
+
+			$db_obj = $this->validate_and_set_obj( $this->db_contact );
+
+			if ( false !== $db_obj ) {
+				return;
+			}
+		}
+
+		/** If WP ID given */
+		if ( ! empty( $wp_id ) && absint( $wp_id ) > 0 ) {
+			$this->db_contact = $this->get_contact_by_wpid( absint( $wp_id ) );
+
+			$db_obj = $this->validate_and_set_obj( $this->db_contact );
+
+			if ( false !== $db_obj ) {
+				return;
+			}
+		}
+
+		/** If EMAIL given */
+		if ( ! empty( $email ) && is_email( $email ) ) {
+			$this->db_contact = $this->get_contact_by_email( trim( $email ) );
+
+			$db_obj = $this->validate_and_set_obj( $this->db_contact );
+
+			if ( false !== $db_obj ) {
+				return;
+			}
+		}
+
+		/** If PHONE given */
+		if ( ! empty( $phone ) ) {
+			$this->db_contact = $this->get_contact_by_phone( trim( $phone ) );
+
+			$db_obj = $this->validate_and_set_obj( $this->db_contact );
+
+			if ( false !== $db_obj ) {
+				return;
+			}
+		}
+
+		/** If UID given */
+		if ( ! empty( $uid ) ) {
+			$this->db_contact = $this->get_contact_by_uid( trim( $uid ) );
+
+			$this->validate_and_set_obj( $this->db_contact );
+		}
+	}
+
+	public function set_blank_props() {
 		$this->db_operations = WooFunnels_DB_Operations::get_instance();
 
 		if ( ! isset( $this->children ) ) {
 			$this->children = new stdClass();
 		}
 
-
 		if ( ! isset( $this->meta ) ) {
 			$this->meta = new stdClass();
 		}
 
+		$this->db_contact = new stdClass();
+	}
 
-		if ( empty( $wp_id ) && empty( $email ) ) {
+	/**
+	 * Get contact cache object
+	 *
+	 * @param $type
+	 * @param $value
+	 *
+	 * @return false|mixed
+	 */
+	public function get_cache_obj( $type, $value ) {
+		$obj   = BWF_Contacts::get_instance();
+		$value = sanitize_key( $value );
+
+		if ( isset( $obj->cached_contact_obj[ $type ] ) && isset( $obj->cached_contact_obj[ $type ][ $value ] ) ) {
+			return $obj->cached_contact_obj[ $type ][ $value ];
+		}
+
+		return false;
+	}
+
+	/**
+	 * Set contact cache object
+	 *
+	 * @param $type
+	 * @param $value
+	 * @param $output
+	 */
+	public function set_cache_object( $type, $value, $output ) {
+		$obj   = BWF_Contacts::get_instance();
+		$value = sanitize_key( $value );
+
+		if ( ! isset( $obj->cached_contact_obj[ $type ] ) ) {
+			$obj->cached_contact_obj[ $type ] = [];
+		}
+
+		$obj->cached_contact_obj[ $type ][ $value ] = $output;
+	}
+
+	public function validate_and_set_obj( $obj ) {
+		if ( ! is_object( $obj ) || ! isset( $obj->id ) ) {
+			return false;
+		}
+		$this->id    = $obj->id;
+		$this->email = $this->db_contact->email;
+		$this->wp_id = $this->db_contact->wpid;
+
+		$this->set_obj_meta();
+
+		return true;
+	}
+
+	public function set_obj_meta() {
+		if ( ! isset( $this->id ) || empty( $this->id ) ) {
 			return;
 		}
 
-		$this->email      = $email;
-		$this->wp_id      = $wp_id;
-		$this->db_contact = new stdClass();
-
-		if ( ! empty( $wp_id ) && $wp_id > 0 ) {
-			$this->db_contact = $this->get_contact_by_wpid( $wp_id );
+		$contact_meta = $this->db_operations->get_contact_metadata( $this->id );
+		foreach ( is_array( $contact_meta ) ? $contact_meta : array() as $meta ) {
+			$this->meta->{$meta->meta_key} = maybe_unserialize( $meta->meta_value );
 		}
-
-		if ( ! isset( $this->db_contact->id ) && ! empty( $email ) && is_email( $email ) ) {
-			$this->db_contact = $this->get_contact_by_email( $email );
-		}
-
-		if ( isset( $this->db_contact->id ) && $this->db_contact->id > 0 ) {
-			$this->id = $this->db_contact->id;
-		}
-
-
-		if ( isset( $this->id ) && ! empty( $this->id ) ) {
-			$this->email  = $this->db_contact->email;
-			$contact_meta = $this->db_operations->get_contact_metadata( $this->id );
-			foreach ( is_array( $contact_meta ) ? $contact_meta : array() as $meta ) {
-				$this->meta->{$meta->meta_key} = maybe_unserialize( $meta->meta_value );
-			}
-		}
-
-		$bwf_contacts = BWF_Contacts::get_instance();
-
-		$uid = $this->get_uid();
-		if ( ! empty( $uid ) && ! isset( $bwf_contacts->contact_objs[ $uid ] ) ) {
-			$bwf_contacts->contact_objs[ $this->get_uid() ] = $this;
-		}
-
-
 	}
 
 	/**
@@ -123,7 +209,16 @@ class WooFunnels_Contact {
 	 * @return mixed
 	 */
 	public function get_contact_by_wpid( $wp_id ) {
-		return $this->db_operations->get_contact_by_wpid( $wp_id );
+		$cached_obj = $this->get_cache_obj( 'wp_id', $wp_id );
+		if ( false !== $cached_obj ) {
+			return $cached_obj;
+		}
+
+		$output = $this->db_operations->get_contact_by_wpid( $wp_id );
+
+		$this->set_cache_object( 'wp_id', $wp_id, $output );
+
+		return $output;
 	}
 
 	/**
@@ -134,7 +229,36 @@ class WooFunnels_Contact {
 	 * @return mixed
 	 */
 	public function get_contact_by_email( $email ) {
-		return $this->db_operations->get_contact_by_email( $email );
+		$cached_obj = $this->get_cache_obj( 'email', $email );
+		if ( false !== $cached_obj ) {
+			return $cached_obj;
+		}
+
+		$output = $this->db_operations->get_contact_by_email( $email );
+
+		$this->set_cache_object( 'email', $email, $output );
+
+		return $output;
+	}
+
+	/**
+	 * Get contact by phone
+	 *
+	 * @param $phone
+	 *
+	 * @return mixed
+	 */
+	public function get_contact_by_phone( $phone ) {
+		$cached_obj = $this->get_cache_obj( 'phone', $phone );
+		if ( false !== $cached_obj ) {
+			return $cached_obj;
+		}
+
+		$output = $this->db_operations->get_contact_by_phone( $phone );
+
+		$this->set_cache_object( 'phone', $phone, $output );
+
+		return $output;
 	}
 
 	/**
@@ -248,6 +372,7 @@ class WooFunnels_Contact {
 		return array(
 			'id',
 			'email',
+			'wpid',
 			'uid',
 			'email',
 			'f_name',
@@ -492,11 +617,12 @@ class WooFunnels_Contact {
 				$contact[ $property ] = wp_json_encode( $contact[ $property ] );
 			}
 		}
+
 		$contact['last_modified'] = current_time( 'mysql' );
+
 		if ( $this->get_id() > 0 ) {
 			$contact['id'] = $this->get_id();
 			$this->db_operations->update_contact( $contact );
-
 		} elseif ( empty( $this->get_id() ) ) {
 			$contact['uid']  = md5( $this->email . $this->wp_id );
 			$contact['wpid'] = $this->get_wpid() > 0 ? $this->get_wpid() : 0;
@@ -506,19 +632,14 @@ class WooFunnels_Contact {
 			$this->id = $contact_id;
 		}
 
-		if ( isset( $this->children ) && ! empty( $this->children ) ) {
+		/** Purge Cache */
+		$this->purge_contact_from_cache();
 
+		if ( isset( $this->children ) && ! empty( $this->children ) ) {
 			foreach ( $this->children as $child_actor ) {
 				$child_actor->set_cid( $this->get_id() );
 				$child_actor->save();
 			}
-		}
-
-		$bwf_contacts = BWF_Contacts::get_instance();
-		$uid          = $this->get_uid();
-		if ( ! empty( $uid ) && ! isset( $bwf_contacts->contact_objs[ $uid ] ) ) {
-			$bwf_contacts->contact_objs[ $uid ] = $this;
-			BWF_Logger::get_instance()->log( "Contact objects set for uid $uid in contact save function: " . print_r( array_keys( $bwf_contacts->contact_objs ), true ), 'woofunnels_indexing' ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 		}
 	}
 
@@ -546,16 +667,14 @@ class WooFunnels_Contact {
 	 * Get contact wp_id
 	 */
 	public function get_wpid() {
-
 		$wp_id   = ( isset( $this->wp_id ) && $this->wp_id > 0 ) ? $this->wp_id : 0;
 		$db_wpid = ( isset( $this->db_contact->wpid ) && $this->db_contact->wpid > 0 ) ? $this->db_contact->wpid : 0;
-
 
 		return $wp_id > 0 ? $wp_id : $db_wpid;
 	}
 
 	/**
-	 * Set contact wpid
+	 * Set contact wp id
 	 *
 	 * @param $wp_id
 	 */
@@ -710,7 +829,6 @@ class WooFunnels_Contact {
 		return is_null( $contact_no ) ? $db_contact_no : $contact_no;
 	}
 
-
 	/**
 	 * Set contact state
 	 *
@@ -735,16 +853,75 @@ class WooFunnels_Contact {
 		return is_null( $state ) ? $db_state : $state;
 	}
 
-
 	/**
-	 * Get contact by id
+	 * Get contact by id i.e. cid
 	 *
-	 * @param $contact_id
+	 * @param $cid
 	 *
 	 * @return mixed
 	 */
-	public function get_contact_by_contact_id( $contact_id ) {
-		return $this->db_operations->get_contact_by_contact_id( $contact_id );
+	public function get_contact_by_id( $cid ) {
+		$cached_obj = $this->get_cache_obj( 'cid', $cid );
+		if ( false !== $cached_obj ) {
+			return $cached_obj;
+		}
+
+		$output = $this->db_operations->get_contact_by_contact_id( $cid );
+
+		$this->set_cache_object( 'cid', $cid, $output );
+
+		return $output;
+	}
+
+	public function get_contact_by_uid( $uid ) {
+		$cached_obj = $this->get_cache_obj( 'uid', $uid );
+		if ( false !== $cached_obj ) {
+			return $cached_obj;
+		}
+
+		$output = $this->db_operations->get_contact( $uid );
+
+		$this->set_cache_object( 'uid', $uid, $output );
+
+		return $output;
+	}
+
+	/**
+	 * Purge contact sql object from cache
+	 */
+	public function purge_contact_from_cache() {
+		$obj = BWF_Contacts::get_instance();
+
+		$cid   = sanitize_key( $this->get_id() );
+		$email = sanitize_key( $this->get_email() );
+		$phone = sanitize_key( $this->get_contact_no() );
+		$wp_id = sanitize_key( $this->get_wpid() );
+		$uid   = sanitize_key( $this->get_uid() );
+
+		/** cid */
+		if ( isset( $obj->cached_contact_obj['cid'] ) && isset( $obj->cached_contact_obj['cid'][ $cid ] ) ) {
+			unset( $obj->cached_contact_obj['cid'][ $cid ] );
+		}
+
+		/** email */
+		if ( isset( $obj->cached_contact_obj['email'] ) && isset( $obj->cached_contact_obj['email'][ $email ] ) ) {
+			unset( $obj->cached_contact_obj['email'][ $email ] );
+		}
+
+		/** phone */
+		if ( isset( $obj->cached_contact_obj['phone'] ) && isset( $obj->cached_contact_obj['phone'][ $phone ] ) ) {
+			unset( $obj->cached_contact_obj['phone'][ $phone ] );
+		}
+
+		/** wp id */
+		if ( isset( $obj->cached_contact_obj['wp_id'] ) && isset( $obj->cached_contact_obj['wp_id'][ $wp_id ] ) ) {
+			unset( $obj->cached_contact_obj['wp_id'][ $wp_id ] );
+		}
+
+		/** uid */
+		if ( isset( $obj->cached_contact_obj['uid'] ) && isset( $obj->cached_contact_obj['uid'][ $uid ] ) ) {
+			unset( $obj->cached_contact_obj['uid'][ $uid ] );
+		}
 	}
 
 	/**

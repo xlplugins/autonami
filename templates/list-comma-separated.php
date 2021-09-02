@@ -11,4 +11,4 @@ foreach ( $products as $product ) {
 	$product_names[] = esc_html__( BWFAN_Common::get_name( $product ) );
 }
 
-echo implode( $product_names, ', ' ); //phpcs:ignore WordPress.Security.EscapeOutput
+echo implode( ', ', $product_names ); //phpcs:ignore WordPress.Security.EscapeOutput

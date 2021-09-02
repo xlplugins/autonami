@@ -17,8 +17,8 @@ final class BWFAN_WC_Order_Note_Added extends BWFAN_Event {
 		$this->optgroup_label         = esc_html__( 'Orders', 'wp-marketing-automations' );
 		$this->event_name             = esc_html__( 'Order Note Added', 'wp-marketing-automations' );
 		$this->event_desc             = esc_html__( 'This event runs after a new order note is added.', 'wp-marketing-automations' );
-		$this->event_merge_tag_groups = array( 'wc_customer', 'wc_order' );
-		$this->event_rule_groups      = array( 'wc_order', 'wc_order_note' );
+		$this->event_merge_tag_groups = array( 'bwf_contact', 'wc_order' );
+		$this->event_rule_groups      = array( 'wc_order', 'wc_order_note', 'aerocheckout', 'bwf_contact_segments', 'bwf_contact_fields', 'bwf_contact_user', 'bwf_contact_wc', 'bwf_contact_geo' );
 		$this->priority               = 15.5;
 		$this->support_lang           = true;
 		$this->order_note_types       = [

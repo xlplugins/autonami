@@ -11,8 +11,8 @@ final class BWFAN_AB_Cart_Recovered extends BWFAN_Event {
 		$this->optgroup_label         = __( 'Cart', 'wp-marketing-automations' );
 		$this->event_name             = __( 'Cart Recovered', 'wp-marketing-automations' );
 		$this->event_desc             = __( 'This automation would trigger when the user abandoned cart is recovered.', 'wp-marketing-automations' );
-		$this->event_merge_tag_groups = array( 'wc_customer', 'wc_order' );
-		$this->event_rule_groups      = array( 'wc_order', 'wc_customer', 'aerocheckout' );
+		$this->event_merge_tag_groups = array( 'bwf_contact', 'wc_order' );
+		$this->event_rule_groups      = array( 'wc_order', 'wc_customer', 'aerocheckout', 'bwf_contact_segments', 'bwf_contact_fields', 'bwf_contact_user', 'bwf_contact_wc', 'bwf_contact_geo' );
 		$this->support_lang           = true;
 		$this->priority               = 5.1;
 		$this->customer_email_tag     = '{{admin_email}}';

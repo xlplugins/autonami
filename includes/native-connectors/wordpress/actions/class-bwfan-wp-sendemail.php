@@ -108,7 +108,7 @@ final class BWFAN_Wp_Sendemail extends BWFAN_Action {
 		$user_id = isset( $task_meta['global']['user_id'] ) && ! empty( $task_meta['global']['user_id'] ) ? absint( $task_meta['global']['user_id'] ) : 0;
 		$user_id = empty( $user_id ) && isset( $task_meta['data']['user_id'] ) && ! empty( $task_meta['data']['user_id'] ) ? absint( $task_meta['data']['user_id'] ) : 0;
 
-		$global_email_settings = BWFAN_Common::get_global_email_settings();
+		$global_email_settings = BWFAN_Common::get_global_settings();
 		$data_to_set           = array(
 			'subject'           => BWFAN_Common::decode_merge_tags( $task_meta['data']['subject'] ),
 			'email'             => BWFAN_Common::decode_merge_tags( $task_meta['data']['to'] ),

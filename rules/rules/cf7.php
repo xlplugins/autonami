@@ -49,12 +49,20 @@ if ( bwfan_is_cf7_active() ) {
 			$entry = BWFAN_Core()->rules->getRulesData( 'fields' );
 			$type  = $rule_data['operator'];
 			$value = isset( $entry[ $rule_data['condition']['key'] ] ) ? $entry[ $rule_data['condition']['key'] ] : '';
+
+			if ( ! is_array( $value ) ) {
+				$value = array( $value );
+			}
+
+			$value           = array_map( 'strtolower', $value );
+			$condition_value = strtolower( $rule_data['condition']['value'] );
+
 			switch ( $type ) {
 				case 'is':
-					$result = ! is_array( $value ) ? ( $value === $rule_data['condition']['value'] ) : in_array( $rule_data['condition']['value'], $value );
+					$result = in_array( $condition_value, $value );
 					break;
 				case 'is_not':
-					$result = ! is_array( $value ) ? ( $value !== $rule_data['condition']['value'] ) : ! in_array( $rule_data['condition']['value'], $value );
+					$result = ! in_array( $condition_value, $value );
 					break;
 				default:
 					$result = false;

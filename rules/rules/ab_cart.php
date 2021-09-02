@@ -46,7 +46,7 @@ class BWFAN_Rule_Cart_Total extends BWFAN_Rule_Base {
 
 	public function ui_view() {
 		?>
-        Cart total
+        Cart Total
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
         <%= ops[operator] %>
@@ -129,13 +129,11 @@ class BWFAN_Rule_All_Cart_Items_Purchased extends BWFAN_Rule_Base {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'If', 'wp-marketing-automations' );
 		?>
-        <% if (condition == "yes") { %> its <% } %>
-        <% if (condition == "no") { %> it's not <% } %>
-
+        <% if (condition == "yes") { %>All <% } %>
+        <% if (condition == "no") { %>No <% } %>
 		<?php
-		esc_html_e( 'all cart items purchased', 'wp-marketing-automations' );
+		esc_html_e( ' Cart Items purchased in the past', 'wp-marketing-automations' );
 	}
 
 }
@@ -285,7 +283,7 @@ class BWFAN_Rule_Cart_Category extends BWFAN_Rule_Term_Taxonomy {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Cart category ', 'wp-marketing-automations' );
+		esc_html_e( 'Cart Category ', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -404,7 +402,7 @@ class BWFAN_Rule_Cart_Coupons extends BWFAN_Dynamic_Option_Base {
 	}
 
 	public function ui_view() {
-		echo esc_html__( 'Order\'s Coupons', 'wp-marketing-automations' );
+		echo esc_html__( 'Cart Coupon Code', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
@@ -466,18 +464,18 @@ class BWFAN_Rule_Cart_Coupon_Text_Match extends BWFAN_Rule_Base {
 
 	public function ui_view() {
 		?>
-        Order's Coupon Text
+        Cart Coupon Code
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
         <%= ops[operator] %>
-        <%= condition %>
+        '<%= condition %>'
 		<?php
 	}
 
 	public function get_possible_rule_operators() {
 		$operators = array(
-			'contains'    => __( 'any contains', 'wp-marketing-automations' ),
-			'is'          => __( 'any matches exactly', 'wp-marketing-automations' ),
+			'contains'    => __( 'contains', 'wp-marketing-automations' ),
+			'is'          => __( 'matches exactly', 'wp-marketing-automations' ),
 			'starts_with' => __( 'starts with', 'wp-marketing-automations' ),
 			'ends_with'   => __( 'ends with', 'wp-marketing-automations' ),
 
@@ -522,10 +520,10 @@ class BWFAN_Rule_Cart_Contains_Coupon extends BWFAN_Rule_Base {
 	public function ui_view() {
 		esc_html_e( 'Cart', 'wp-marketing-automations' );
 		?>
-        <% if (condition == "yes") { %> <% } %>
-        <% if (condition == "no") { %> doesn't <% } %>
+        <% if (condition == "yes") { %> contains <% } %>
+        <% if (condition == "no") { %> does not contain <% } %>
 		<?php
-		esc_html_e( 'contains any coupon', 'wp-marketing-automations' );
+		esc_html_e( 'Coupon', 'wp-marketing-automations' );
 	}
 
 }
@@ -579,7 +577,7 @@ class BWFAN_Rule_Cart_Item_Count extends BWFAN_Rule_Base {
 
 	public function ui_view() {
 		?>
-        Cart Item count is
+        Cart Item Count is
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
 
         <%= ops[operator] %>

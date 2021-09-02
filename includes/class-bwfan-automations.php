@@ -239,6 +239,7 @@ class BWFAN_Automations {
 	public function get_all_automations( $no_limit = null, $return_all = false ) {
 		global $wpdb;
 
+		$offset = 0;
 		if ( class_exists( 'BWFAN_Post_Table' ) ) {
 			$this->per_page = BWFAN_Post_Table::$per_page;
 			$offset         = ( BWFAN_Post_Table::$current_page - 1 ) * $this->per_page;

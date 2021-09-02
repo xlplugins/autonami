@@ -476,7 +476,11 @@ class BWFAN_unsubscribe {
 		$contact->save_fields();
 
 		$contact->contact->set_last_modified( current_time( 'mysql', 1 ) );
-		$contact->contact->save();
+		if ( method_exists( $contact, 'save' ) ) {
+			$contact->save();
+		} else {
+			$contact->contact->save();
+		}
 
 		wp_send_json(
 			array(

@@ -46,7 +46,7 @@ ob_start();
     }
 
     #body_content table td {
-    padding: 20px;
+    padding: 10px 18px;
     }
 
     #body_content table td td {
@@ -145,6 +145,7 @@ ob_start();
     outline: none;
     vertical-align: middle;
     margin: 0;
+    max-width: 100%;
     }
 
     img.aligncenter {
@@ -164,6 +165,17 @@ ob_start();
 
     .bwfan-product-grid-container img.bwfan-product-image {
     margin-bottom: 15px;
+    }
+
+    .autonami-button {
+    font-weight: bold;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 8px auto;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
     }
 <?php
 $default_css = ob_get_clean();

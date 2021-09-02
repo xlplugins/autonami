@@ -21,7 +21,7 @@ class BWF_Contacts {
 	public $db_operations;
 	public $child_entities;
 
-	public $contact_objs = array();
+	public $cached_contact_obj;
 
 	/**
 	 * Get the contact details for the email passed if this uid exits other create a new contact with this email
@@ -31,6 +31,14 @@ class BWF_Contacts {
 	public function __construct() {
 		$this->db_operations = WooFunnels_DB_Operations::get_instance();
 		$this->get_registerd_child_entities();
+
+		$this->cached_contact_obj = [
+			'cid'   => [],
+			'uid'   => [],
+			'email' => [],
+			'wp_id'  => [],
+			'phone' => [],
+		];
 	}
 
 	/**
@@ -81,26 +89,25 @@ class BWF_Contacts {
 	 * get contact by given field
 	 */
 	public function get_contact_by( $field, $value ) {
-		if ( 'uid' === $field ) {
-			$contact = $this->db_operations->get_contact( $value );
-		}
-
 		if ( 'id' === $field ) {
-			$contact = $this->db_operations->get_contact_by_contact_id( $value );
+			return new WooFunnels_Contact( '', '', '', $value );
 		}
 
 		if ( 'wpid' === $field ) {
-			$contact = $this->db_operations->get_contact_by_wpid( $value );
+			return new WooFunnels_Contact( $value );
 		}
 
 		if ( 'email' === $field ) {
-			$contact = $this->db_operations->get_contact_by_email( $value );
+			return new WooFunnels_Contact( '', $value );
 		}
 
-		$email = isset( $contact->email ) ? $contact->email : '';
-		$wp_id = isset( $contact->wpid ) ? $contact->wpid : 0;
+		if ( 'phone' === $field ) {
+			return new WooFunnels_Contact( '', '', $value );
+		}
 
-		return bwf_get_contact( $wp_id, $email );
+		if ( 'uid' === $field ) {
+			return new WooFunnels_Contact( '', '', '', '', $value );
+		}
 	}
 
 	/**
@@ -121,17 +128,5 @@ class BWF_Contacts {
 		}
 
 		return $result;
-	}
-
-	/**
-	 * @param WooFunnels_Contact $object
-	 */
-	public function destroy_object( $object ) {
-
-		$id = $object->get_id();
-		if ( isset( $this->contact_objs[ $id ] ) ) {
-			unset( $this->contact_objs[ $id ] );
-		}
-
 	}
 }

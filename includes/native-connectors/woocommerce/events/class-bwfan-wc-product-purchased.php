@@ -14,8 +14,8 @@ final class BWFAN_WC_Product_Purchased extends BWFAN_Event {
 		$this->optgroup_label         = esc_html__( 'Orders', 'wp-marketing-automations' );
 		$this->event_name             = esc_html__( 'Order Created - Per Item', 'wp-marketing-automations' );
 		$this->event_desc             = esc_html__( 'This event runs after a new WooCommerce order is created and runs per line item. Can only run once on selected WC order statuses.', 'wp-marketing-automations' );
-		$this->event_merge_tag_groups = array( 'wc_customer', 'wc_order', 'wc_items' );
-		$this->event_rule_groups      = array( 'wc_order', 'wc_customer', 'wc_items', 'automation', 'aerocheckout' );
+		$this->event_merge_tag_groups = array( 'bwf_contact', 'wc_order', 'wc_items' );
+		$this->event_rule_groups      = array( 'wc_order', 'wc_items', 'aerocheckout', 'bwf_contact_segments', 'bwf_contact_fields', 'bwf_contact_user', 'bwf_contact_wc', 'bwf_contact_geo' );
 		$this->support_lang           = true;
 		$this->priority               = 15.1;
 	}

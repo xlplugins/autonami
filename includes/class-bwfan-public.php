@@ -38,6 +38,10 @@ class BWFAN_Public {
 			return;
 		}
 
+		if ( false === apply_filters( 'bwfan_public_scripts_include', true ) ) {
+			return;
+		}
+
 		global $post;
 		$data['bwfan_checkout_js_data'] = 'no';
 		$data['bwfan_no_thanks']        = __( 'No Thanks', 'woofunnels-autonami-automation-abandoned-cart' );
@@ -70,6 +74,20 @@ class BWFAN_Public {
 		 */
 		if ( bwfan_is_woocommerce_active() && is_checkout() ) {
 			wp_enqueue_style( 'bwfan-public', BWFAN_PLUGIN_URL . '/assets/css/bwfan-public.css', array(), BWFAN_VERSION_DEV );
+
+			/** unsetting the unsubscribe data from the bwfanParamsPublic only on checkout page */
+			if ( isset( $data['bwfan_unsubscribe_button'] ) ) {
+				unset( $data['bwfan_unsubscribe_button'] );
+			}
+
+			if ( isset( $data['bwfan_subscriber_recipient'] ) ) {
+				unset( $data['bwfan_subscriber_recipient'] );
+			}
+
+			if ( isset( $data['bwfan_subscriber_name'] ) ) {
+				unset( $data['bwfan_subscriber_name'] );
+			}
+
 		}
 
 		wp_enqueue_script( 'bwfan-public', BWFAN_PLUGIN_URL . '/assets/js/bwfan-public.js', array(), BWFAN_VERSION_DEV, true );

@@ -15,21 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 if ( ! function_exists( 'bwf_get_contact' ) ) {
 	function bwf_get_contact( $wp_id, $email ) {
-		$email        = ! empty( $email ) ? trim( $email ) : '';
-		$uid          = md5( $email . $wp_id );
-		$bwf_contacts = BWF_Contacts::get_instance();
-
-		if ( isset( $bwf_contacts->contact_objs[ $uid ] ) ) {
-			return $bwf_contacts->contact_objs[ $uid ];
-		}
-
-		$woofunnel_contact = new WooFunnels_Contact( $wp_id, $email );
-
-		if ( ! empty( $uid ) && ! isset( $bwf_contacts->contact_objs[ $uid ] ) ) {
-			$bwf_contacts->contact_objs[ $uid ] = $woofunnel_contact;
-		}
-
-		return $woofunnel_contact;
+		return new WooFunnels_Contact( $wp_id, $email );
 	}
 }
 
@@ -99,58 +85,6 @@ if ( ! function_exists( 'bwf_create_update_contact' ) ) {
 	}
 }
 
-/**
- * Updating contact email, f_name and l_name on profile update
- *
- * @param $user_id
- */
-if ( ! function_exists( 'bwf_update_contact_on_profile_update' ) ) {
-	function bwf_update_contact_on_profile_update( $wp_id ) {
-		$user_data = get_userdata( $wp_id );
-		$wp_email  = $user_data->user_email;
-		$wp_f_name = $user_data->first_name;
-		$wp_l_name = $user_data->last_name;
-
-		$bwf_contact = bwf_get_contact( $wp_id, $wp_email );
-		$cid         = $bwf_contact->get_id();
-
-		WooFunnels_Dashboard::$classes['BWF_Logger']->log( "Updating contact on profile update WPID: $wp_id, CID: $cid ", 'woofunnels_indexing' );
-
-		if ( $cid > 0 ) {
-
-			$bwf_wpid   = ( isset( $bwf_contact->db_contact ) && isset( $bwf_contact->db_contact->wpid ) && ! empty( $bwf_contact->db_contact->wpid ) ) ? $bwf_contact->db_contact->email : $bwf_contact->get_wpid();
-			$bwf_email  = ( isset( $bwf_contact->db_contact ) && isset( $bwf_contact->db_contact->email ) && ! empty( $bwf_contact->db_contact->email ) ) ? $bwf_contact->db_contact->email : $bwf_contact->get_email();
-			$bwf_f_name = $bwf_contact->get_f_name();
-			$bwf_l_name = $bwf_contact->get_l_name();
-
-			$changed = false;
-
-			if ( 0 < $wp_id && 0 === $bwf_wpid ) {
-				$bwf_contact->set_wpid( $wp_id );
-			}
-
-			if ( ! empty( $wp_email ) && ( $wp_email !== $bwf_email ) ) {
-				$bwf_contact->set_email( $wp_email );
-				$changed = true;
-			}
-
-			if ( ! empty( $wp_f_name ) && ( $wp_f_name !== $bwf_f_name ) ) {
-				$bwf_contact->set_f_name( $wp_f_name );
-				$changed = true;
-			}
-
-			if ( ! empty( $wp_l_name ) && ( $wp_l_name !== $bwf_l_name ) ) {
-				$bwf_contact->set_l_name( $wp_l_name );
-				$changed = true;
-			}
-			if ( $changed ) {
-				$bwf_contact->save();
-			}
-
-			WooFunnels_Dashboard::$classes['BWF_Logger']->log( "Updating Customer. WPID: $wp_id,  CID: {$bwf_contact->get_id()}", 'woofunnels_indexing' );
-		}
-	}
-}
 /**
  * Indexing orders and create/update contacts and customers on user login
  *
@@ -407,3 +341,17 @@ if ( ! function_exists( 'bwf_if_valid_timezone' ) ) {
 		return in_array( $timezone, $zones, true );
 	}
 }
+
+if ( ! function_exists( 'bwf_get_countries_data' ) ) {
+	/** countries data
+	 * @return mixed|null
+	 */
+	function bwf_get_countries_data() {
+		$url            = BWFAN_PLUGIN_URL . '/woofunnels/contact/data/countries.json';
+		$countries_data = wp_remote_get( $url );
+		$countries      = isset( $countries_data['body'] ) && ! empty( $countries_data['body'] ) ? json_decode( $countries_data['body'] ) : array();
+
+		return $countries;
+	}
+}
+

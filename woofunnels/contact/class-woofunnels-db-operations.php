@@ -107,9 +107,7 @@ class WooFunnels_DB_Operations {
 	public function get_all_contacts() {
 		$sql = "SELECT * FROM `$this->contact_tbl`";
 
-		$contacts = $this->wp_db->get_results( $sql ); //WPCS: unprepared SQL ok
-
-		return $contacts;
+		return $this->wp_db->get_results( $sql ); //WPCS: unprepared SQL ok
 	}
 
 	/**
@@ -120,9 +118,7 @@ class WooFunnels_DB_Operations {
 	public function get_all_contacts_count() {
 		$sql = "SELECT COUNT(id) FROM `$this->contact_tbl`";
 
-		$contacts = $this->wp_db->get_var( $sql ); //WPCS: unprepared SQL ok
-
-		return $contacts;
+		return $this->wp_db->get_var( $sql ); //WPCS: unprepared SQL ok
 	}
 
 	/**
@@ -157,9 +153,7 @@ class WooFunnels_DB_Operations {
 
 		$query = implode( ' ', $query );
 
-		$contacts = $this->wp_db->get_results( $query ); //WPCS: unprepared SQL ok
-
-		return $contacts;
+		return $this->wp_db->get_results( $query ); //WPCS: unprepared SQL ok
 	}
 
 
@@ -169,30 +163,38 @@ class WooFunnels_DB_Operations {
 	public function get_contact( $uid ) {
 		$sql = "SELECT * FROM `$this->contact_tbl` WHERE `uid` = '$uid' ";
 
-		$contact = $this->wp_db->get_row( $sql ); //WPCS: unprepared SQL ok
-
-		return $contact;
+		return $this->wp_db->get_row( $sql ); //WPCS: unprepared SQL ok
 	}
 
 	/**
 	 * Get contact for given wpid id if it exists
 	 */
 	public function get_contact_by_wpid( $wp_id ) {
-		$sql     = "SELECT * FROM `$this->contact_tbl` WHERE `wpid` = '$wp_id' ";
-		$contact = $this->wp_db->get_row( $sql ); //WPCS: unprepared SQL ok
+		$sql = "SELECT * FROM `$this->contact_tbl` WHERE `wpid` = '$wp_id' ";
 
-		return $contact;
+		return $this->wp_db->get_row( $sql ); //WPCS: unprepared SQL ok
 	}
 
 	/**
 	 * Get contact for given email id if it exists
 	 */
 	public function get_contact_by_email( $email ) {
-		$sql = "SELECT * FROM `$this->contact_tbl` WHERE `email` = '$email' ";
+		$sql = "SELECT * FROM `$this->contact_tbl` WHERE `email` = %s";
 
-		$contact = $this->wp_db->get_row( $sql ); //WPCS: unprepared SQL ok
+		return $this->wp_db->get_row( $this->wp_db->prepare( $sql, $email ) );
+	}
 
-		return $contact;
+	/**
+	 * Get contact by given phone number
+	 *
+	 * @param $phone
+	 *
+	 * @return array|object|void|null
+	 */
+	public function get_contact_by_phone( $phone ) {
+		$sql = "SELECT * FROM `$this->contact_tbl` WHERE `contact_no` = %s";
+
+		return $this->wp_db->get_row( $this->wp_db->prepare( $sql, $phone ) );
 	}
 
 
@@ -202,9 +204,7 @@ class WooFunnels_DB_Operations {
 	public function get_contact_by_contact_id( $contact_id ) {
 		$sql = "SELECT * FROM `$this->contact_tbl` WHERE `id` = '$contact_id' ";
 
-		$contact = $this->wp_db->get_row( $sql ); //WPCS: unprepared SQL ok
-
-		return $contact;
+		return $this->wp_db->get_row( $sql ); //WPCS: unprepared SQL ok
 	}
 
 	/**
@@ -215,10 +215,9 @@ class WooFunnels_DB_Operations {
 	 * @return array|object|null
 	 */
 	public function get_contact_metadata( $contact_id ) {
-		$sql        = "SELECT `meta_key`, `meta_value` FROM `$this->contact_meta_tbl` WHERE `contact_id` = '$contact_id'";
-		$meta_value = $this->wp_db->get_results( $sql ); //WPCS: unprepared SQL ok
+		$sql = "SELECT `meta_key`, `meta_value` FROM `$this->contact_meta_tbl` WHERE `contact_id` = '$contact_id'";
 
-		return $meta_value;
+		return $this->wp_db->get_results( $sql ); //WPCS: unprepared SQL ok
 	}
 
 	/**

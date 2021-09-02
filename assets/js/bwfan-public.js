@@ -68,6 +68,21 @@ var BWFAN_Public;
 
 
         },
+        bwfan_get_cookie: function (cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        },
         bwfan_check_for_checkout_fields: function () {
             if ($('.wfacp_page').length === 0) {
                 return;
@@ -200,6 +215,21 @@ var BWFAN_Public;
                 if (resolved.hasOwnProperty('timeZone')) {
                     timezone = resolved.timeZone;
                 }
+            }
+
+            var utm_source = this.bwfan_get_cookie('utm_source');
+            var utm_term = this.bwfan_get_cookie('utm_term');
+            var utm_campaign = this.bwfan_get_cookie('utm_campaign');
+            var utm_medium = this.bwfan_get_cookie('utm_medium');
+            var utm_content = this.bwfan_get_cookie('utm_content');
+            if ('' != utm_source || '' != utm_term || '' != utm_campaign || '' != utm_medium || '' != utm_content) {
+                BWFAN_Public.checkout_fields_data['handle_utm_grabber'] = {
+                    'utm_source': utm_source,
+                    'utm_term': utm_term,
+                    'utm_campaign': utm_campaign,
+                    'utm_medium': utm_medium,
+                    'utm_content': utm_content,
+                };
             }
 
             BWFAN_Public.capture_email_xhr = $.post(bwfanParamspublic.wc_ajax_url.toString().replace('%%endpoint%%', 'bwfan_insert_abandoned_cart'), {

@@ -55,13 +55,13 @@ class BWFAN_Rules_Loader extends BWFAN_Rules {
 				'title' => __( 'Order', 'wp-marketing-automations' ),
 			),
 			'wc_order_state' => array(
-				'title' => __( 'Order status change', 'wp-marketing-automations' ),
+				'title' => __( 'Order Status', 'wp-marketing-automations' ),
 			),
 			'wc_order_note'  => array(
-				'title' => __( 'Order note', 'wp-marketing-automations' ),
+				'title' => __( 'Order Note', 'wp-marketing-automations' ),
 			),
 			'wc_customer'    => array(
-				'title' => __( 'Customer', 'wp-marketing-automations' ),
+				'title' => __( 'Contact', 'wp-marketing-automations' ),
 			),
 			'wp_user'        => array(
 				'title' => __( 'User', 'wp-marketing-automations' ),
@@ -89,7 +89,7 @@ class BWFAN_Rules_Loader extends BWFAN_Rules {
 
 	public function default_rule_types( $types ) {
 		$types = array(
-			'wc_items'       => array(
+			'wc_items'         => array(
 				'product_item'              => __( 'Items', 'wp-marketing-automations' ),
 				'product_category'          => __( 'Item Categories', 'wp-marketing-automations' ),
 				'product_tags'              => __( 'Item Tags', 'wp-marketing-automations' ),
@@ -99,48 +99,46 @@ class BWFAN_Rules_Loader extends BWFAN_Rules {
 				'product_stock'             => __( 'Item Stock', 'wp-marketing-automations' ),
 				'product_item_custom_field' => __( 'Item Custom Field', 'wp-marketing-automations' ),
 			),
-			'wc_order'       => array(
-				'order_total'             => __( 'Order Total', 'wp-marketing-automations' ),
-				'product_item'            => __( 'Order Items', 'wp-marketing-automations' ),
-				'order_coupons'           => __( 'Order Coupons', 'wp-marketing-automations' ),
-				'order_coupon_text_match' => __( 'Order Coupon Text Match', 'wp-marketing-automations' ),
+			'wc_order'         => array(
+				'order_total'             => __( 'Total', 'wp-marketing-automations' ),
+				'product_item'            => __( 'Items', 'wp-marketing-automations' ),
+				'order_coupons'           => __( 'Coupons', 'wp-marketing-automations' ),
+				'order_coupon_text_match' => __( 'Coupon Text', 'wp-marketing-automations' ),
 				'order_payment_gateway'   => __( 'Payment Gateway', 'wp-marketing-automations' ),
 				'order_shipping_method'   => __( 'Shipping Method', 'wp-marketing-automations' ),
-				'order_shipping_country'  => __( 'Shipping Country', 'wp-marketing-automations' ),
 				'order_billing_country'   => __( 'Billing Country', 'wp-marketing-automations' ),
-				'order_custom_field'      => __( 'Order Custom Field', 'wp-marketing-automations' ),
+				'order_shipping_country'  => __( 'Shipping Country', 'wp-marketing-automations' ),
+				'order_custom_field'      => __( 'Custom Field', 'wp-marketing-automations' ),
+				'is_guest'                => __( 'Guest Order', 'wp-marketing-automations' ),
+				'is_first_order'          => __( 'First Order (New Customer)', 'wp-marketing-automations' ),
 			),
-			'wc_order_note'  => array(
-				'order_note_text_match' => __( 'Order Note Text Match', 'wp-marketing-automations' ),
+			'wc_order_note'    => array(
+				'order_note_text_match' => __( 'Note Text', 'wp-marketing-automations' ),
 			),
-			'wc_order_state' => array(
-				'order_status_change' => __( 'When order status is', 'wp-marketing-automations' ),
+			'wc_order_state'   => array(
+				'order_status_change' => __( 'Older Order Status', 'wp-marketing-automations' ),
 			),
-			'wc_customer'    => array(
-				'is_guest'              => __( 'Is a Guest', 'wp-marketing-automations' ),
-				'is_first_order'        => __( 'First Order', 'wp-marketing-automations' ),
-				'customer_custom_field' => __( 'Customer Custom Field', 'wp-marketing-automations' ),
-				'customer_user'         => __( 'Customer', 'wp-marketing-automations' ),
-				'customer_role'         => __( 'Customer Role', 'wp-marketing-automations' ),
+			'bwf_contact_user' => array(
+				'customer_user' => __( 'User', 'wp-marketing-automations' ),
 			),
-			'wp_user'        => array(
+			'wp_user'          => array(
 				'users_role' => __( 'User Role', 'wp-marketing-automations' ),
 				'users_user' => __( 'User', 'wp-marketing-automations' ),
 			),
-			'wc_comment'     => array(
-				'comment_count' => __( 'Review rating count', 'wp-marketing-automations' ),
+			'wc_comment'       => array(
+				'comment_count' => __( 'Review Rating Count', 'wp-marketing-automations' ),
 			),
-			'ab_cart'        => array(
+			'ab_cart'          => array(
 				'cart_total'               => __( 'Cart Total', 'wp-marketing-automations' ),
 				'cart_product'             => __( 'Cart Items', 'wp-marketing-automations' ),
 				'cart_category'            => __( 'Cart Items Category', 'wp-marketing-automations' ),
 				'cart_coupons'             => __( 'Cart Coupons', 'wp-marketing-automations' ),
-				'cart_coupon_text_match'   => __( 'Cart Coupon Text Match', 'wp-marketing-automations' ),
+				'cart_coupon_text_match'   => __( 'Cart Coupon Text', 'wp-marketing-automations' ),
 				'all_cart_items_purchased' => __( 'All Cart Items Purchased (in past)', 'wp-marketing-automations' ),
 				'cart_contains_coupon'     => __( 'Cart Contains Any Coupon', 'wp-marketing-automations' ),
 				'cart_item_count'          => __( 'Cart Item Count', 'wp-marketing-automations' ),
 			),
-			'cf7'            => array(
+			'cf7'              => array(
 				'cf7_form_field' => __( 'Form Field', 'wp-marketing-automations' ),
 			)
 		);

@@ -2,9 +2,9 @@
 Contributors: xlplugins, amans2k
 Tags: crm, marketing automation, cart abandonment, cart recovery, woocommerce, email marketing
 Requires at least: 5.0
-Tested up to: 5.7.2
+Tested up to: 5.8.0
 Requires PHP: 7.0
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -188,6 +188,18 @@ The abandoned user will also see their filled date restored on the recovery link
 
 
 == Change log ==
+
+= 2.0.5 (Aug 18, 2021) =
+* Compatible with WordPress 5.8
+* Compatible up to WooCommerce 5.6
+* Added: Allowing Autonami Contact all rules in all the events. (#817)
+* Added: Compatibility added with Handl UTM grabber plugin by Haktan suren and UTM lead tracker plugin by XLPlugins. When a cart is captured and restored, UTM arguments are restored as well. (#721)
+* Improved: Automations listing: Added options to change the status of automation via quick links. (#821)
+* Improved: Executing tasks directly if they are ready to execute now. (#845)
+* Improved: Some UI improvements in the react panel related to CSS. (#867, #871, #879, #891)
+* Fixed: Email merges tags - Order items, Product rows and Review rows, some UI improvements. (#834)
+* Fixed: Cart abandonment: Restoring cart with the coupon was breaking, when having a merge tag in the coupon, fixed. (#837)
+* Fixed: Email: from name and email details override at email level were not working, fixed. (#904)
 
 = 2.0.4 (Jul 06, 2021) =
 * Fixed: Email HTML body, sometimes [if mso] like tags failing, fixed. (#814)

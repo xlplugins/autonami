@@ -45,12 +45,12 @@ class BWFAN_Rule_Is_First_Order extends BWFAN_Rule_Base {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Customer', 'wp-marketing-automations' );
+		esc_html_e( 'Contact', 'wp-marketing-automations' );
 		?>
-        <% if (condition == "yes") { %> <% } %>
-        <% if (condition == "no") { %> not a <% } %>
+        <% if (condition == "yes") { %> is <% } %>
+        <% if (condition == "no") { %> is not <% } %>
 		<?php
-		esc_html_e( 'first order', 'wp-marketing-automations' );
+		esc_html_e( 'a New Customer', 'wp-marketing-automations' );
 	}
 }
 
@@ -97,12 +97,12 @@ class BWFAN_Rule_Is_Guest extends BWFAN_Rule_Base {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Customer', 'wp-marketing-automations' );
+		esc_html_e( 'Contact', 'wp-marketing-automations' );
 		?>
         <% if (condition == "yes") { %> is <% } %>
-        <% if (condition == "no") { %> is not <% } %>
+        <% if (condition == "no") { %> is not a <% } %>
 		<?php
-		esc_html_e( 'a guest', 'wp-marketing-automations' );
+		esc_html_e( 'Guest', 'wp-marketing-automations' );
 	}
 }
 
@@ -168,7 +168,7 @@ class BWFAN_Rule_Customer_User extends BWFAN_Dynamic_Option_Base {
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Customer', 'wp-marketing-automations' );
+		esc_html_e( 'User', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
         <%= ops[operator] %>
@@ -216,14 +216,28 @@ class BWFAN_Rule_Customer_Role extends BWFAN_Rule_Base {
 	}
 
 	public function is_match( $rule_data ) {
-		$id = BWFAN_Core()->rules->getRulesData( 'user_id' );
-		if ( empty( $id ) ) {
+		$id             = BWFAN_Core()->rules->getRulesData( 'user_id' );
+		$abandoned_data = BWFAN_Core()->rules->getRulesData( 'abandoned_data' );
+
+		$contact_id = BWFAN_Core()->rules->getRulesData( 'contact_id' );
+		if ( empty( $id ) && ! empty( $contact_id ) ) {
+			$contact = new WooFunnels_Contact( '', '', '', $contact_id );
+			$id      = $contact->get_wpid();
+		}
+
+		if ( empty( $id ) && class_exists( 'WooCommerce' ) ) {
 			$order = BWFAN_Core()->rules->getRulesData( 'wc_order' );
 			$id    = $order instanceof WC_Order ? $order->get_user_id() : $id;
 		}
 
 		if ( empty( $id ) ) {
-			$email       = BWFAN_Core()->rules->getRulesData( 'email' );
+			$email = BWFAN_Core()->rules->getRulesData( 'email' );
+			$email = is_email( $email ) ? $email : ( isset( $abandoned_data['email'] ) ? $abandoned_data['email'] : false );
+
+			if ( ! is_email( $email ) ) {
+				return false;
+			}
+
 			$contact_db  = WooFunnels_DB_Operations::get_instance();
 			$contact_obj = $contact_db->get_contact_by_email( $email );
 
@@ -246,15 +260,15 @@ class BWFAN_Rule_Customer_Role extends BWFAN_Rule_Base {
 		}
 
 		if ( 'in' === $rule_data['operator'] ) {
-			return $result;
+			return $this->return_is_match( $result, $rule_data );
 		} else {
-			return ! $result;
+			return $this->return_is_match( ! $result, $rule_data );
 		}
 
 	}
 
 	public function ui_view() {
-		esc_html_e( 'Customer role', 'wp-marketing-automations' );
+		esc_html_e( 'User Role', 'wp-marketing-automations' );
 		?>
         <% var ops = JSON.parse('<?php echo wp_json_encode( $this->get_possible_rule_operators() ); ?>'); %>
         <%= ops[operator] %>

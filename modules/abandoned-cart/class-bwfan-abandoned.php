@@ -1114,7 +1114,7 @@ class BWFAN_Abandoned_Cart {
 	public function get_current_cart_details() {
 		$data        = [];
 		$coupon_data = [];
-		$this->items = WC()->cart->get_cart();
+		$this->items = apply_filters( 'bwfan_abandoned_cart_items', WC()->cart->get_cart() );
 
 		foreach ( WC()->cart->get_applied_coupons() as $coupon_code ) {
 			$coupon_data[ $coupon_code ] = [

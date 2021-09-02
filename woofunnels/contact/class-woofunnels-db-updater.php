@@ -36,6 +36,16 @@ class WooFunnels_DB_Updater {
 	 */
 	public static $indexing = null;
 
+	private $_user_address_meta_updated    = array();
+	public $contact_wp_user_address_fields = array(
+		'address-1' => 'billing_address_1',
+		'address-2' => 'billing_address_2',
+		'city'      => 'billing_city',
+		'state'     => 'billing_state',
+		'postcode'  => 'billing_postcode',
+		'country'   => 'billing_country',
+	);
+
 	/**
 	 * WooFunnels_DB_Updater constructor.
 	 */
@@ -62,8 +72,10 @@ class WooFunnels_DB_Updater {
 		add_action( 'wfocu_offer_accepted_and_processed', array( $this, 'woofunnels_offer_accept_create_update_customer' ), 1, 4 );
 
 		/** Attempt to update customer on WP profile update*/
-		add_action( 'profile_update', [ $this, 'bwf_update_contact_on_user_update' ], 10, 1 );
-		add_action( 'woocommerce_save_account_details', [ $this, 'bwf_update_contact_on_user_update' ], 10, 1 );
+		add_action( 'profile_update', array( $this, 'bwf_update_contact_on_user_update' ), 10, 2 );
+		add_action( 'woocommerce_save_account_details', array( $this, 'bwf_update_contact_on_user_update' ), 10, 1 );
+
+		add_action( 'updated_user_meta', array( $this, 'mark_updated_address_fields' ), 10, 4 );
 
 		/** Attempt to update customer On WP user profile login*/
 		add_action( 'wp_login', [ $this, 'bwf_index_orders_on_login' ], 10, 2 );
@@ -343,6 +355,7 @@ class WooFunnels_DB_Updater {
 	 * @param $order WC_Order
 	 */
 	public function woofunnels_wc_order_create_contact( $order_id, $posted_data, $order ) {
+
 		$wp_id = $order->get_customer_id();
 		$email = $order->get_billing_email();
 
@@ -396,6 +409,9 @@ class WooFunnels_DB_Updater {
 	 */
 	public function woofunnels_status_change_create_update_contact_customer( $order_id, $from, $to ) {
 
+		if ( apply_filters( 'bwf_woofunnel_skip_sub_order', true ) && wp_get_post_parent_id( $order_id ) ) {
+			return;
+		}
 		$order            = wc_get_order( $order_id );
 		$paid_status      = $order->has_status( wc_get_is_paid_statuses() );
 		$woofunnel_custid = $order->get_meta( '_woofunnel_custid' );
@@ -435,6 +451,17 @@ class WooFunnels_DB_Updater {
 			'callback'            => array( __CLASS__, 'capture_wp_user_login_event' ),
 			'permission_callback' => '__return_true',
 		) );
+
+		/** Profile Update Async Call */
+		register_rest_route(
+			'woofunnel_customer/v1',
+			'/wp_profile_update',
+			array(
+				'methods'             => WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'capture_profile_update_event' ),
+				'permission_callback' => '__return_true',
+			)
+		);
 	}
 
 	/**
@@ -546,7 +573,7 @@ class WooFunnels_DB_Updater {
             <tr>
                 <th>
                     <strong class="name"><?php esc_html_e( 'Index Past Orders', 'woofunnels' ); ?></strong>
-                    <p class="description"><?php echo esc_html__(sprintf(  'This tool will scan all the previous orders and create an optimized index to run efficient queries. %s', $remaining_text ),'woofunnels'  ); ?></p>
+                    <p class="description"><?php echo wp_kses_post(sprintf(  'This tool will scan all the previous orders and create an optimized index to run efficient queries. %s', $remaining_text ),'woofunnels'  ); ?></p>
 					<?php if ( '1' === $bwf_db_upgrade || '6' === $bwf_db_upgrade ) { ?>
                         <span style="width:100%; color: red;"><?php esc_html_e( 'Unable to complete indexing of orders.', 'woofunnels' ); ?></span><br/>
 						<?php esc_html_e( 'Please', 'woofunnels' ); ?>
@@ -581,17 +608,186 @@ class WooFunnels_DB_Updater {
 	 *
 	 * @hooked on profile_update
 	 */
-	public function bwf_update_contact_on_user_update( $user_id ) {
+	public function bwf_update_contact_on_user_update( $user_id, $old_user_data ) {
 
-		if ( 'profile_update' === current_action() && ( did_action( 'personal_options_update' ) || did_action( 'edit_user_profile_update' ) ) ) {
-			bwf_update_contact_on_profile_update( $user_id );
+		if ( 'profile_update' === current_action() ) {
+			$this->do_profile_update_async_call( $user_id, $old_user_data );
 		}
 
 		if ( 'woocommerce_save_account_details' === current_action() ) {
-			bwf_update_contact_on_profile_update( $user_id );
+			$this->do_profile_update_async_call( $user_id );
 		}
 
+	}
 
+	/** Do async profile update call */
+	public function do_profile_update_async_call( $user_id, $old_user_data = null ) {
+		$data = array( 'user_id' => $user_id );
+		if ( $old_user_data instanceof WP_User && is_email( $old_user_data->user_email ) ) {
+			$data['old_user_email'] = $old_user_data->user_email;
+		}
+
+		/** Get Changed Address Fields */
+		$data['fields'] = array();
+		foreach ( $this->_user_address_meta_updated as $meta_key => $meta_value ) {
+			$crm_key = array_search( $meta_key, $this->contact_wp_user_address_fields, true );
+			if ( empty( $crm_key ) ) {
+				continue;
+			}
+
+			$data['fields'][ $crm_key ] = $meta_value;
+		}
+
+		$url  = site_url() . '/?rest_route=/woofunnel_customer/v1/wp_profile_update';
+		$args = bwf_get_remote_rest_args( $data );
+
+		wp_remote_post( $url, $args );
+	}
+
+	/** Update Address fields on WP User update */
+	public function capture_profile_update_event( $request ) {
+		/** Return if version is less than 2.0.2 */
+		if ( defined( 'BWFAN_PRO_VERSION' ) && ! version_compare( BWFAN_PRO_VERSION, '2.0.2', '>' ) ) {
+			return;
+		}
+
+		$posted_data    = $request->get_body_params();
+		$user_id        = isset( $posted_data['user_id'] ) ? absint( $posted_data['user_id'] ) : 0;
+		$old_user_email = isset( $posted_data['old_user_email'] ) ? $posted_data['old_user_email'] : '';
+		$fields         = isset( $posted_data['fields'] ) && is_array( $posted_data['fields'] ) ? $posted_data['fields'] : array();
+
+		$contact = $this->maybe_get_contact_on_profile_update( $user_id, $old_user_email );
+
+		if ( false === $contact ) {
+			$this->_user_address_meta_updated = array();
+			return;
+		}
+
+		if ( ! bwfan_is_woocommerce_active() || empty( $fields ) ) {
+			$contact->save();
+			return;
+		}
+
+		$contact = apply_filters( 'bwf_before_profile_update_contact_sync', $contact, $user_id );
+
+		foreach ( $fields as $crm_key => $meta_value ) {
+			if ( 'state' === $crm_key ) {
+				$contact->set_state( $meta_value );
+				continue;
+			}
+
+			if ( 'country' === $crm_key ) {
+				$contact->set_country( $meta_value );
+				continue;
+			}
+
+			$contact = apply_filters( 'bwf_profile_update_contact_sync_field', $contact, $crm_key, $meta_value, $user_id );
+		}
+
+		$contact = apply_filters( 'bwf_after_profile_update_contact_sync', $contact, $user_id );
+
+		$contact->set_last_modified( current_time( 'mysql', 1 ) );
+		$contact->save();
+	}
+
+	public function mark_updated_address_fields( $meta_id, $object_id, $meta_key, $_meta_value ) {
+		/** Return if version is less than 2.0.2 */
+		if ( defined( 'BWFAN_PRO_VERSION' ) && ! version_compare( BWFAN_PRO_VERSION, '2.0.2', '>' ) ) {
+			return;
+		}
+
+		$address_meta_keys = array_values( $this->contact_wp_user_address_fields );
+		if ( in_array( $meta_key, $address_meta_keys, true ) ) {
+			$this->_user_address_meta_updated[ $meta_key ] = $_meta_value;
+		}
+	}
+
+	/** Get the unsaved contact with WPID and Email changes */
+	public function maybe_get_contact_on_profile_update( $user_id, $old_user_email = '' ) {
+		/** Check if Old User Data valid */
+		$old_email_valid = is_email( $old_user_email );
+		$new_user        = get_user_by( 'id', $user_id );
+		$new_user_exists = $new_user instanceof WP_User && is_email( $new_user->user_email );
+
+		/** Check if email changed */
+		$email_changed = $old_email_valid && $new_user_exists && $new_user->user_email !== $old_user_email;
+		/** Get Contact by Old Email & ( get new_contact, if email changed ) */
+		if ( ! $old_email_valid ) {
+			$contact     = new WooFunnels_Contact( '', $new_user->user_email );
+			$new_contact = null;
+		} else {
+			$contact     = new WooFunnels_Contact( '', $old_user_email );
+			$new_contact = $email_changed ? new WooFunnels_Contact( '', $new_user->user_email ) : null;
+		}
+
+		$old_contact_exists = $contact instanceof WooFunnels_Contact && absint( $contact->get_id() ) > 0;
+		$new_contact_exists = $new_contact instanceof WooFunnels_Contact && absint( $new_contact->get_id() ) > 0;
+
+		if ( $new_contact_exists ) {
+			$this->maybe_set_wpid_of_correct_contact( $new_contact, $contact, $user_id );
+
+			/** If both old and new exists, then return */
+			if ( $old_contact_exists ) {
+				return false;
+			}
+
+			/** If both old doesn't exists, then use new as old and go ahead */
+			$contact            = $new_contact;
+			$new_contact_exists = false;
+			$old_contact_exists = true;
+		}
+
+		/** If both old and new doesn't exists, then create the contact with new email */
+		if ( ! $old_contact_exists && ! $new_contact_exists ) {
+			/** If Email changes, then contact with new email, else old one */
+			$contact = $new_contact instanceof WooFunnels_Contact ? $new_contact : $contact;
+
+			/** If contact is not WooFunnels_Contact */
+			$contact = $contact instanceof WooFunnels_Contact ? $contact : new WooFunnels_Contact( $user_id, $new_user->user_email );
+
+			$contact->set_f_name( $new_user->first_name );
+			$contact->set_l_name( $new_user->last_name );
+			$old_contact_exists = true;
+		}
+
+		/** Update WPID if old WPID is different */
+		if ( $user_id !== absint( $contact->get_wpid() ) ) {
+			$contact->set_wpid( $user_id );
+		}
+
+		/** Update email if changed */
+		if ( $new_user_exists && $email_changed ) {
+			$contact->set_email( $new_user->user_email );
+		}
+
+		return $contact;
+	}
+
+	private function maybe_set_wpid_of_correct_contact( $new_contact, $old_contact, $user_id ) {
+		global $wpdb;
+
+		$old_contact_exists = $old_contact instanceof WooFunnels_Contact && absint( $old_contact->get_id() ) > 0;
+		$new_contact_exists = $new_contact instanceof WooFunnels_Contact && absint( $new_contact->get_id() ) > 0;
+
+		/** Set wpid, if not same */
+		if ( $new_contact_exists && $user_id !== absint( $new_contact->get_wpid() ) ) {
+			$new_contact->set_wpid( $user_id );
+			$new_contact->set_last_modified( current_time( 'mysql', 1 ) );
+			$new_contact->save();
+		}
+
+		/** Remove WPID on old contact if same as user_id */
+		if ( $old_contact_exists && $user_id === absint( $old_contact->get_wpid() ) ) {
+			/** Using SQL because setting wpid as blank is not supported in core */
+			$wpdb->update(
+				$wpdb->prefix . 'bwf_contact',
+				array(
+					'wpid'          => 0,
+					'last_modified' => current_time( 'mysql', 1 ),
+				),
+				array( 'id' => $old_contact->get_id() )
+			);
+		}
 	}
 
 	/**

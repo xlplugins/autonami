@@ -6,7 +6,7 @@
  * @author woofunnels
  * @package WooFunnels
  */
-define( 'BWF_VERSION', '1.9.72' );
+define( 'BWF_VERSION', '1.9.75' );
 define( 'BWF_DB_VERSION', '1.0.3' );
 
 class WooFunnels_Dashboard {

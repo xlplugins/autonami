@@ -9,8 +9,8 @@ final class BWFAN_WC_Comment_Post extends BWFAN_Event {
 		$this->optgroup_label         = esc_html__( 'Reviews', 'wp-marketing-automations' );
 		$this->event_name             = esc_html__( 'New Review', 'wp-marketing-automations' );
 		$this->event_desc             = esc_html__( 'This event runs after a new review is submitted on a product.', 'wp-marketing-automations' );
-		$this->event_merge_tag_groups = array( 'wc_customer', 'wc_product', 'wc_review' );
-		$this->event_rule_groups      = array( 'automation', 'wc_comment' );
+		$this->event_merge_tag_groups = array( 'bwf_contact', 'wc_product', 'wc_review' );
+		$this->event_rule_groups      = array( 'wc_comment', 'bwf_contact_segments', 'bwf_contact_fields', 'bwf_contact_user', 'bwf_contact_wc', 'bwf_contact_geo' );
 		$this->priority               = 35;
 	}
 

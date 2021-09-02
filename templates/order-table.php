@@ -9,7 +9,25 @@ if ( true === BWFAN_Merge_Tag_Loader::get_data( 'is_preview' ) ) {
 	}
 }
 
+add_action( 'bwfan_output_email_style', function () { ?>
+    .bwfan-email-order-table > table {
+    width: 100%;
+    border-collapse: collapse;
+    max-width:700px;
+    }
+<?php } );
+
 $show_downloads = $this->order->has_downloadable_item() && $this->order->is_download_permitted();
+
+echo "<div class='bwfan-email-order-table'>";
+?>
+    <!--[if mso]>
+    <table>
+        <tr>
+            <td width="700">
+    <![endif]-->
+
+<?php
 
 if ( $show_downloads ) {
 	$downloads = $this->order->get_downloadable_items();
@@ -36,14 +54,20 @@ wc_get_template( 'emails/email-order-details.php', array(
 	'plain_text'    => false,
 	'email'         => '',
 ) );
+?>
+    <!--[if mso]>
+    </td></tr></table>
+    <![endif]-->
+<?php
+echo '</div>';
 
 add_action( 'bwfan_output_email_style', function () { ?>
 
-    #template_header {
+    .bwfan-email-order-table #template_header {
     width: 100% !important;
     }
 
-    table img {
+    .bwfan-email-order-table table img {
     max-width: 75px;
     }
 <?php } ); ?>
