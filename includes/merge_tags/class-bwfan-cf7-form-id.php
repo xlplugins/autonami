@@ -6,7 +6,7 @@ class BWFAN_CF7_Form_ID extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'cf7_form_id';
-		$this->tag_description = __( 'Form Id', 'autonami-automations-pro' );
+		$this->tag_description = __( 'Form ID', 'autonami-automations-pro' );
 		add_shortcode( 'bwfan_cf7_form_id', array( $this, 'parse_shortcode' ) );
 	}
 

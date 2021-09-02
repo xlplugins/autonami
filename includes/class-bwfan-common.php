@@ -2421,28 +2421,21 @@ class BWFAN_Common {
 	}
 
 	private static function get_abandoned_totals( $data ) {
-		$coupon_data          = $data['coupons'];
-		$items                = $data['items'];
-		$fees                 = $data['fees'];
-		$calculated_subtotal  = 0;
-		$calculated_tax_total = 0;
-		$calculated_total     = 0;
-		$tax_display          = get_option( 'woocommerce_tax_display_cart' );
+		$coupon_data      = $data['coupons'];
+		$items            = $data['items'];
+		$fees             = $data['fees'];
+		$calculated_total = 0;
 
 		foreach ( maybe_unserialize( $items ) as $item ) {
-			$line_subtotal_tax    = isset( $item['line_subtotal_tax'] ) ? floatval( $item['line_subtotal_tax'] ) : 0;
-			$line_subtotal        = isset( $item['line_subtotal'] ) ? floatval( $item['line_subtotal'] ) : 0;
-			$calculated_tax_total += $line_subtotal_tax;
-			$calculated_total     += $line_subtotal + $line_subtotal_tax;
-			$calculated_subtotal  += 'excl' === $tax_display ? $line_subtotal : $line_subtotal + $line_subtotal_tax;
+			$line_subtotal_tax = isset( $item['line_subtotal_tax'] ) ? floatval( $item['line_subtotal_tax'] ) : 0;
+			$line_subtotal     = isset( $item['line_subtotal'] ) ? floatval( $item['line_subtotal'] ) : 0;
+			$calculated_total  += $line_subtotal + $line_subtotal_tax;
 		}
 		foreach ( maybe_unserialize( $coupon_data ) as $coupon ) {
-			$calculated_total     -= $coupon['discount_incl_tax'];
-			$calculated_tax_total -= $coupon['discount_tax'];
+			$calculated_total -= $coupon['discount_incl_tax'];
 		}
 		foreach ( maybe_unserialize( $fees ) as $fee ) {
-			$calculated_total     += ( $fee->total + $fee->tax );
-			$calculated_tax_total += $fee->tax;
+			$calculated_total += ( $fee->total + $fee->tax );
 		}
 
 		$calculated_total   = wc_format_decimal( $calculated_total, wc_get_price_decimals() );
@@ -2849,6 +2842,7 @@ class BWFAN_Common {
 			return;
 		}
 
+		$data           = [];
 		$data['status'] = 3;
 		$where          = array(
 			'ID' => $abandoned_id,
@@ -2888,7 +2882,6 @@ class BWFAN_Common {
 
 		/** in case of translatepress */
 		if ( bwfan_is_translatepress_active() ) {
-			global $TRP_LANGUAGE;
 			$trp_settings  = get_option( 'trp_settings' );
 			$language_code = $trp_settings['default-language'];
 			if ( ! empty( $lang ) ) {
@@ -5288,7 +5281,7 @@ class BWFAN_Common {
 				$bwfcrm_contact->set_tags( $abandoned_tag );
 			}
 		}
-		
+
 		$bwf_contact->save();
 	}
 

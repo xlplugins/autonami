@@ -73,7 +73,7 @@ if ( ! class_exists( 'WooFunnels_Transient' ) ) {
 		 * @return bool|mixed
 		 */
 		public function get_transient( $key, $plugin_short_name = 'bwf' ) {
-			if ( true === apply_filters( 'bwf_disable_woofunnels_transient', false,$plugin_short_name ) ) {
+			if ( true === apply_filters( 'bwf_disable_woofunnels_transient', false, $plugin_short_name ) ) {
 				return false;
 			}
 

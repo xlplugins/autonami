@@ -93,13 +93,13 @@ class WooFunnels_Process {
 
 					if ( is_array( $plugins ) && count( $plugins ) > 0 && in_array( $basename, $plugins, true ) ) {
 						?>
-						<div class="notice notice-warning is-dismissible">
-							<p>
+                        <div class="notice notice-warning is-dismissible">
+                            <p>
 								<?php
 								_e( sprintf( 'Attention: There is an update available of <strong>%s</strong> plugin. &nbsp;<a href="%s" class="">Go to updates</a>', $installed['Name'], admin_url( 'plugins.php?s=woofunnel&plugin_status=all' ) ), 'woo-thank-you-page-nextmove-lite' ); // phpcs:ignore WordPress.Security.EscapeOutput
 								?>
-							</p>
-						</div>
+                            </p>
+                        </div>
 						<?php
 					}
 				}
@@ -227,17 +227,17 @@ class WooFunnels_Process {
 		$ajaxurl            = admin_url( 'admin-ajax.php' );
 		$bwfUrlAjaxThankYou = $ajaxurl . '?action=' . $action . '&nonce=' . $nonce . '&order_id=' . $order_id;
 		?>
-		<script>
-			document.addEventListener("DOMContentLoaded", function (event) {
-				var xhr = new XMLHttpRequest();
-				var bwfUrlAjaxThankYou = '<?php echo $bwfUrlAjaxThankYou; ?>';
-				xhr.open("POST", bwfUrlAjaxThankYou, true);
-				//Send the proper header information along with the request
-				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-				xhr.send();
-			});
+        <script>
+            document.addEventListener("DOMContentLoaded", function (event) {
+                var xhr = new XMLHttpRequest();
+                var bwfUrlAjaxThankYou = '<?php echo $bwfUrlAjaxThankYou; ?>';
+                xhr.open("POST", bwfUrlAjaxThankYou, true);
+                //Send the proper header information along with the request
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send();
+            });
 
-		</script>
+        </script>
 		<?php
 	}
 
@@ -346,7 +346,7 @@ class WooFunnels_Process {
 		endif;
 
 		?>
-		<style>
+        <style>
             .wp-admin #adminmenu .toplevel_page_woofunnels .wp-menu-image:before {
                 content: none;
             }
@@ -354,30 +354,28 @@ class WooFunnels_Process {
             .wp-admin #adminmenu .toplevel_page_woofunnels .wp-not-current-submenu .wp-menu-image {
                 background-image: url("<?php echo esc_url( plugin_dir_url( WooFunnel_Loader::$ultimate_path ) . 'woofunnels/assets/img/bwf-icon-grey.svg'); ?>") !important;
             }
-			.wp-admin #adminmenu .toplevel_page_woofunnels .wp-has-current-submenu .wp-menu-image {
+
+            .wp-admin #adminmenu .toplevel_page_woofunnels .wp-has-current-submenu .wp-menu-image {
                 background-image: url("<?php echo esc_url( plugin_dir_url( WooFunnel_Loader::$ultimate_path ) . 'woofunnels/assets/img/bwf-icon-white.svg'); ?>") !important;
             }
-			.wp-admin #adminmenu .toplevel_page_woofunnels  .wp-menu-image {
+
+            .wp-admin #adminmenu .toplevel_page_woofunnels .wp-menu-image {
                 background-repeat: no-repeat;
                 position: relative;
                 top: 5px;
                 background-position: 50% 25%;
                 background-size: 60%;
             }
-		</style>
+        </style>
 		<?php
 	}
 
-	public function is_our_submenu( $plugin_page, $get_all_submenu ) {
-		$found = false;
-		foreach ( $get_all_submenu as $menu ) {
-			if ( 'admin.php?page=' . $plugin_page === $menu[2] ) {
-				$found = true;
-				break;
-			}
+	public function get_top_slug( $submenu ) {
+		if ( isset( $submenu[1][2] ) ) {
+			return $submenu[1][2];
 		}
 
-		return $found;
+		return '';
 	}
 
 	public function get_parent_position( $menus ) {
@@ -402,12 +400,16 @@ class WooFunnels_Process {
 		return $get_all_submenu;
 	}
 
-	public function get_top_slug( $submenu ) {
-		if ( isset( $submenu[1][2] ) ) {
-			return $submenu[1][2];
+	public function is_our_submenu( $plugin_page, $get_all_submenu ) {
+		$found = false;
+		foreach ( $get_all_submenu as $menu ) {
+			if ( 'admin.php?page=' . $plugin_page === $menu[2] ) {
+				$found = true;
+				break;
+			}
 		}
 
-		return '';
+		return $found;
 	}
 
 	public function correct_sub_menu_order() {
@@ -421,7 +423,7 @@ class WooFunnels_Process {
 		$section       = filter_input( INPUT_GET, 'section', FILTER_SANITIZE_STRING );
 		$aero_settings = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_STRING );
 		$aero_page     = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING );
-		$any_external = false;
+		$any_external  = false;
 		foreach ( $submenu['bwf'] as $key => $sub_item ) {
 			if ( ! current_user_can( $sub_item[1] ) ) {
 				continue;
@@ -436,20 +438,20 @@ class WooFunnels_Process {
 					break;
 				case "admin.php?page=bwf_ab_tests":
 					$new_sub_menu[20] = $sub_item;
-					$any_external = true;
+					$any_external     = true;
 					break;
 				case "admin.php?page=bwfcrm-contacts":
 					$sub_item[4]      = 'bwf_admin_menu_b_top';
 					$new_sub_menu[70] = $sub_item;
-					$any_external = true;
+					$any_external     = true;
 					break;
 				case "admin.php?page=autonami":
 					$new_sub_menu[80] = $sub_item;
-					$any_external = true;
+					$any_external     = true;
 					break;
 				case "admin.php?page=bwf-campaigns":
 					$new_sub_menu[90] = $sub_item;
-					$any_external = true;
+					$any_external     = true;
 					break;
 				case "admin.php?page=bwf&path=/settings":
 					$sub_item[4] = '';
@@ -462,19 +464,19 @@ class WooFunnels_Process {
 					break;
 
 				case "admin.php?page=wfacp":
-					$any_external = true;
+					$any_external     = true;
 					$new_sub_menu[40] = $sub_item;
 					break;
 				case "admin.php?page=wfch":
-					$any_external = true;
+					$any_external     = true;
 					$new_sub_menu[45] = $sub_item;
 					break;
 				case "admin.php?page=wfob":
-					$any_external = true;
+					$any_external     = true;
 					$new_sub_menu[50] = $sub_item;
 					break;
 				case "admin.php?page=upstroke":
-					$any_external = true;
+					$any_external     = true;
 					$new_sub_menu[55] = $sub_item;
 					break;
 
@@ -492,7 +494,7 @@ class WooFunnels_Process {
 			} elseif ( isset( $new_sub_menu[55] ) ) {
 				$new_sub_menu[55][4] = 'bwf_admin_menu_b_top';
 			}
-			if($any_external === true) {
+			if ( $any_external === true ) {
 				$new_sub_menu[140][4] .= 'bwf_admin_menu_b_top';
 			}
 			ksort( $new_sub_menu );
@@ -500,7 +502,7 @@ class WooFunnels_Process {
 
 			ob_start();
 			?>
-			<style>
+            <style>
                 #adminmenu li.bwf_admin_menu_b_top {
                     border-top: 1px dashed #65686b;
                     padding-top: 5px;
@@ -512,11 +514,12 @@ class WooFunnels_Process {
                     padding-bottom: 5px;
                     margin-bottom: 5px
                 }
-			</style>
+            </style>
 			<?php
 			echo ob_get_clean();
 		}
 	}
+
 	public function correct_sub_menu_order_legacy() {
 		global $submenu;
 		if ( ! isset( $submenu['bwf_dashboard'] ) ) {
@@ -597,7 +600,7 @@ class WooFunnels_Process {
 
 			ob_start();
 			?>
-			<style>
+            <style>
                 #adminmenu li.bwf_admin_menu_b_top {
                     border-top: 1px dashed #65686b;
                     padding-top: 5px;
@@ -609,7 +612,7 @@ class WooFunnels_Process {
                     padding-bottom: 5px;
                     margin-bottom: 5px
                 }
-			</style>
+            </style>
 			<?php
 			echo ob_get_clean();
 		}

@@ -6,7 +6,7 @@ class BWFAN_WC_Item_Meta extends BWFAN_Cart_Display {
 
 	public function __construct() {
 		$this->tag_name        = 'item_meta';
-		$this->tag_description = __( 'This will return the meta value of the purchased product based on the provided meta key.', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Purchased Product Meta Key', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_item_meta', array( $this, 'parse_shortcode' ) );
 	}
 

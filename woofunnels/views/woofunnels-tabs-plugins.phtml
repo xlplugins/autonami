@@ -28,11 +28,11 @@ $current_page = 'woofunnels';
 				$licenses->get_plugins_list();
 				if ( ! empty( $licenses->plugins_list ) ) { ?>
                     <li class="plugin-install-featured <?php echo ( isset( $model->current_tab ) && $model->current_tab === "licenses" ) ? "current" : "" ?>">
-                        <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . "&tab=licenses" );  ?>"><?php esc_html_e( 'Licenses', 'woofunnels' ); ?></a>
+                        <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . "&tab=licenses" ); ?>"><?php esc_html_e( 'Licenses', 'woofunnels' ); ?></a>
                     </li>
 				<?php } ?>
                 <li class="plugin-install-popular">
-                    <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . "&tab=support" );  ?>"
+                    <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . "&tab=support" ); ?>"
                        class=""><?php esc_html_e( 'Support', 'woofunnels' ); ?></a>
                 </li>
 
@@ -40,7 +40,7 @@ $current_page = 'woofunnels';
 					<?php foreach ( $model->additional_tabs as $tab ): ?>
 
                         <li class="<?php echo ( isset( $model->current_tab ) && $model->current_tab === $tab['slug'] ) ? "current" : "" ?>">
-                            <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=' . $tab['slug'] );  ?>"><?php $tab['label']; ?></a>
+                            <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=' . $tab['slug'] ); ?>"><?php $tab['label']; ?></a>
                         </li>
 					<?php endforeach; ?>
 				<?php endif; ?>
@@ -82,7 +82,7 @@ $current_page = 'woofunnels';
                                                 </li>
 											<?php else: ?>
                                                 <li><span
-                                                            class="button button-disabled"><?php _e( 'Installed', 'woofunnels' ); ?></span>
+                                                        class="button button-disabled"><?php _e( 'Installed', 'woofunnels' ); ?></span>
                                                 </li>
 											<?php endif; ?>
                                             <li><a target="_blank" href="<?php echo $addons->more_details_link ?>"
@@ -97,8 +97,8 @@ $current_page = 'woofunnels';
 
                                 <div class="plugin-card-bottom woofunnels_plugins_status_div">
                                     <p class="woofunnels_plugins_status"><span
-                                                class="woofunnels_status_text"><strong><?php _e( 'Status:', 'woofunnels' ); ?></strong> <span
-                                                    class="woofunnels_current_status woofunnels_available"><?php echo implode( " but ", $addons->status_config ); ?></span></span>
+                                            class="woofunnels_status_text"><strong><?php _e( 'Status:', 'woofunnels' ); ?></strong> <span
+                                                class="woofunnels_current_status woofunnels_available"><?php echo implode( " but ", $addons->status_config ); ?></span></span>
                                     </p>
                                 </div>
                                 <div class="plugin-card-bottom woofunnels_plugins_features_div">

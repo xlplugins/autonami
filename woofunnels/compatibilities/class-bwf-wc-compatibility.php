@@ -288,11 +288,12 @@ if ( ! class_exists( 'BWF_WC_Compatibility' ) ) :
 
 					return call_user_func( array( $order, 'get_' . $key ) );
 				} else {
-                    $maybe_meta = $order->get_meta( $key, true );
-                    if ( ! empty( $maybe_meta ) ) {
-                        return $maybe_meta;
+					$maybe_meta = $order->get_meta( $key, true );
+					if ( ! empty( $maybe_meta ) ) {
+						return $maybe_meta;
 
-                    }
+					}
+
 					return get_post_meta( self::get_order_id( $order ), $key, true );
 				}
 			} else {
@@ -394,13 +395,14 @@ if ( ! class_exists( 'BWF_WC_Compatibility' ) ) :
 		/**
 		 * Returns true if the installed version of WooCommerce is 2.6 or greater
 		 *
-		 * @since 1.0
 		 * @return boolean true if the installed version of WooCommerce is 2.1 or greater
+		 * @since 1.0
 		 */
 		public static function is_wc_version_gte_3_7() {
 
 			return version_compare( self::get_wc_version(), '3.7.0', 'ge' );
 		}
+
 		/**
 		 * @param WC_Order $order
 		 *
@@ -583,7 +585,7 @@ if ( ! class_exists( 'BWF_WC_Compatibility' ) ) :
 		 */
 		public static function set_messages() {
 
-			if ( !self::is_wc_version_gte_2_1() ) {
+			if ( ! self::is_wc_version_gte_2_1() ) {
 				global $woocommerce;
 				$woocommerce->set_messages();
 			}

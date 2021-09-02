@@ -12,14 +12,19 @@ if ( is_array( $products ) ) :
         border-collapse: collapse;
         max-width:700px;
         }
+        #body_content .bwfan-email-product-rows .bwfan-product-rows td {
+        padding: 10px 12px;
+        }
 	<?php } ); ?>
 
-	<div class='bwfan-email-product-rows'>
+    <div class='bwfan-email-product-rows bwfan-email-table-wrap'>
         <!--[if mso]>
-        <table><tr><td width="700">
+        <table>
+            <tr>
+                <td width="700">
         <![endif]-->
-		<table cellspacing="0" cellpadding="0" style="width: 100%;" class="bwfan-product-rows">
-			<tbody>
+        <table cellspacing="0" cellpadding="0" style="width: 100%;" class="bwfan-product-rows">
+            <tbody>
 			<?php
 			$disable_product_link      = BWFAN_Common::disable_product_link();
 			$disable_product_thumbnail = BWFAN_Common::disable_product_thumbnail();
@@ -34,78 +39,78 @@ if ( is_array( $products ) ) :
 					}
 					$line_total = $item['line_subtotal'];
 					?>
-					<tr>
+                    <tr>
 						<?php
 						if ( false === $disable_product_thumbnail ) {
 							?>
-							<td class="image" width="100">
+                            <td class="image" width="100">
 								<?php echo wp_kses_post( BWFAN_Common::get_product_image( $product, 'thumbnail', false, 100 ) ); //phpcs:ignore WordPress.Security.EscapeOutput ?>
-							</td>
+                            </td>
 							<?php
 						} ?>
-						<td width="">
-							<h4><?php echo wp_kses_post( BWFAN_Common::get_name( $product ) ); ?></h4>
-						</td>
-						<td align="right" class="last" width="">
+                        <td width="">
+                            <h4 style="vertical-align:middle;"><?php echo wp_kses_post( BWFAN_Common::get_name( $product ) ); ?></h4>
+                        </td>
+                        <td align="right" class="last" width="">
 							<?php
 							$line_tax   = wc_tax_enabled() && ! empty( $item['line_tax'] ) ? $item['line_tax'] : 0;
 							$line_total += $line_tax;
 							echo wp_kses_post( BWFAN_Common::price( $line_total, $currency ) );
 							?>
 							<?php if ( $suffix && wc_tax_enabled() ): ?>
-								<small><?php echo $suffix; ?></small>
+                                <small><?php echo $suffix; ?></small>
 							<?php endif; ?>
-						</td>
-					</tr>
+                        </td>
+                    </tr>
 
 				<?php endforeach;
 			} else {
 				foreach ( $products as $product ) {
 					?>
-					<tr>
+                    <tr>
 						<?php
 						if ( true === $disable_product_link ) {
 							if ( false === $disable_product_thumbnail ) {
 								?>
-								<td class="image" width="100">
+                                <td class="image" width="100">
 									<?php echo wp_kses_post( BWFAN_Common::get_product_image( $product, 'thumbnail', false, 100 ) ); //phpcs:ignore WordPress.Security.EscapeOutput ?>
-								</td>
+                                </td>
 								<?php
 							} ?>
-							<td width="">
-								<h4><?php echo wp_kses_post( BWFAN_Common::get_name( $product ) ); ?></h4>
-							</td>
+                            <td width="">
+                                <h4 style="margin:0;"><?php echo wp_kses_post( BWFAN_Common::get_name( $product ) ); ?></h4>
+                            </td>
 							<?php
 						} else {
 							if ( false === $disable_product_thumbnail ) {
 								?>
-								<td class="image" width="100">
-									<a href="<?php echo esc_url_raw( $product->get_permalink() ); //phpcs:ignore WordPress.Security.EscapeOutput ?>"><?php echo wp_kses_post( BWFAN_Common::get_product_image( $product, 'thumbnail', false, 100 ) ); //phpcs:ignore WordPress.Security.EscapeOutput ?></a>
-								</td>
+                                <td class="image" width="100">
+                                    <a href="<?php echo esc_url_raw( $product->get_permalink() ); //phpcs:ignore WordPress.Security.EscapeOutput ?>"><?php echo wp_kses_post( BWFAN_Common::get_product_image( $product, 'thumbnail', false, 100 ) ); //phpcs:ignore WordPress.Security.EscapeOutput ?></a>
+                                </td>
 								<?php
 							}
 							?>
-							<td width="">
-								<h4>
-									<a href="<?php echo esc_url_raw( $product->get_permalink() ); //phpcs:ignore WordPress.Security.EscapeOutput ?>"><?php echo wp_kses_post( BWFAN_Common::get_name( $product ) ); ?></a>
-								</h4>
-							</td>
+                            <td width="">
+                                <h4 style="margin:0;">
+                                    <a href="<?php echo esc_url_raw( $product->get_permalink() ); //phpcs:ignore WordPress.Security.EscapeOutput ?>"><?php echo wp_kses_post( BWFAN_Common::get_name( $product ) ); ?></a>
+                                </h4>
+                            </td>
 							<?php
 						}
 						?>
-						<td align="right" class="last" width="">
-							<p class="price" style="margin: 18px 0 8px;"><?php echo wp_kses_post( $product->get_price_html() ); //phpcs:ignore WordPress.Security.EscapeOutput ?></p>
-						</td>
-					</tr>
+                        <td align="right" class="last" width="">
+                            <p class="price" style="margin: 18px 0 8px;"><?php echo wp_kses_post( $product->get_price_html() ); //phpcs:ignore WordPress.Security.EscapeOutput ?></p>
+                        </td>
+                    </tr>
 					<?php
 				}
 			}
 			?>
-			</tbody>
-		</table>
+            </tbody>
+        </table>
         <!--[if mso]>
         </td></tr></table>
         <![endif]-->
-	</div>
+    </div>
 
 <?php endif;

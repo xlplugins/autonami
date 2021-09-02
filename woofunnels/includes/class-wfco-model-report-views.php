@@ -11,8 +11,8 @@ class WFCO_Model_Report_views extends WFCO_Model {
 		$table_name = self::_table();
 		$sql        = 'SELECT COUNT(*) FROM ' . $table_name;
 
-		if (  'all' !== filter_input(INPUT_GET,'status',FILTER_SANITIZE_STRING) ) {
-			$status = filter_input(INPUT_GET,'status',FILTER_SANITIZE_STRING);
+		if ( 'all' !== filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING ) ) {
+			$status = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING );
 			$status = ( 'active' === $status ) ? 1 : 2;
 			$sql    = $wpdb->prepare( "SELECT COUNT(*) FROM $table_name WHERE status = %d", $status ); //phpcs:ignore WordPress.DB.PreparedSQL
 		}

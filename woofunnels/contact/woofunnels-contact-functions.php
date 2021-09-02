@@ -217,7 +217,7 @@ if ( ! function_exists( 'bwf_create_update_contact_object' ) ) {
 		$wp_id = $order->get_customer_id();
 
 		/** If false then update the fields only when empty */
-		$force = ( true === WooFunnels_DB_Updater::$indexing ) ? false : true;
+		$force     = ( true === WooFunnels_DB_Updater::$indexing ) ? false : true;
 		$wp_f_name = '';
 		$wp_l_name = '';
 		if ( $wp_id > 0 ) {
@@ -347,9 +347,10 @@ if ( ! function_exists( 'bwf_get_countries_data' ) ) {
 	 * @return mixed|null
 	 */
 	function bwf_get_countries_data() {
-		$url            = BWFAN_PLUGIN_URL . '/woofunnels/contact/data/countries.json';
-		$countries_data = wp_remote_get( $url );
-		$countries      = isset( $countries_data['body'] ) && ! empty( $countries_data['body'] ) ? json_decode( $countries_data['body'] ) : array();
+		ob_start();
+		include dirname( __DIR__ ) . '/contact/data/countries.json'; //phpcs:ignore WordPressVIPMinimum.Files.IncludingNonPHPFile.IncludingNonPHPFile
+		$countries_data = ob_get_clean();
+		$countries      = json_decode( $countries_data, true );
 
 		return $countries;
 	}

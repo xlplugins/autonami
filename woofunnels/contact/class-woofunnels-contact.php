@@ -141,6 +141,26 @@ class WooFunnels_Contact {
 	}
 
 	/**
+	 * Get contact by id i.e. cid
+	 *
+	 * @param $cid
+	 *
+	 * @return mixed
+	 */
+	public function get_contact_by_id( $cid ) {
+		$cached_obj = $this->get_cache_obj( 'cid', $cid );
+		if ( false !== $cached_obj ) {
+			return $cached_obj;
+		}
+
+		$output = $this->db_operations->get_contact_by_contact_id( $cid );
+
+		$this->set_cache_object( 'cid', $cid, $output );
+
+		return $output;
+	}
+
+	/**
 	 * Get contact cache object
 	 *
 	 * @param $type
@@ -261,24 +281,17 @@ class WooFunnels_Contact {
 		return $output;
 	}
 
-	/**
-	 * Get contact uid
-	 */
-	public function get_uid() {
-		$uid = ( isset( $this->uid ) && ! empty( $this->uid ) ) ? $this->uid : '';
+	public function get_contact_by_uid( $uid ) {
+		$cached_obj = $this->get_cache_obj( 'uid', $uid );
+		if ( false !== $cached_obj ) {
+			return $cached_obj;
+		}
 
-		$db_uid = ( isset( $this->db_contact->uid ) && ! empty( $this->db_contact->uid ) ) ? $this->db_contact->uid : '';
+		$output = $this->db_operations->get_contact( $uid );
 
-		return empty( $uid ) ? $db_uid : $uid;
-	}
+		$this->set_cache_object( 'uid', $uid, $output );
 
-	/**
-	 * Set contact uid
-	 *
-	 * @param $uid
-	 */
-	public function set_uid( $uid ) {
-		$this->uid = empty( $uid ) ? $this->get_uid() : $uid;
+		return $output;
 	}
 
 	/**
@@ -683,6 +696,44 @@ class WooFunnels_Contact {
 	}
 
 	/**
+	 * Purge contact sql object from cache
+	 */
+	public function purge_contact_from_cache() {
+		$obj = BWF_Contacts::get_instance();
+
+		$cid   = sanitize_key( $this->get_id() );
+		$email = sanitize_key( $this->get_email() );
+		$phone = sanitize_key( $this->get_contact_no() );
+		$wp_id = sanitize_key( $this->get_wpid() );
+		$uid   = sanitize_key( $this->get_uid() );
+
+		/** cid */
+		if ( isset( $obj->cached_contact_obj['cid'] ) && isset( $obj->cached_contact_obj['cid'][ $cid ] ) ) {
+			unset( $obj->cached_contact_obj['cid'][ $cid ] );
+		}
+
+		/** email */
+		if ( isset( $obj->cached_contact_obj['email'] ) && isset( $obj->cached_contact_obj['email'][ $email ] ) ) {
+			unset( $obj->cached_contact_obj['email'][ $email ] );
+		}
+
+		/** phone */
+		if ( isset( $obj->cached_contact_obj['phone'] ) && isset( $obj->cached_contact_obj['phone'][ $phone ] ) ) {
+			unset( $obj->cached_contact_obj['phone'][ $phone ] );
+		}
+
+		/** wp id */
+		if ( isset( $obj->cached_contact_obj['wp_id'] ) && isset( $obj->cached_contact_obj['wp_id'][ $wp_id ] ) ) {
+			unset( $obj->cached_contact_obj['wp_id'][ $wp_id ] );
+		}
+
+		/** uid */
+		if ( isset( $obj->cached_contact_obj['uid'] ) && isset( $obj->cached_contact_obj['uid'][ $uid ] ) ) {
+			unset( $obj->cached_contact_obj['uid'][ $uid ] );
+		}
+	}
+
+	/**
 	 * Get contact email
 	 */
 	public function get_email() {
@@ -708,6 +759,33 @@ class WooFunnels_Contact {
 		if ( ! empty( $this->email ) ) {
 			$this->email = trim( $this->email );
 		}
+	}
+
+	public function get_contact_no() {
+		$contact_no    = ( isset( $this->contact_no ) ) ? $this->contact_no : null;
+		$db_contact_no = ( isset( $this->db_contact->contact_no ) ) ? $this->db_contact->contact_no : '';
+
+		return is_null( $contact_no ) ? $db_contact_no : $contact_no;
+	}
+
+	/**
+	 * Get contact uid
+	 */
+	public function get_uid() {
+		$uid = ( isset( $this->uid ) && ! empty( $this->uid ) ) ? $this->uid : '';
+
+		$db_uid = ( isset( $this->db_contact->uid ) && ! empty( $this->db_contact->uid ) ) ? $this->db_contact->uid : '';
+
+		return empty( $uid ) ? $db_uid : $uid;
+	}
+
+	/**
+	 * Set contact uid
+	 *
+	 * @param $uid
+	 */
+	public function set_uid( $uid ) {
+		$this->uid = empty( $uid ) ? $this->get_uid() : $uid;
 	}
 
 	/**
@@ -822,13 +900,6 @@ class WooFunnels_Contact {
 		$this->contact_no = empty( $contact_no ) ? $this->get_contact_no() : $contact_no;
 	}
 
-	public function get_contact_no() {
-		$contact_no    = ( isset( $this->contact_no ) ) ? $this->contact_no : null;
-		$db_contact_no = ( isset( $this->db_contact->contact_no ) ) ? $this->db_contact->contact_no : '';
-
-		return is_null( $contact_no ) ? $db_contact_no : $contact_no;
-	}
-
 	/**
 	 * Set contact state
 	 *
@@ -851,77 +922,6 @@ class WooFunnels_Contact {
 		$db_state = ( isset( $this->db_contact->state ) ) ? $this->db_contact->state : '';
 
 		return is_null( $state ) ? $db_state : $state;
-	}
-
-	/**
-	 * Get contact by id i.e. cid
-	 *
-	 * @param $cid
-	 *
-	 * @return mixed
-	 */
-	public function get_contact_by_id( $cid ) {
-		$cached_obj = $this->get_cache_obj( 'cid', $cid );
-		if ( false !== $cached_obj ) {
-			return $cached_obj;
-		}
-
-		$output = $this->db_operations->get_contact_by_contact_id( $cid );
-
-		$this->set_cache_object( 'cid', $cid, $output );
-
-		return $output;
-	}
-
-	public function get_contact_by_uid( $uid ) {
-		$cached_obj = $this->get_cache_obj( 'uid', $uid );
-		if ( false !== $cached_obj ) {
-			return $cached_obj;
-		}
-
-		$output = $this->db_operations->get_contact( $uid );
-
-		$this->set_cache_object( 'uid', $uid, $output );
-
-		return $output;
-	}
-
-	/**
-	 * Purge contact sql object from cache
-	 */
-	public function purge_contact_from_cache() {
-		$obj = BWF_Contacts::get_instance();
-
-		$cid   = sanitize_key( $this->get_id() );
-		$email = sanitize_key( $this->get_email() );
-		$phone = sanitize_key( $this->get_contact_no() );
-		$wp_id = sanitize_key( $this->get_wpid() );
-		$uid   = sanitize_key( $this->get_uid() );
-
-		/** cid */
-		if ( isset( $obj->cached_contact_obj['cid'] ) && isset( $obj->cached_contact_obj['cid'][ $cid ] ) ) {
-			unset( $obj->cached_contact_obj['cid'][ $cid ] );
-		}
-
-		/** email */
-		if ( isset( $obj->cached_contact_obj['email'] ) && isset( $obj->cached_contact_obj['email'][ $email ] ) ) {
-			unset( $obj->cached_contact_obj['email'][ $email ] );
-		}
-
-		/** phone */
-		if ( isset( $obj->cached_contact_obj['phone'] ) && isset( $obj->cached_contact_obj['phone'][ $phone ] ) ) {
-			unset( $obj->cached_contact_obj['phone'][ $phone ] );
-		}
-
-		/** wp id */
-		if ( isset( $obj->cached_contact_obj['wp_id'] ) && isset( $obj->cached_contact_obj['wp_id'][ $wp_id ] ) ) {
-			unset( $obj->cached_contact_obj['wp_id'][ $wp_id ] );
-		}
-
-		/** uid */
-		if ( isset( $obj->cached_contact_obj['uid'] ) && isset( $obj->cached_contact_obj['uid'][ $uid ] ) ) {
-			unset( $obj->cached_contact_obj['uid'][ $uid ] );
-		}
 	}
 
 	/**

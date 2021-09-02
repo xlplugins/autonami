@@ -64,67 +64,67 @@ if ( ! class_exists( 'BWF_Admin_General_Settings' ) ) {
 			}
 			BWF_Admin_Breadcrumbs::render_sticky_bar();
 			?>
-			<div class="wrap bwf-funnel-common">
-				<h1 class="wp-heading-inline"><?php esc_html_e( 'Settings', 'woofunnels' ); ?></h1>
+            <div class="wrap bwf-funnel-common">
+                <h1 class="wp-heading-inline"><?php esc_html_e( 'Settings', 'woofunnels' ); ?></h1>
 				<?php
 				$admin_settings = BWF_Admin_Settings::get_instance();
 				$admin_settings->render_tab_html( 'woofunnels_general_settings' );
 				$i = 0;
 				?>
-				<div id="bwf_general_settings_vue_wrap" class="bwf-hide" v-bind:class="`1`===is_initialized?'bwf-show':''">
-					<div class="bwf-vue-custom-msg" v-if="'' != errorMsg"><p v-html="errorMsg"></p></div>
-					<div class="bwf-tabs-view-vertical bwf-widget-tabs">
-						<div class="bwf-tabs-wrapper">
-							<div class="bwf-tab-title" data-tab="<?php $i ++;
+                <div id="bwf_general_settings_vue_wrap" class="bwf-hide" v-bind:class="`1`===is_initialized?'bwf-show':''">
+                    <div class="bwf-vue-custom-msg" v-if="'' != errorMsg"><p v-html="errorMsg"></p></div>
+                    <div class="bwf-tabs-view-vertical bwf-widget-tabs">
+                        <div class="bwf-tabs-wrapper">
+                            <div class="bwf-tab-title" data-tab="<?php $i ++;
 							echo $i; ?>" role="tab">
 								<?php esc_html_e( 'Permalinks', 'woofunnels' ); ?>
-							</div>
-							<div class="bwf-tab-title" data-tab="<?php $i ++;
+                            </div>
+                            <div class="bwf-tab-title" data-tab="<?php $i ++;
 							echo $i; ?>" role="tab">
 								<?php esc_html_e( 'Facebook Pixel', 'woofunnels' ); ?>
-							</div>
-							<div class="bwf-tab-title" data-tab="<?php $i ++;
+                            </div>
+                            <div class="bwf-tab-title" data-tab="<?php $i ++;
 							echo $i; ?>" role="tab">
 								<?php esc_html_e( 'Google Analytics', 'woofunnels' ); ?>
-							</div>
+                            </div>
 
 
 							<?php if ( apply_filters( 'bwf_enable_ecommerce_integration_gad', false ) ) { ?>
-								<div class="bwf-tab-title" data-tab="<?php $i ++;
+                                <div class="bwf-tab-title" data-tab="<?php $i ++;
 								echo $i; ?>" role="tab">
 									<?php esc_html_e( 'Google Ads', 'woofunnels' ); ?>
-								</div>
+                                </div>
 							<?php }
 							if ( apply_filters( 'bwf_enable_ecommerce_integration_pinterest', false ) ) { ?>
-								<div class="bwf-tab-title" data-tab="<?php $i ++;
+                                <div class="bwf-tab-title" data-tab="<?php $i ++;
 								echo $i; ?>" role="tab">
 									<?php esc_html_e( 'Pinterest', 'woofunnels' ); ?>
-								</div>
+                                </div>
 							<?php } ?>
 
-						</div>
+                        </div>
 
 
-						<div class="bwf-tabs-content-wrapper">
-							<div class="bwf_setting_inner">
-								<form class="bwf_forms_wrap">
-									<fieldset>
-										<vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
-									</fieldset>
-									<div style="display: none" id="modal-general-settings_success" data-iziModal-icon="icon-home">
-									</div>
-								</form>
-								<div class="bwf_form_button">
-									<span class="bwf_loader_global_save spinner" style="float: left;"></span>
-									<button v-on:click.self="onSubmit" class="bwf_save_btn_style"><?php esc_html_e( 'Save changes', 'woofunnels' ); ?></button>
+                        <div class="bwf-tabs-content-wrapper">
+                            <div class="bwf_setting_inner">
+                                <form class="bwf_forms_wrap">
+                                    <fieldset>
+                                        <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
+                                    </fieldset>
+                                    <div style="display: none" id="modal-general-settings_success" data-iziModal-icon="icon-home">
+                                    </div>
+                                </form>
+                                <div class="bwf_form_button">
+                                    <span class="bwf_loader_global_save spinner" style="float: left;"></span>
+                                    <button v-on:click.self="onSubmit" class="bwf_save_btn_style"><?php esc_html_e( 'Save changes', 'woofunnels' ); ?></button>
 
-								</div>
-							</div>
-						</div>
-					</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-				</div>
-			</div>
+                </div>
+            </div>
 
 			<?php
 		}

@@ -41,9 +41,12 @@ abstract class WFCO_Call {
 		$failed = false;
 		foreach ( $required_fields as $single_field ) {
 
-			$failed = ! isset( $data[ $single_field ] ); /** Existence Checking */
-			$failed = $failed || ( is_array( $data[ $single_field ] ) && empty( $data[ $single_field ] ) ); /** Array Checking */
-			$failed = $failed || ( is_null( $data[ $single_field ] ) || '' === $data[ $single_field ] ); /** Null or Empty String Checking */
+			$failed = ! isset( $data[ $single_field ] );
+			/** Existence Checking */
+			$failed = $failed || ( is_array( $data[ $single_field ] ) && empty( $data[ $single_field ] ) );
+			/** Array Checking */
+			$failed = $failed || ( is_null( $data[ $single_field ] ) || '' === $data[ $single_field ] );
+			/** Null or Empty String Checking */
 
 			if ( true === $failed ) {
 				$this->missing_field = $single_field;
@@ -51,7 +54,7 @@ abstract class WFCO_Call {
 			}
 		}
 
-		return !$failed;
+		return ! $failed;
 	}
 
 	/**

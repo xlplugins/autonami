@@ -9,11 +9,22 @@ if ( true === BWFAN_Merge_Tag_Loader::get_data( 'is_preview' ) ) {
 	}
 }
 
+if( ! isset( $this->order ) || ! $this->order instanceof WC_Order ) {
+	return;
+}
+
 add_action( 'bwfan_output_email_style', function () { ?>
-    .bwfan-email-order-table > table {
+    .bwfan-email-order-table table {
     width: 100%;
     border-collapse: collapse;
     max-width:700px;
+    font-size:14px;
+    }
+    .bwfan-email-order-table #template_header {
+    width: 100% !important;
+    }
+    .bwfan-email-order-table table img {
+    max-width: 75px;
     }
 <?php } );
 
@@ -60,14 +71,3 @@ wc_get_template( 'emails/email-order-details.php', array(
     <![endif]-->
 <?php
 echo '</div>';
-
-add_action( 'bwfan_output_email_style', function () { ?>
-
-    .bwfan-email-order-table #template_header {
-    width: 100% !important;
-    }
-
-    .bwfan-email-order-table table img {
-    max-width: 75px;
-    }
-<?php } ); ?>

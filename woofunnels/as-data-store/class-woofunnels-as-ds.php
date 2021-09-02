@@ -5,8 +5,8 @@
  * AS data store cli
  */
 final class WooFunnels_AS_DS {
-	private static $ins = null;
 	public static $unique = '';
+	private static $ins = null;
 	public $dir = __DIR__;
 
 	/**

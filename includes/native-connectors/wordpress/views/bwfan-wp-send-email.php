@@ -1,5 +1,6 @@
 <?php
 $unique_slug = $this->get_slug();
+$wc_enabled  = apply_filters( 'bwfan_enable_wc_email_template', false );
 ?>
     <script type="text/html" id="tmpl-action-<?php esc_html_e( $unique_slug ); ?>">
         <#
@@ -21,8 +22,8 @@ $unique_slug = $this->get_slug();
         if(selected_event=='ab_cart_abandoned'){
         email_sub = 'We\'re still holding the cart for you';
         email_body = '<p>Hi {{cart_billing_first_name}},</p>' +
-        "<p>I noticed that you were trying to purchase but couldn\'t complete the process.</p>" +
-        "<p> {{cart_items template = 'cart-table'}} </p>"+
+        "<p>I noticed that you were trying to purchase but could not complete the process.</p>" +
+        '<p>{{cart_items template="cart-table"}}</p>'+
         '<p>We have reserved the cart for you, <a href="{{cart_recovery_link}}">Click here</a> to complete your purchase.</p>' +
         '<p>If you have any questions, feel free to get in touch with us.</p>' +
         '<p>Hit reply and I\'ll be happy to answer your questions.</p>' +
@@ -57,7 +58,9 @@ $unique_slug = $this->get_slug();
 				<?php esc_html_e( 'Template', 'wp-marketing-automations' ); ?>
 				<?php
 				$message = "<strong>Rich Text Template:</strong> " . __( "Use this template for more control over the email body. Rich text style is auto-applied.", 'wp-marketing-automations' );
-				//$message .= "<br/><br/><strong>WooCommerce Template:</strong> " . __( "Use native WooCommerce header/footer template. Write content inside the email body using a combination of text and code.", 'wp-marketing-automations' );
+				if ( $wc_enabled ) {
+					$message .= "<br/><br/><strong>WooCommerce Template:</strong> " . __( "Use native WooCommerce header/footer template. Write content inside the email body using a combination of text and code.", 'wp-marketing-automations' );
+				}
 				$message .= "<br/><br/><strong>Raw HTML Template:</strong> " . __( "Use this template for complete control by pasting any Custom HTML/CSS (usually designed using an external email editor).", 'wp-marketing-automations' );
 				echo $this->add_description( $message, '3xl', 'right', false ); //phpcs:ignore WordPress.Security.EscapeOutput
 				?>
@@ -66,9 +69,12 @@ $unique_slug = $this->get_slug();
                 <#
                 if(_.has(data.actionFieldsOptions, 'template_options') && _.isObject(data.actionFieldsOptions.template_options) ) {
                 _.each( data.actionFieldsOptions.template_options, function( value, key ){
-                if(selected_template != 'wc_template' && key == 'wc_template') {
-                return;
-                }
+				<?php
+				if ( ! $wc_enabled ) { ?>
+                    if(selected_template != 'wc_template' && key == 'wc_template') {
+                    return;
+                    }
+				<?php } ?>
                 selected = (key == selected_template) ? 'checked="checked"' : '';
                 #>
                 <label class="bwf-radio-button">
@@ -112,7 +118,7 @@ $unique_slug = $this->get_slug();
             <div class="bwfan-col-sm-12 bwfan-pl-0 bwfan-pr-0 bwfan-mb-15">
                 <input required type="text" id='bwfan_email_preheader' class="bwfan-input-wrapper bwfan-field-<?php esc_html_e( $unique_slug ); ?>" name="bwfan[{{data.action_id}}][data][preheading]" placeholder="Enter Pre Heading" value="{{email_preheading}}"/>
             </div>
-            <div class="bwfan_email_template {{show_email_heading}}">
+            <div class="bwfan_email_template {{show_email_heading}} bwfan_wc_email_heading">
                 <label for="" class="bwfan-label-title">
 					<?php esc_html_e( 'Email Heading', 'wp-marketing-automations' ); ?>
 					<?php echo $this->inline_merge_tag_invoke(); //phpcs:ignore WordPress.Security.EscapeOutput ?>
@@ -128,7 +134,7 @@ $unique_slug = $this->get_slug();
                 margin: 10px 0;"
             >
                 <label for="" class="bwfan-label-title"><?php esc_html_e( 'Body', 'wp-marketing-automations' ); ?></label>
-                <?php echo $this->inline_template_selector_invoke(); //phpcs:ignore WordPress.Security.EscapeOutput ?>
+				<?php echo $this->inline_template_selector_invoke(); //phpcs:ignore WordPress.Security.EscapeOutput ?>
             </div>
             <div class="bwfan-email-content bwfan-col-sm-12 bwfan-pl-0 bwfan-pr-0 bwfan-mb-15 bwfan-email-wysiwyg {{is_enable_wysiwyg}}">
                 <textarea class="bwfan-input-wrapper" id="bwfan-editor" rows="6" placeholder="<?php esc_html_e( 'Email Message', 'wp-marketing-automations' ); ?>" name="bwfan[{{data.action_id}}][data][body]">{{body}}</textarea>
@@ -178,7 +184,7 @@ $unique_slug = $this->get_slug();
                     jQuery('.bwfan-email-content').hide();
                     jQuery('.bwfan-email-textarea').show();
                     jQuery('.bwfan-email-editor').addClass('bwfan-display-none');
-                } else if ('raw_template' === selected_template || 'wc_template' === selected_template) {
+                } else if ('raw_template' === selected_template) {
                     jQuery('.bwfan_email_template').hide();
                     jQuery('.bwfan-email-content').hide();
                     jQuery('.bwfan-email-wysiwyg').show();
@@ -187,6 +193,12 @@ $unique_slug = $this->get_slug();
                     jQuery('.bwfan_email_template').hide();
                     jQuery('.bwfan-email-content').hide();
                     jQuery('.bwfan-email-editor').removeClass('bwfan-display-none');
+                } else if ('wc_template' === selected_template) {
+                    jQuery('.bwfan_email_template').hide();
+                    jQuery('.bwfan-email-content').hide();
+                    jQuery('.bwfan-email-wysiwyg').show();
+                    jQuery('.bwfan_wc_email_heading').removeClass('bwfan-display-none');
+                    jQuery('.bwfan_wc_email_heading').show();
                 }
             });
 

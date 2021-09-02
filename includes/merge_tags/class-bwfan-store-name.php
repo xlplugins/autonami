@@ -7,7 +7,7 @@ class BWFAN_Store_Name extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'store_name';
-		$this->tag_description = __( 'Store name of website', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Store Name', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_store_name', array( $this, 'parse_shortcode' ) );
 	}
 

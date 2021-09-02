@@ -36,7 +36,7 @@ class BWF_Contacts {
 			'cid'   => [],
 			'uid'   => [],
 			'email' => [],
-			'wp_id'  => [],
+			'wp_id' => [],
 			'phone' => [],
 		];
 	}

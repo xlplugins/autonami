@@ -1,9 +1,13 @@
 <?php
 
+/**
+ * Class BWFAN_WC_Cart_Shipping_Last_Name
+ *
+ * Merge tag outputs cart shipping last name
+ */
 class BWFAN_WC_Cart_Shipping_Last_Name extends Cart_Merge_Tag {
 
 	private static $instance = null;
-
 
 	public function __construct() {
 		$this->tag_name        = 'cart_shipping_last_name';
@@ -28,7 +32,7 @@ class BWFAN_WC_Cart_Shipping_Last_Name extends Cart_Merge_Tag {
 	 */
 	public function parse_shortcode( $attr ) {
 		if ( true === BWFAN_Merge_Tag_Loader::get_data( 'is_preview' ) ) {
-			return $this->get_dummy_preview();
+			return $this->parse_shortcode_output( $this->get_dummy_preview(), $attr );
 		}
 
 		$cart_details = BWFAN_Merge_Tag_Loader::get_data( 'cart_details' );
@@ -45,8 +49,6 @@ class BWFAN_WC_Cart_Shipping_Last_Name extends Cart_Merge_Tag {
 	public function get_dummy_preview() {
 		return 'Wright';
 	}
-
-
 }
 
 /**

@@ -7,7 +7,7 @@ class BWFAN_WC_Admin_Order_Note extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'current_order_note';
-		$this->tag_description = __( 'Current Order Note', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Checkout Order Note', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_current_order_note', array( $this, 'parse_shortcode' ) );
 	}
 

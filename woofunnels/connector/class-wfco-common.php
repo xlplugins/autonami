@@ -293,8 +293,8 @@ class WFCO_Common {
 	}
 
 	public static function get_current_trigger() {
-		if (  'autonami' === filter_input(INPUT_GET,'page',FILTER_SANITIZE_STRING) && filter_input(INPUT_GET,'status',FILTER_SANITIZE_STRING) ) {
-			return filter_input(INPUT_GET,'status',FILTER_SANITIZE_STRING);
+		if ( 'autonami' === filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING ) && filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING ) ) {
+			return filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING );
 		}
 
 		return 'all';
@@ -579,10 +579,10 @@ class WFCO_Common {
 	 * @return bool
 	 */
 	public static function is_connector_page( $section = '' ) {
-		if ( 'autonami' === filter_input(INPUT_GET,'page',FILTER_SANITIZE_STRING) && '' === $section ) {
+		if ( 'autonami' === filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING ) && '' === $section ) {
 			return true;
 		}
-		if (  'autonami' === filter_input(INPUT_GET,'page',FILTER_SANITIZE_STRING) && filter_input(INPUT_GET,'section',FILTER_SANITIZE_STRING) === $section ) {
+		if ( 'autonami' === filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING ) && filter_input( INPUT_GET, 'section', FILTER_SANITIZE_STRING ) === $section ) {
 			return true;
 		}
 

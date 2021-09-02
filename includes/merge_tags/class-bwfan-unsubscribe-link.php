@@ -6,7 +6,7 @@ class BWFAN_Unsubscribe_Link extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'unsubscribe_link';
-		$this->tag_description = __( 'Unsubscribe url', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Unsubscribe URL', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_unsubscribe_link', array( $this, 'parse_shortcode' ) );
 		$this->support_fallback = false;
 	}

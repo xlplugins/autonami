@@ -60,7 +60,7 @@ class WooFunnels_Customer {
 			$this->id = $this->db_customer->id;
 		}
 
-		
+
 	}
 
 	/**
@@ -94,15 +94,6 @@ class WooFunnels_Customer {
 	}
 
 	/**
-	 * Set customer last order date
-	 *
-	 * @param $date
-	 */
-	public function set_f_order_date( $date ) {
-		$this->f_order_date = empty( $date ) ? $this->get_f_order_date() : $date;
-	}
-
-	/**
 	 * Get customer last order date
 	 */
 	public function get_l_order_date() {
@@ -110,6 +101,15 @@ class WooFunnels_Customer {
 		$db_data    = ( isset( $this->db_customer->l_order_date ) && ! empty( $this->db_customer->l_order_date ) ) ? $this->db_customer->l_order_date : '0000-00-00';
 
 		return empty( $order_date ) ? $db_data : $order_date;
+	}
+
+	/**
+	 * Set customer last order date
+	 *
+	 * @param $date
+	 */
+	public function set_f_order_date( $date ) {
+		$this->f_order_date = empty( $date ) ? $this->get_f_order_date() : $date;
 	}
 
 	/**

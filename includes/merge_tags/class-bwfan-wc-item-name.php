@@ -7,7 +7,7 @@ class BWFAN_WC_Item_Name extends BWFAN_Cart_Display {
 
 	public function __construct() {
 		$this->tag_name        = 'item_name';
-		$this->tag_description = __( 'Purchased Product title ', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Purchased Product Title ', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_item_name', array( $this, 'parse_shortcode' ) );
 	}
 

@@ -6,7 +6,7 @@ class BWFAN_WC_Cart_Abandoned_Data extends Cart_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'cart_abandoned_data';
-		$this->tag_description = __( 'Cart Abandoned data', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Cart Abandoned Data', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_cart_abandoned_data', array( $this, 'parse_shortcode' ) );
 		$this->support_fallback = false;
 	}

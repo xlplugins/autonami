@@ -7,7 +7,7 @@ class BWFAN_Current_Datetime extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'current_datetime';
-		$this->tag_description = __( 'Current datetime as per your website\'s specified timezone', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Current Datetime', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_current_datetime', array( $this, 'parse_shortcode' ) );
 		$this->support_fallback = false;
 		$this->support_date     = true;

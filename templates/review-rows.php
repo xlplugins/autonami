@@ -18,25 +18,30 @@ if ( is_array( $products ) ) :
         border-collapse: collapse;
         max-width:700px;
         }
+        #body_content .bwfan-email-review-rows .bwfan-product-rows td {
+        padding: 10px 12px;
+        }
         .bwfan-email-review-rows .autonami-button {
-            background-color: <?php echo esc_attr( $button_background_color ); ?>;
-            color: <?php echo esc_attr( $button_text_color ); ?>;
+        background-color: <?php echo esc_attr( $button_background_color ); ?>;
+        color: <?php echo esc_attr( $button_text_color ); ?>;
         }
 	<?php } ); ?>
 
-    <div class='bwfan-email-review-rows'>
+    <div class='bwfan-email-review-rows bwfan-email-table-wrap'>
         <!--[if mso]>
-        <table><tr><td width="700">
+        <table>
+            <tr>
+                <td width="700">
         <![endif]-->
         <table cellspacing="0" cellpadding="0" style="width: 100%;" class="bwfan-product-rows">
             <tbody>
-            <?php foreach ( $products as $product ) : ?>
+			<?php foreach ( $products as $product ) : ?>
                 <tr>
                     <td class="image" width="100">
-                        <?php echo wp_kses_post( BWFAN_Common::get_product_image( $product, 'thumbnail', false, 100 ) ); //phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php echo wp_kses_post( BWFAN_Common::get_product_image( $product, 'thumbnail', false, 100 ) ); //phpcs:ignore WordPress.Security.EscapeOutput ?>
                     </td>
                     <td width="">
-                        <h4><?php echo wp_kses_post( BWFAN_Common::get_name( $product ) ); ?></h4>
+                        <h4 style="vertical-align:middle;"><?php echo wp_kses_post( BWFAN_Common::get_name( $product ) ); ?></h4>
                     </td>
                     <td align="right" class="last" width="">
                         <a href="<?php echo esc_url_raw( $product->get_permalink() . $review_hash_path ); //phpcs:ignore WordPress.Security.EscapeOutput ?>" class="autonami-button autonami-button--small">
@@ -50,7 +55,7 @@ if ( is_array( $products ) ) :
                         </a>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+			<?php endforeach; ?>
             </tbody>
         </table>
         <!--[if mso]>

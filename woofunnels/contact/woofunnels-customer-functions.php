@@ -435,7 +435,7 @@ if ( ! function_exists( 'bwf_get_order_product_terms' ) ) {
 			return $product_ids;
 		}
 
-		$order_cats = $order_tags = [];
+		$order_cats   = $order_tags = [];
 		$product_cats = false;
 		$product_tags = false;
 		foreach ( $products as $val ) {

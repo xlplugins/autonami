@@ -7,7 +7,7 @@ class BWFAN_WC_Product_Add_To_Cart_Url extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'product_add_to_cart_url';
-		$this->tag_description = __( 'Product Add To Cart Url', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Product Add To Cart URL', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_product_add_to_cart_url', array( $this, 'parse_shortcode' ) );
 	}
 

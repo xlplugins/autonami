@@ -15,28 +15,22 @@ class WooFunnels_DB_Updater {
 	 * @var $ins
 	 */
 	public static $ins;
-
-	/**
-	 * @var WooFunnels_Background_Updater $updater
-	 */
-	public $updater;
-
-	/**
-	 * @var WooFunnels_Contacts_Background_Updater $contacts_updater
-	 */
-	public $contacts_updater;
-
-	/**
-	 * @var WooFunnels_Background_Updater $updater
-	 */
-	public $order_id_in_process;
-
 	/**
 	 * @var null Used when order indexing is running
 	 */
 	public static $indexing = null;
-
-	private $_user_address_meta_updated    = array();
+	/**
+	 * @var WooFunnels_Background_Updater $updater
+	 */
+	public $updater;
+	/**
+	 * @var WooFunnels_Contacts_Background_Updater $contacts_updater
+	 */
+	public $contacts_updater;
+	/**
+	 * @var WooFunnels_Background_Updater $updater
+	 */
+	public $order_id_in_process;
 	public $contact_wp_user_address_fields = array(
 		'address-1' => 'billing_address_1',
 		'address-2' => 'billing_address_2',
@@ -45,6 +39,7 @@ class WooFunnels_DB_Updater {
 		'postcode'  => 'billing_postcode',
 		'country'   => 'billing_country',
 	);
+	private $_user_address_meta_updated = array();
 
 	/**
 	 * WooFunnels_DB_Updater constructor.
@@ -228,7 +223,7 @@ class WooFunnels_DB_Updater {
 		if ( '3' === $db_state ) { ?>
             <div class="bwf-notice notice notice-success">
                 <div class="bwf-logo-wrapper">
-					<img src="<?php echo esc_url( plugin_dir_url( dirname( __FILE__ ) ) ) . 'assets/img/bwf-icon-white-bg.svg'; ?>" width="60" height="40">
+                    <img src="<?php echo esc_url( plugin_dir_url( dirname( __FILE__ ) ) ) . 'assets/img/bwf-icon-white-bg.svg'; ?>" width="60" height="40">
                 </div>
 
                 <div class="bwf-message-content">
@@ -241,7 +236,7 @@ class WooFunnels_DB_Updater {
 			?>
             <div class="bwf-notice notice notice-success">
                 <div class="bwf-logo-wrapper">
-					<img src="<?php echo esc_url( plugin_dir_url( dirname( __FILE__ ) ) ) . 'assets/img/bwf-icon-white-bg.svg'; ?>" width="60" height="40">
+                    <img src="<?php echo esc_url( plugin_dir_url( dirname( __FILE__ ) ) ) . 'assets/img/bwf-icon-white-bg.svg'; ?>" width="60" height="40">
                 </div>
 
                 <div class="bwf-message-content">
@@ -259,7 +254,7 @@ class WooFunnels_DB_Updater {
 
             <div class="bwf-notice notice notice-error">
                 <div class="bwf-logo-wrapper">
-					<img src="<?php echo esc_url( plugin_dir_url( dirname( __FILE__ ) ) ) . 'assets/img/bwf-icon-white-bg.svg'; ?>" width="60" height="40">
+                    <img src="<?php echo esc_url( plugin_dir_url( dirname( __FILE__ ) ) ) . 'assets/img/bwf-icon-white-bg.svg'; ?>" width="60" height="40">
                 </div>
 
                 <div class="bwf-message-content">
@@ -286,8 +281,8 @@ class WooFunnels_DB_Updater {
                 -webkit-align-items: center;
                 -ms-flex-align: center;
                 align-items: center;
-				padding: 12px;
-    			height: auto;
+                padding: 12px;
+                height: auto;
             }
 
             .wp-admin .bwf-message-content, .wp-admin.toplevel_page_woofunnels .bwf-message-content, .wp-admin.woofunnels_page_upstroke .bwf-message-content {
@@ -316,9 +311,10 @@ class WooFunnels_DB_Updater {
             .wp-admin .bwf-logo-wrapper, .wp-admin.toplevel_page_woofunnels .bwf-logo-wrapper, .wp-admin.woofunnels_page_upstroke .bwf-logo-wrapper {
                 /* height: 51px; */
             }
-			.wp-admin .bwf-notice.notice.notice-success {
-				border-left-color: #1daafc;
-			}
+
+            .wp-admin .bwf-notice.notice.notice-success {
+                border-left-color: #1daafc;
+            }
         </style>
 		<?php
 	}
@@ -453,15 +449,11 @@ class WooFunnels_DB_Updater {
 		) );
 
 		/** Profile Update Async Call */
-		register_rest_route(
-			'woofunnel_customer/v1',
-			'/wp_profile_update',
-			array(
-				'methods'             => WP_REST_Server::CREATABLE,
-				'callback'            => array( $this, 'capture_profile_update_event' ),
-				'permission_callback' => '__return_true',
-			)
-		);
+		register_rest_route( 'woofunnel_customer/v1', '/wp_profile_update', array(
+			'methods'             => WP_REST_Server::CREATABLE,
+			'callback'            => array( $this, 'capture_profile_update_event' ),
+			'permission_callback' => '__return_true',
+		) );
 	}
 
 	/**
@@ -573,7 +565,7 @@ class WooFunnels_DB_Updater {
             <tr>
                 <th>
                     <strong class="name"><?php esc_html_e( 'Index Past Orders', 'woofunnels' ); ?></strong>
-                    <p class="description"><?php echo wp_kses_post(sprintf(  'This tool will scan all the previous orders and create an optimized index to run efficient queries. %s', $remaining_text ),'woofunnels'  ); ?></p>
+                    <p class="description"><?php echo wp_kses_post( sprintf( 'This tool will scan all the previous orders and create an optimized index to run efficient queries. %s', $remaining_text ), 'woofunnels' ); ?></p>
 					<?php if ( '1' === $bwf_db_upgrade || '6' === $bwf_db_upgrade ) { ?>
                         <span style="width:100%; color: red;"><?php esc_html_e( 'Unable to complete indexing of orders.', 'woofunnels' ); ?></span><br/>
 						<?php esc_html_e( 'Please', 'woofunnels' ); ?>
@@ -608,16 +600,15 @@ class WooFunnels_DB_Updater {
 	 *
 	 * @hooked on profile_update
 	 */
-	public function bwf_update_contact_on_user_update( $user_id, $old_user_data ) {
-
+	public function bwf_update_contact_on_user_update( $user_id, $old_user_data = [] ) {
 		if ( 'profile_update' === current_action() ) {
 			$this->do_profile_update_async_call( $user_id, $old_user_data );
-		}
 
+			return;
+		}
 		if ( 'woocommerce_save_account_details' === current_action() ) {
 			$this->do_profile_update_async_call( $user_id );
 		}
-
 	}
 
 	/** Do async profile update call */
@@ -660,11 +651,13 @@ class WooFunnels_DB_Updater {
 
 		if ( false === $contact ) {
 			$this->_user_address_meta_updated = array();
+
 			return;
 		}
 
-		if ( ! bwfan_is_woocommerce_active() || empty( $fields ) ) {
+		if ( ! class_exists( 'WooCommerce' ) || empty( $fields ) ) {
 			$contact->save();
+
 			return;
 		}
 
@@ -688,18 +681,6 @@ class WooFunnels_DB_Updater {
 
 		$contact->set_last_modified( current_time( 'mysql', 1 ) );
 		$contact->save();
-	}
-
-	public function mark_updated_address_fields( $meta_id, $object_id, $meta_key, $_meta_value ) {
-		/** Return if version is less than 2.0.2 */
-		if ( defined( 'BWFAN_PRO_VERSION' ) && ! version_compare( BWFAN_PRO_VERSION, '2.0.2', '>' ) ) {
-			return;
-		}
-
-		$address_meta_keys = array_values( $this->contact_wp_user_address_fields );
-		if ( in_array( $meta_key, $address_meta_keys, true ) ) {
-			$this->_user_address_meta_updated[ $meta_key ] = $_meta_value;
-		}
 	}
 
 	/** Get the unsaved contact with WPID and Email changes */
@@ -779,14 +760,22 @@ class WooFunnels_DB_Updater {
 		/** Remove WPID on old contact if same as user_id */
 		if ( $old_contact_exists && $user_id === absint( $old_contact->get_wpid() ) ) {
 			/** Using SQL because setting wpid as blank is not supported in core */
-			$wpdb->update(
-				$wpdb->prefix . 'bwf_contact',
-				array(
-					'wpid'          => 0,
-					'last_modified' => current_time( 'mysql', 1 ),
-				),
-				array( 'id' => $old_contact->get_id() )
-			);
+			$wpdb->update( $wpdb->prefix . 'bwf_contact', array(
+				'wpid'          => 0,
+				'last_modified' => current_time( 'mysql', 1 ),
+			), array( 'id' => $old_contact->get_id() ) );
+		}
+	}
+
+	public function mark_updated_address_fields( $meta_id, $object_id, $meta_key, $_meta_value ) {
+		/** Return if version is less than 2.0.2 */
+		if ( defined( 'BWFAN_PRO_VERSION' ) && ! version_compare( BWFAN_PRO_VERSION, '2.0.2', '>' ) ) {
+			return;
+		}
+
+		$address_meta_keys = array_values( $this->contact_wp_user_address_fields );
+		if ( in_array( $meta_key, $address_meta_keys, true ) ) {
+			$this->_user_address_meta_updated[ $meta_key ] = $_meta_value;
 		}
 	}
 
@@ -915,24 +904,6 @@ class WooFunnels_DB_Updater {
 		}
 	}
 
-	public function capture_fatal_error_contacts() {
-		$error = error_get_last();
-		if ( ! empty( $error ) ) {
-			if ( is_array( $error ) && in_array( $error['type'], array( E_ERROR, E_PARSE, E_COMPILE_ERROR, E_USER_ERROR, E_RECOVERABLE_ERROR ), true ) ) {
-
-				if ( $this->is_ignorable_error( $error['message'] ) ) {
-					return;
-				}
-				BWF_Logger::get_instance()->log( 'Error logged during the process' . print_r( $error, true ), 'woofunnels_contacts_indexing' ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
-
-				$current_offset = get_option( '_bwf_contacts_offset', 0 );
-				$current_offset ++;
-				update_option( '_bwf_contacts_offset', $current_offset );
-
-			}
-		}
-	}
-
 	private function is_ignorable_error( $str ) {
 		$get_all_ingorable_regex = $this->ignorable_errors();
 
@@ -949,6 +920,24 @@ class WooFunnels_DB_Updater {
 
 	private function ignorable_errors() {
 		return [ '/Maximum execution time of/m', '/Allowed memory size of/m' ];
+	}
+
+	public function capture_fatal_error_contacts() {
+		$error = error_get_last();
+		if ( ! empty( $error ) ) {
+			if ( is_array( $error ) && in_array( $error['type'], array( E_ERROR, E_PARSE, E_COMPILE_ERROR, E_USER_ERROR, E_RECOVERABLE_ERROR ), true ) ) {
+
+				if ( $this->is_ignorable_error( $error['message'] ) ) {
+					return;
+				}
+				BWF_Logger::get_instance()->log( 'Error logged during the process' . print_r( $error, true ), 'woofunnels_contacts_indexing' ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
+
+				$current_offset = get_option( '_bwf_contacts_offset', 0 );
+				$current_offset ++;
+				update_option( '_bwf_contacts_offset', $current_offset );
+
+			}
+		}
 	}
 
 	public function set_order_id_in_process( $order_id ) {
@@ -1000,6 +989,18 @@ class WooFunnels_DB_Updater {
 		update_option( '_bwf_db_version', BWF_DB_VERSION, true );
 	}
 
+	/**
+	 * Truncate the contact meta table
+	 * Run when BWF_DB_VERSION is 1.0.3
+	 */
+	protected function empty_contact_meta_table() {
+		global $wpdb;
+		$result = $wpdb->get_results( "SHOW TABLES LIKE '{$wpdb->prefix}bwf_contact_meta'", ARRAY_A );
+		if ( is_array( $result ) && count( $result ) > 0 ) {
+			$wpdb->query( "TRUNCATE TABLE `{$wpdb->prefix}bwf_contact_meta`" );
+		}
+	}
+
 	public function maybe_flag_old_contacts_indexing() {
 		$indexing_option = get_option( '_bwf_migrate_contacts_indexing' );
 		if ( ! empty( $indexing_option ) ) {
@@ -1023,17 +1024,5 @@ class WooFunnels_DB_Updater {
 		 * 3 - Complete
 		 */
 		update_option( '_bwf_migrate_contacts_indexing', 1 );
-	}
-
-	/**
-	 * Truncate the contact meta table
-	 * Run when BWF_DB_VERSION is 1.0.3
-	 */
-	protected function empty_contact_meta_table() {
-		global $wpdb;
-		$result = $wpdb->get_results( "SHOW TABLES LIKE '{$wpdb->prefix}bwf_contact_meta'", ARRAY_A );
-		if ( is_array( $result ) && count( $result ) > 0 ) {
-			$wpdb->query( "TRUNCATE TABLE `{$wpdb->prefix}bwf_contact_meta`" );
-		}
 	}
 }

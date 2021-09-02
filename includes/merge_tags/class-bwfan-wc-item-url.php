@@ -7,7 +7,7 @@ class BWFAN_WC_Item_Url extends BWFAN_Cart_Display {
 
 	public function __construct() {
 		$this->tag_name        = 'item_url';
-		$this->tag_description = __( 'Purchased Item Url', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Purchased Item URL', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_item_url', array( $this, 'parse_shortcode' ) );
 	}
 

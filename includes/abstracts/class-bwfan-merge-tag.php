@@ -256,6 +256,14 @@ abstract class BWFAN_Merge_Tag {
 			$output         = $this->fallback;
 		}
 
+		if ( ! empty( $output ) && isset( $atts['prefix'] ) && ! empty( $atts['prefix'] ) ) {
+			$output = $atts['prefix'] . $output;
+		}
+
+		if ( ! empty( $output ) && isset( $atts['suffix'] ) && ! empty( $atts['suffix'] ) ) {
+			$output = $output . $atts['suffix'];
+		}
+
 		return apply_filters( 'bwfan_parse_merge_tag_output', $output, $atts );
 	}
 

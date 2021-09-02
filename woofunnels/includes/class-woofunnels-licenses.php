@@ -66,7 +66,7 @@ class WooFunnels_Licenses {
 		$plugins_need_license_autonami   = $this->get_data( 'autonami' );
 
 		$plugins_need_license_woofunnels_titles = [];
-		$plugins_need_license_autonami_titles = [];
+		$plugins_need_license_autonami_titles   = [];
 		foreach ( $plugins_need_license_woofunnels as $plugin_data ) {
 
 			if ( 'active' !== $plugin_data['product_status'] || $this->is_expired( $plugin_data ) || $this->is_disabled( $plugin_data ) ) {
@@ -153,13 +153,13 @@ class WooFunnels_Licenses {
 
 	public function show_invalid_license_notice( $plugins, $type ) {
 		?>
-		<div class="bwf-notice notice error">
-			<p>
+        <div class="bwf-notice notice error">
+            <p>
 				<?php
 				echo sprintf( __( '<strong>Invalid License Key: </strong> You are <i>not receiving</i> Latest Updates, New Features, Security Updates &amp; Bug Fixes for <strong>%1$s</strong>. <a href="%2$s">Click Here To Fix This</a>.', 'buildwoofunnels' ), implode( ', ', $plugins ), $this->license_url( $type ) );
 				?>
-			</p>
-		</div>
+            </p>
+        </div>
 		<?php
 	}
 

@@ -2,9 +2,9 @@
 Contributors: xlplugins, amans2k
 Tags: crm, marketing automation, cart abandonment, cart recovery, woocommerce, email marketing
 Requires at least: 5.0
-Tested up to: 5.8.0
+Tested up to: 5.8.1
 Requires PHP: 7.0
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -188,6 +188,13 @@ The abandoned user will also see their filled date restored on the recovery link
 
 
 == Change log ==
+
+= 2.0.6 (Aug 23, 2021) =
+* Added: Merge tags: Order shipping first name and last name added. (#915)
+* Added: Merge tags: Allow support for prefix and suffix attributes in merge tags in case value is present. Ex: {{contact_first_name prefix="Hi " suffix=","}} (#921)
+* Improved: Emails order and cart table merge tags style improvements. (#918)
+* Fixed: Updating profile from the WooCommerce account area was breaking, fixed. (#926)
+* Dev: Filter hook to enable WC email format for automations 'bwfan_enable_wc_email_template'. (#934)
 
 = 2.0.5 (Aug 18, 2021) =
 * Compatible with WordPress 5.8

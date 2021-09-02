@@ -39,10 +39,12 @@ ob_start();
     width: 100%;
     max-width: <?php echo $max_width; ?>px;
     direction:<?php echo is_rtl() ? 'rtl' : 'ltr'; ?>
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
     }
 
     #body_content table {
     margin: 0 0 16px;
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
     }
 
     #body_content table td {
@@ -59,23 +61,24 @@ ob_start();
 
     #body_content h1, #body_content h2, #body_content h3, #body_content h4 {
     margin: 0 0 16px;
-    line-height: 1.5;
+    line-height: 130%;
+    text-align: <?php echo is_rtl() ? 'right' : 'left'; ?>;
     }
 
     #body_content h1 {
-    font-size: <?php echo( absint( $font_size ) + 9 ); ?>px;
-    }
-
-    #body_content h2 {
     font-size: <?php echo( absint( $font_size ) + 6 ); ?>px;
     }
 
-    #body_content h3 {
+    #body_content h2 {
     font-size: <?php echo( absint( $font_size ) + 3 ); ?>px;
     }
 
+    #body_content h3 {
+    font-size: <?php echo( absint( $font_size + 1 ) ); ?>px;
+    }
+
     #body_content h4 {
-    font-size: <?php echo $font_size; ?>px;
+    font-size: <?php echo( absint( $font_size - 1 ) ); ?>px;
     font-weight: normal;
     }
 

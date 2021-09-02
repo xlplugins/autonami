@@ -208,8 +208,8 @@
 
 .iziModal .iziModal-header.iziModal-noSubtitle {
     padding: 14px 15px 16px 25px;
-        animation: unset !important;
-        background: #fff !important;
+    animation: unset !important;
+    background: #fff !important;
 }
 
 .iziModal .iziModal-header.iziModal-noSubtitle .iziModal-header-buttons {

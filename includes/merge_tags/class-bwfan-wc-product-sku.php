@@ -7,7 +7,7 @@ class BWFAN_WC_Product_Sku extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'product_sku';
-		$this->tag_description = __( 'Product Sku', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Product SKU', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_product_sku', array( $this, 'parse_shortcode' ) );
 	}
 

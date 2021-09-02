@@ -3,14 +3,14 @@
  * Plugin Name: Autonami Marketing Automations For WordPress
  * Plugin URI: https://buildwoofunnels.com/wordpress-marketing-automation-autonami/
  * Description: Power up all your essential functionalities like sending cart abandonment emails, tracking their conversions and many other marketing/ admin automated workflows.
- * Version: 2.0.5
+ * Version: 2.0.6
  * Author: BuildWooFunnels
  * Author URI: https://buildwoofunnels.com
  * License: GPLv3 or later
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: wp-marketing-automations
  * Requires at least: 5.0
- * Tested up to: 5.8.0
+ * Tested up to: 5.8.1
  * WooFunnels: true
  *
  * Autonami Marketing Automations For WordPress is free software.
@@ -196,11 +196,11 @@ final class BWFAN_Core {
 	 * Defining constants
 	 */
 	public function define_plugin_properties() {
-		define( 'BWFAN_VERSION', '2.0.5' );
+		define( 'BWFAN_VERSION', '2.0.6' );
 		define( 'BWFAN_MIN_WC_VERSION', '3.0' );
 		define( 'BWFAN_SLUG', 'bwfan' );
 		define( 'BWFAN_FULL_NAME', 'Autonami Marketing Automations' );
-		define( 'BWFAN_BWF_VERSION', '1.9.75' );
+		define( 'BWFAN_BWF_VERSION', '1.9.76' );
 		define( 'BWFAN_PLUGIN_FILE', __FILE__ );
 		define( 'BWFAN_PLUGIN_DIR', __DIR__ );
 		define( 'BWFAN_TEMPLATE_DIR', plugin_dir_path( BWFAN_PLUGIN_FILE ) . 'templates' );

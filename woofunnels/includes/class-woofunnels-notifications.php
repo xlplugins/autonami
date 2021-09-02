@@ -338,7 +338,7 @@ class WooFunnels_Notifications {
                                 action: 'wf_dismiss_link',
                                 noticeGroup: noticeGroup,
                                 noticekey: noticekey,
-                                _nonce: '<?php echo wp_create_nonce('bwf_notice_dismiss'); ?>',
+                                _nonce: '<?php echo wp_create_nonce( 'bwf_notice_dismiss' ); ?>',
                             },
                             success: function (result) {
                                 if (result.status === 'success' && result.success === 'true') {
@@ -383,7 +383,7 @@ class WooFunnels_Notifications {
 			'msg'     => 'Problem With dismiss',
 		);
 
-		check_ajax_referer('bwf_notice_dismiss','_nonce');
+		check_ajax_referer( 'bwf_notice_dismiss', '_nonce' );
 
 		if ( ( isset( $_POST['noticeGroup'] ) && $_POST['noticeGroup'] !== '' ) && ( isset( $_POST['noticekey'] ) && $_POST['noticekey'] !== '' ) ) {
 

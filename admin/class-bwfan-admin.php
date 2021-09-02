@@ -771,23 +771,28 @@ class BWFAN_Admin {
 	 * @param $data
 	 */
 	public function set_events_js_data( $event_slug, $key, $data ) {
-		if ( isset( $this->events_js_data[ $event_slug ] ) ) {
-			if ( isset( $this->events_js_data[ $event_slug ][ $key ] ) ) {
-				$saved_value = json_decode( $this->events_js_data[ $event_slug ][ $key ] );
-
-				if ( ! empty( $data ) ) {
-					$data = json_decode( $data );
-					foreach ( $data as $key1 => $value1 ) {
-						$saved_value[ $key1 ] = $value1;
-					}
-				}
-				$this->events_js_data[ $event_slug ][ $key ] = wp_json_encode( $saved_value );
-			} else {
-				$this->events_js_data[ $event_slug ][ $key ] = $data;
-			}
-		} else {
+		if ( ! isset( $this->events_js_data[ $event_slug ] ) ) {
+			$this->events_js_data[ $event_slug ]         = [];
 			$this->events_js_data[ $event_slug ][ $key ] = $data;
+
+			return;
 		}
+
+		if ( ! isset( $this->events_js_data[ $event_slug ][ $key ] ) ) {
+			$this->events_js_data[ $event_slug ][ $key ] = $data;
+
+			return;
+		}
+
+		$saved_value = is_string( $this->events_js_data[ $event_slug ][ $key ] ) ? json_decode( $this->events_js_data[ $event_slug ][ $key ] ) : array();
+
+		if ( ! empty( $data ) ) {
+			$data = is_string( $data ) ? json_decode( $data ) : array();
+			foreach ( $data as $key1 => $value1 ) {
+				$saved_value[ $key1 ] = $value1;
+			}
+		}
+		$this->events_js_data[ $event_slug ][ $key ] = wp_json_encode( $saved_value );
 	}
 
 	public function get_events_js_data() {

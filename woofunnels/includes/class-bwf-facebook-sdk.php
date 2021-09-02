@@ -3,6 +3,8 @@
 
 class BWF_Facebook_Sdk {
 	private static $instance = null;
+	protected $container = array();
+	protected $event_data = array();
 	private $api_url = 'https://graph.facebook.com';
 	private $version = '';
 	private $pixel_id = '';
@@ -12,8 +14,6 @@ class BWF_Facebook_Sdk {
 	private $partner_agent = '';
 	private $body = [];
 	private $response_body = null;
-	protected $container = array();
-	protected $event_data = array();
 	private $access_token = '';
 
 	public function __construct( $pixel_id, $access_token, $version = 'v11.0' ) {
@@ -30,9 +30,13 @@ class BWF_Facebook_Sdk {
 
 	}
 
+	public static function create( $pixel_id, $access_token, $version = 'v11.0' ) {
 
-	public function get_api_url() {
-		return $this->api_url . '/' . $this->version . '/' . $this->pixel_id . '/events';
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self( $pixel_id, $access_token, $version );
+		}
+
+		return self::$instance;
 	}
 
 	public function set_event_data( $event_name, $event_data ) {
@@ -40,7 +44,7 @@ class BWF_Facebook_Sdk {
 		$this->event_data = $event_data;
 	}
 
-	public function set_event_source_url($url = '') {
+	public function set_event_source_url( $url = '' ) {
 		$this->source_url = $url;
 	}
 
@@ -57,10 +61,10 @@ class BWF_Facebook_Sdk {
 			return $out_response;
 		}
 
-		$event_id  = $this->get_event_id();
-		$input     = [ 'event_name' => $this->event_name, 'event_time' => $this->get_time(), 'event_id' => $event_id ];
+		$event_id = $this->get_event_id();
+		$input    = [ 'event_name' => $this->event_name, 'event_time' => $this->get_time(), 'event_id' => $event_id ];
 
-		if(isset($this->source_url)) {
+		if ( isset( $this->source_url ) ) {
 			$input['event_source_url'] = $this->source_url;
 		}
 		$user_data = $this->get_user_data();
@@ -95,26 +99,12 @@ class BWF_Facebook_Sdk {
 		return array( 'request' => $this->get_request_body(), 'response' => $this->response_body );
 	}
 
-	public function set_user_data( $data = [] ) {
-		$this->container['email']             = isset( $data['email'] ) ? $data['email'] : null;
-		$this->container['phone']             = isset( $data['phone'] ) ? $data['phone'] : null;
-		$this->container['gender']            = isset( $data['gender'] ) ? $data['gender'] : null;
-		$this->container['date_of_birth']     = isset( $data['date_of_birth'] ) ? $data['date_of_birth'] : null;
-		$this->container['last_name']         = isset( $data['last_name'] ) ? $data['last_name'] : null;
-		$this->container['first_name']        = isset( $data['first_name'] ) ? $data['first_name'] : null;
-		$this->container['city']              = isset( $data['city'] ) ? $data['city'] : null;
-		$this->container['state']             = isset( $data['state'] ) ? $data['state'] : null;
-		$this->container['dobd']              = isset( $data['dobd'] ) ? $data['dobd'] : null;
-		$this->container['dobm']              = isset( $data['dobm'] ) ? $data['dobm'] : null;
-		$this->container['doby']              = isset( $data['doby'] ) ? $data['doby'] : null;
-		$this->container['country_code']      = isset( $data['country_code'] ) ? $data['country_code'] : null;
-		$this->container['zip_code']          = isset( $data['zip_code'] ) ? $data['zip_code'] : null;
-		$this->container['client_user_agent'] = isset( $data['client_user_agent'] ) ? $data['client_user_agent'] : null;
-		$this->container['client_ip_address'] = isset( $data['client_ip_address'] ) ? $data['client_ip_address'] : null;
-		$this->container['fbp']               = isset( $data['fbp'] ) ? $data['fbp'] : null;
-		$this->container['fbc']               = isset( $data['fbc'] ) ? $data['fbc'] : null;
-		$this->container['fbp']               = isset( $data['_fbp'] ) ? $data['_fbp'] : $this->container['fbp'];
-		$this->container['fbc']               = isset( $data['_fbc'] ) ? $data['_fbc'] : $this->container['fbc'];
+	public function get_event_id() {
+		return $this->container['event_id'];
+	}
+
+	public function get_time() {
+		return time();
 	}
 
 	public function get_user_data() {
@@ -137,37 +127,9 @@ class BWF_Facebook_Sdk {
 		$normalized_payload['fbc']               = $this->getFbc();
 		$normalized_payload['fbp']               = $this->getFbp();
 		$normalized_payload                      = array_filter( $normalized_payload );
+
 		return $normalized_payload;
 	}
-
-	public function get_response_body() {
-		return $this->response_body;
-	}
-
-	public function get_request_body() {
-		return $this->body;
-	}
-
-	public function get_time() {
-		return time();
-	}
-
-	public function get_event_id() {
-		return $this->container['event_id'];
-	}
-
-	public function set_event_id( $event_id ) {
-		return $this->container['event_id'] = $event_id;
-	}
-
-	public function set_test_event_code( $event_code ) {
-		$this->test_event_code = $event_code;
-	}
-
-	public function set_partner_agent( $partner_agent ) {
-		$this->partner_agent = $partner_agent;
-	}
-
 
 	/**
 	 * @param string $data hash input data using SHA256 algorithm.
@@ -190,47 +152,6 @@ class BWF_Facebook_Sdk {
 	public static function isHashed( $pii ) {
 		// it could be sha256 or md5
 		return preg_match( '/^[A-Fa-f0-9]{64}$/', $pii ) || preg_match( '/^[a-f0-9]{32}$/', $pii );
-	}
-
-	/**
-	 * Extracts the IP Address from the PHP Request Context.
-	 * @return string
-	 */
-	public function getIpAddress() {
-		return $this->container['client_ip_address'];
-	}
-
-	/**
-	 * Extracts the HTTP User Agent from the PHP Request Context.
-	 * @return string
-	 */
-	public function getHttpUserAgent() {
-		return $this->container['client_user_agent'];
-	}
-
-	/**
-	 * Extracts the URI from the PHP Request Context.
-	 * @return string
-	 */
-	public function getRequestUri() {
-		return $this->container['reuqesturi'];
-	}
-
-	/**
-	 * Extracts the FBP cookie from the PHP Request Context.
-	 * @return string
-	 */
-	public function getFbp() {
-
-		return $this->container['fbp'];
-	}
-
-	/**
-	 * Extracts the FBC cookie from the PHP Request Context.
-	 * @return string
-	 */
-	public function getFbc() {
-		return $this->container['fbc'];
 	}
 
 	/**
@@ -337,13 +258,91 @@ class BWF_Facebook_Sdk {
 		return $this->container['doby'];
 	}
 
-	public static function create( $pixel_id, $access_token, $version = 'v11.0' ) {
+	/**
+	 * Extracts the IP Address from the PHP Request Context.
+	 * @return string
+	 */
+	public function getIpAddress() {
+		return $this->container['client_ip_address'];
+	}
 
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self( $pixel_id, $access_token, $version );
-		}
+	/**
+	 * Extracts the HTTP User Agent from the PHP Request Context.
+	 * @return string
+	 */
+	public function getHttpUserAgent() {
+		return $this->container['client_user_agent'];
+	}
 
-		return self::$instance;
+	/**
+	 * Extracts the FBC cookie from the PHP Request Context.
+	 * @return string
+	 */
+	public function getFbc() {
+		return $this->container['fbc'];
+	}
+
+	/**
+	 * Extracts the FBP cookie from the PHP Request Context.
+	 * @return string
+	 */
+	public function getFbp() {
+
+		return $this->container['fbp'];
+	}
+
+	public function get_api_url() {
+		return $this->api_url . '/' . $this->version . '/' . $this->pixel_id . '/events';
+	}
+
+	public function get_request_body() {
+		return $this->body;
+	}
+
+	public function set_user_data( $data = [] ) {
+		$this->container['email']             = isset( $data['email'] ) ? $data['email'] : null;
+		$this->container['phone']             = isset( $data['phone'] ) ? $data['phone'] : null;
+		$this->container['gender']            = isset( $data['gender'] ) ? $data['gender'] : null;
+		$this->container['date_of_birth']     = isset( $data['date_of_birth'] ) ? $data['date_of_birth'] : null;
+		$this->container['last_name']         = isset( $data['last_name'] ) ? $data['last_name'] : null;
+		$this->container['first_name']        = isset( $data['first_name'] ) ? $data['first_name'] : null;
+		$this->container['city']              = isset( $data['city'] ) ? $data['city'] : null;
+		$this->container['state']             = isset( $data['state'] ) ? $data['state'] : null;
+		$this->container['dobd']              = isset( $data['dobd'] ) ? $data['dobd'] : null;
+		$this->container['dobm']              = isset( $data['dobm'] ) ? $data['dobm'] : null;
+		$this->container['doby']              = isset( $data['doby'] ) ? $data['doby'] : null;
+		$this->container['country_code']      = isset( $data['country_code'] ) ? $data['country_code'] : null;
+		$this->container['zip_code']          = isset( $data['zip_code'] ) ? $data['zip_code'] : null;
+		$this->container['client_user_agent'] = isset( $data['client_user_agent'] ) ? $data['client_user_agent'] : null;
+		$this->container['client_ip_address'] = isset( $data['client_ip_address'] ) ? $data['client_ip_address'] : null;
+		$this->container['fbp']               = isset( $data['fbp'] ) ? $data['fbp'] : null;
+		$this->container['fbc']               = isset( $data['fbc'] ) ? $data['fbc'] : null;
+		$this->container['fbp']               = isset( $data['_fbp'] ) ? $data['_fbp'] : $this->container['fbp'];
+		$this->container['fbc']               = isset( $data['_fbc'] ) ? $data['_fbc'] : $this->container['fbc'];
+	}
+
+	public function get_response_body() {
+		return $this->response_body;
+	}
+
+	public function set_event_id( $event_id ) {
+		return $this->container['event_id'] = $event_id;
+	}
+
+	public function set_test_event_code( $event_code ) {
+		$this->test_event_code = $event_code;
+	}
+
+	public function set_partner_agent( $partner_agent ) {
+		$this->partner_agent = $partner_agent;
+	}
+
+	/**
+	 * Extracts the URI from the PHP Request Context.
+	 * @return string
+	 */
+	public function getRequestUri() {
+		return $this->container['reuqesturi'];
 	}
 
 }

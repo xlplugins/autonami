@@ -137,7 +137,7 @@ Place your license key here', 'woofunnels' ) . '" />' . "\n";
 				$response        .= apply_filters( 'woofunnels_license_notice_bewlow_field', $response_notice, $item );
 
 			} else {
-				$deactivate_url = wp_nonce_url( add_query_arg( 'action', 'woofunnels_deactivate-product', add_query_arg( 'filepath', $item['product_file_path'], add_query_arg( 'page', filter_input(INPUT_GET,'page', FILTER_SANITIZE_STRING), add_query_arg( 'tab', 'licenses' ), network_admin_url( 'admin.php' ) ) ) ), 'bwf-deactivate-product' );
+				$deactivate_url = wp_nonce_url( add_query_arg( 'action', 'woofunnels_deactivate-product', add_query_arg( 'filepath', $item['product_file_path'], add_query_arg( 'page', filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING ), add_query_arg( 'tab', 'licenses' ), network_admin_url( 'admin.php' ) ) ) ), 'bwf-deactivate-product' );
 				if ( isset( $item['existing_key'] ) && isset( $item['existing_key']['key'] ) ) {
 					$license_obj = WooFunnels_Licenses::get_instance();
 					$license_key = $license_obj->get_secret_license_key( $item['existing_key']['key'] );
@@ -229,6 +229,7 @@ Place your license key here', 'woofunnels' ) . '" />' . "\n";
 
 		return $columns;
 	}
+
 	// End get_bulk_actions()
 
 	public function get_sortable_columns() {

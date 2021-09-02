@@ -7,7 +7,7 @@ class BWFAN_WC_Order_Itemscount extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'order_itemscount';
-		$this->tag_description = __( 'Order Itemscount', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Order Items Count', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_order_itemscount', array( $this, 'parse_shortcode' ) );
 		$this->support_fallback = false;
 	}

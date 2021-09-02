@@ -48,11 +48,11 @@ if ( ! class_exists( 'BWF_Admin_Breadcrumbs' ) ) {
 			}
 			$last_item = end( self::$nodes );
 			?>
-			<ul>
-				<li class="<?php echo esc_attr( $last_item['class'] ) ?>">
+            <ul>
+                <li class="<?php echo esc_attr( $last_item['class'] ) ?>">
 					<?php echo wp_kses_post( $last_item['text'] ); ?>
-				</li>
-			</ul>
+                </li>
+            </ul>
 			<?php
 		}
 
@@ -115,7 +115,7 @@ if ( ! class_exists( 'BWF_Admin_Breadcrumbs' ) ) {
 
 		public static function render_sticky_bar() {
 			?>
-			<style>
+            <style>
                 /* Sticky Bar */
                 .bwf-header-bar {
                     background: #fff;
@@ -210,13 +210,14 @@ if ( ! class_exists( 'BWF_Admin_Breadcrumbs' ) ) {
                     padding: 60px 0 0 20px;
                     margin: 0 20px 0 0
                 }
+
                 .bwf-header-bar .bwf-breadcrub-svg-icon {
                     max-width: 35px;
                 }
-			</style>
-			<div class="bwf-header-bar">
-				<img class="bwf-breadcrub-svg-icon" src="<?php echo esc_url( plugin_dir_url( WooFunnel_Loader::$ultimate_path ) . 'woofunnels/assets/img/bwf-icon-white-bg.svg'); ?>"/>
-				<div class="bwf-bar-navigation">
+            </style>
+            <div class="bwf-header-bar">
+                <img class="bwf-breadcrub-svg-icon" src="<?php echo esc_url( plugin_dir_url( WooFunnel_Loader::$ultimate_path ) . 'woofunnels/assets/img/bwf-icon-white-bg.svg' ); ?>"/>
+                <div class="bwf-bar-navigation">
 					<?php
 					global $submenu;
 					if ( array_key_exists( 'bwf_dashboard', $submenu ) ) {
@@ -226,18 +227,18 @@ if ( ! class_exists( 'BWF_Admin_Breadcrumbs' ) ) {
 						BWF_Admin_Breadcrumbs::render_top_bar();
 					}
 					?>
-				</div>
-				<div class="bwf-bar-quick-links">
-					<a class="bwf-bar-link" href="https://buildwoofunnels.com/documentation/" target="_blank">
-						<i class="dashicons dashicons-format-chat"></i>
-						<span>Docs</span>
-					</a>
-					<a class="bwf-bar-link" href="https://buildwoofunnels.com/support/" target="_blank">
-						<i class="dashicons dashicons-businessman"></i>
-						<span>Support</span>
-					</a>
-				</div>
-			</div>
+                </div>
+                <div class="bwf-bar-quick-links">
+                    <a class="bwf-bar-link" href="https://buildwoofunnels.com/documentation/" target="_blank">
+                        <i class="dashicons dashicons-format-chat"></i>
+                        <span>Docs</span>
+                    </a>
+                    <a class="bwf-bar-link" href="https://buildwoofunnels.com/support/" target="_blank">
+                        <i class="dashicons dashicons-businessman"></i>
+                        <span>Support</span>
+                    </a>
+                </div>
+            </div>
 			<?php
 		}
 

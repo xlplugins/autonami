@@ -139,6 +139,11 @@ final class BWFAN_Wp_Sendemail extends BWFAN_Action {
 			$data_to_set['body'] = BWFAN_Common::bwfan_correct_protocol_url( $data_to_set['body'] );
 		}
 
+		/** in case email missing then get from global if available */
+		if ( empty( $data_to_set['email'] ) && ! empty( $task_meta['global']['email'] ) ) {
+			$data_to_set['email'] = $task_meta['global']['email'];
+		}
+
 		return apply_filters( 'bwfan_sendemail_make_data', $data_to_set, $task_meta );
 	}
 
@@ -440,6 +445,13 @@ final class BWFAN_Wp_Sendemail extends BWFAN_Action {
 		if ( isset( $data['promotional_email'] ) && 0 === absint( $data['promotional_email'] ) ) {
 			remove_filter( 'woocommerce_email_footer_text', array( $this, 'add_unsubscribe_merge_tag' ) );
 		}
+
+		ob_start();
+		do_action( 'bwfan_output_email_style' ); // for registering the css
+		$css = ob_get_clean();
+
+		$email_body = $this->emogrifier_parsed_output( $css, $email_body );
+
 		$email_abstract_object = new WC_Email();
 		ob_start();
 
@@ -450,7 +462,6 @@ final class BWFAN_Wp_Sendemail extends BWFAN_Action {
 		do_action( 'woocommerce_email_footer', $email_abstract_object );
 
 		$email_body = ob_get_clean();
-
 
 		return apply_filters( 'woocommerce_mail_content', $email_abstract_object->style_inline( wptexturize( $email_body ) ) );
 	}
@@ -469,21 +480,7 @@ final class BWFAN_Wp_Sendemail extends BWFAN_Action {
 		include BWFAN_PLUGIN_DIR . '/templates/email-styles.php';
 		$css = ob_get_clean();
 
-		if ( BWFAN_Common::supports_emogrifier() ) {
-			$emogrifier_class = '\\BWF_Pelago\\Emogrifier';
-			if ( ! class_exists( $emogrifier_class ) ) {
-				include_once BWFAN_PLUGIN_DIR . '/libraries/class-emogrifier.php';
-			}
-			try {
-				/** @var \BWF_Pelago\Emogrifier $emogrifier */
-				$emogrifier = new $emogrifier_class( $email_body, $css );
-				$email_body = $emogrifier->emogrify();
-			} catch ( Exception $e ) {
-				BWFAN_Core()->logger->log( $e->getMessage(), 'send_email_emogrifier' );
-			}
-		} else {
-			$email_body = '<style type="text/css">' . $css . '</style>' . $email_body;
-		}
+		$email_body = $this->emogrifier_parsed_output( $css, $email_body );
 
 		return $email_body;
 	}
@@ -499,24 +496,10 @@ final class BWFAN_Wp_Sendemail extends BWFAN_Action {
 		$email_body = $this->prepare_email_content( $data['body'] );
 
 		ob_start();
-		do_action( 'bwfan_output_email_style' ); // for registering the css on raw template
+		include BWFAN_PLUGIN_DIR . '/templates/email-editor-styles.php';
 		$css = ob_get_clean();
 
-		if ( BWFAN_Common::supports_emogrifier() ) {
-			$emogrifier_class = '\\BWF_Pelago\\Emogrifier';
-			if ( ! class_exists( $emogrifier_class ) ) {
-				include_once BWFAN_PLUGIN_DIR . '/libraries/class-emogrifier.php';
-			}
-			try {
-				/** @var \BWF_Pelago\Emogrifier $emogrifier */
-				$emogrifier = new $emogrifier_class( $email_body, $css );
-				$email_body = $emogrifier->emogrify();
-			} catch ( Exception $e ) {
-				BWFAN_Core()->logger->log( $e->getMessage(), 'send_email_emogrifier' );
-			}
-		} else {
-			$email_body = '<style type="text/css">' . $css . '</style>' . $email_body;
-		}
+		$email_body = $this->emogrifier_parsed_output( $css, $email_body );
 
 		return $email_body;
 	}
@@ -529,26 +512,38 @@ final class BWFAN_Wp_Sendemail extends BWFAN_Action {
 	 * @return string
 	 */
 	protected function email_body_editor( $data ) {
-
 		$email_body = $this->prepare_email_content( $data['body'] );
+
 		ob_start();
-		do_action( 'bwfan_output_email_style' ); // for registering the css on raw template
+		include BWFAN_PLUGIN_DIR . '/templates/email-editor-styles.php';
 		$css = ob_get_clean();
 
-		if ( BWFAN_Common::supports_emogrifier() ) {
-			$emogrifier_class = '\\BWF_Pelago\\Emogrifier';
-			if ( ! class_exists( $emogrifier_class ) ) {
-				include_once BWFAN_PLUGIN_DIR . '/libraries/class-emogrifier.php';
-			}
-			try {
-				/** @var \BWF_Pelago\Emogrifier $emogrifier */
-				$emogrifier = new $emogrifier_class( $email_body, $css );
-				$email_body = $emogrifier->emogrify();
-			} catch ( Exception $e ) {
-				BWFAN_Core()->logger->log( $e->getMessage(), 'send_email_emogrifier' );
-			}
-		} else {
+		$email_body = $this->emogrifier_parsed_output( $css, $email_body );
+
+		return $email_body;
+	}
+
+	protected function emogrifier_parsed_output( $css, $email_body ) {
+		if ( empty( $email_body ) || empty( $css ) ) {
+			return $email_body;
+		}
+
+		if ( ! BWFAN_Common::supports_emogrifier() ) {
 			$email_body = '<style type="text/css">' . $css . '</style>' . $email_body;
+
+			return $email_body;
+		}
+
+		$emogrifier_class = '\\BWF_Pelago\\Emogrifier';
+		if ( ! class_exists( $emogrifier_class ) ) {
+			include_once BWFAN_PLUGIN_DIR . '/libraries/class-emogrifier.php';
+		}
+		try {
+			/** @var \BWF_Pelago\Emogrifier $emogrifier */
+			$emogrifier = new $emogrifier_class( $email_body, $css );
+			$email_body = $emogrifier->emogrify();
+		} catch ( Exception $e ) {
+			BWFAN_Core()->logger->log( $e->getMessage(), 'send_email_emogrifier' );
 		}
 
 		return $email_body;

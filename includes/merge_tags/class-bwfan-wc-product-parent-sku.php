@@ -6,7 +6,7 @@ class BWFAN_WC_Product_Parent_Sku extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'product_parent_sku';
-		$this->tag_description = __( 'Product Parent Sku', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Product Parent SKU', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_product_parent_sku', array( $this, 'parse_shortcode' ) );
 		$this->support_fallback = false;
 	}

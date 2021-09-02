@@ -7,7 +7,7 @@ class BWFAN_WC_Order_Payment_Url extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'order_payment_url';
-		$this->tag_description = __( 'Order Payment Url', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Order Payment URL', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_order_payment_url', array( $this, 'parse_shortcode' ) );
 		$this->support_fallback = false;
 	}

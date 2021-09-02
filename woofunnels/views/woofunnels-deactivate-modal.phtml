@@ -28,7 +28,7 @@ foreach ( $reasons as $reason ) {
 		$reason_html .= '<div class="reason_html">' . $reason['html'] . '</div>';
 	}
 
-	$reasons_list_items_html .= sprintf( '<li class="%s" data-input-type="%s" data-input-placeholder="%s"><label><span><input type="radio" name="selected-reason" value="%s"/></span><span>%s</span></label>%s</li>', $list_item_classes, $reason['input_type'], $reason['input_placeholder'], $reason['id'] , $reason['text'], $reason_html );
+	$reasons_list_items_html .= sprintf( '<li class="%s" data-input-type="%s" data-input-placeholder="%s"><label><span><input type="radio" name="selected-reason" value="%s"/></span><span>%s</span></label>%s</li>', $list_item_classes, $reason['input_type'], $reason['input_placeholder'], $reason['id'], $reason['text'], $reason_html );
 	$incr ++;
 }
 ?>
@@ -181,7 +181,7 @@ foreach ( $reasons as $reason ) {
 		foreach($VARS['reasons'] as $plugin_key => $plugin_reasons) {
 		$threshold = apply_filters( 'woofunnels_uninstall_reason_threshold_' . $plugin_key, 2 );
 		?>
-        WooFunnelsDefaultReason['<?php echo $plugin_key; ?>'] = '<?php echo apply_filters( 'woofunnels_default_reason_' . $plugin_key, '' ); ?>'
+        WooFunnelsDefaultReason['<?php echo $plugin_key; ?>'] = '<?php echo apply_filters( 'woofunnels_default_reason_' . $plugin_key, '' ); ?>';
 		<?php
 		if ( $plugin_key === "default" ) {
 			continue;
@@ -205,7 +205,7 @@ foreach ( $reasons as $reason ) {
 
 
 			if ( $key < $threshold ) {
-				$reasons_list_items_html_custom = sprintf( '<li class="%s" data-input-type="%s" data-input-placeholder="%s"><label><span><input type="radio" name="selected-reason" value="%s"/></span><span>%s</span></label>%s</li>', $list_item_classes, $reason['input_type'], $reason['input_placeholder'], $reason['id'] , $reason['text'], $reason_html );
+				$reasons_list_items_html_custom = sprintf( '<li class="%s" data-input-type="%s" data-input-placeholder="%s"><label><span><input type="radio" name="selected-reason" value="%s"/></span><span>%s</span></label>%s</li>', $list_item_classes, $reason['input_type'], $reason['input_placeholder'], $reason['id'], $reason['text'], $reason_html );
 
 			} else {
 				if ( $key == $threshold ) {
@@ -213,7 +213,7 @@ foreach ( $reasons as $reason ) {
   <a href="javascript:void(0)">I have more specific reason</a>
 </li>';
 				}
-				$reasons_list_items_html_custom .= sprintf( '<li class="%s" data-input-type="%s" data-input-placeholder="%s"><label><span><input type="radio" name="selected-reason" value="%s"/></span><span>%s</span></label>%s</li>', $list_item_classes, $reason['input_type'], $reason['input_placeholder'], $reason['id'] , $reason['text'], $reason_html );
+				$reasons_list_items_html_custom .= sprintf( '<li class="%s" data-input-type="%s" data-input-placeholder="%s"><label><span><input type="radio" name="selected-reason" value="%s"/></span><span>%s</span></label>%s</li>', $list_item_classes, $reason['input_type'], $reason['input_placeholder'], $reason['id'], $reason['text'], $reason_html );
 
 
 			}

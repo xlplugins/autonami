@@ -6,7 +6,7 @@
  * @author woofunnels
  * @package WooFunnels
  */
-define( 'BWF_VERSION', '1.9.75' );
+define( 'BWF_VERSION', '1.9.76' );
 define( 'BWF_DB_VERSION', '1.0.3' );
 
 class WooFunnels_Dashboard {
@@ -32,12 +32,12 @@ class WooFunnels_Dashboard {
 		$model = apply_filters( 'woofunnels_tabs_modal_' . self::$selected, array() );
 
 		?>
-		<div class="wrap">
-			<div class="icon32" id="icon-themes"><br></div>
-			<div class="woofunnels_dashboard_tab_content" id="<?php echo self::$selected; ?>">
+        <div class="wrap">
+            <div class="icon32" id="icon-themes"><br></div>
+            <div class="woofunnels_dashboard_tab_content" id="<?php echo self::$selected; ?>">
 				<?php include_once self::$loader_url . 'views/woofunnels-tabs-' . self::$selected . '.phtml'; ?>
-			</div>
-		</div>
+            </div>
+        </div>
 		<?php
 	}
 
@@ -68,7 +68,7 @@ class WooFunnels_Dashboard {
 	public static function woofunnels_dashboard_scripts() {
 
 		?>
-		<style type="text/css">
+        <style type="text/css">
 
             /* product grid */
             .woofunnels_plugins_wrap .filter-links.filter-primary {
@@ -500,7 +500,7 @@ class WooFunnels_Dashboard {
                 padding-left: 5px;
 
             }
-		</style>
+        </style>
 		<?php
 	}
 
@@ -665,27 +665,27 @@ class WooFunnels_Dashboard {
 			$message = __( 'All Plugins transients cleared.', 'woofunnels' );
 
 			?>
-			<div class="notice notice-success is-dismissible">
-				<p><?php echo esc_html( $message ); ?></p>
-			</div>
+            <div class="notice notice-success is-dismissible">
+                <p><?php echo esc_html( $message ); ?></p>
+            </div>
 			<?php
 		}
 		$nonce               = wp_create_nonce( 'bwf_tools_action' );
 		$clear_transient_url = admin_url( 'admin.php?page=woofunnels&tab=tools&woofunnels_transient=clear&_nonce=' . $nonce );
 		$show_reset_tracking = apply_filters( 'woofunnels_show_reset_tracking', false );
 		?>
-		<table class="widefat" cellspacing="0">
-			<tbody class="tools">
+        <table class="widefat" cellspacing="0">
+            <tbody class="tools">
 			<?php do_action( 'woofunnels_tools_add_tables_row_start' ); ?>
-			<tr>
-				<th>
-					<strong class="name"><?php esc_html_e( 'WooFunnels transients', 'woofunnels' ); ?></strong>
-					<p class="description"><?php esc_html_e( 'This tool will clear all the WooFunnels plugins transients cache.', 'woofunnels' ); ?></p>
-				</th>
-				<td class="run-tool">
-					<a href="<?php echo esc_url( $clear_transient_url ); ?>" class="button button-large"><?php esc_html_e( 'Clear transients', 'woofunnels' ); ?></a>
-				</td>
-			</tr>
+            <tr>
+                <th>
+                    <strong class="name"><?php esc_html_e( 'WooFunnels transients', 'woofunnels' ); ?></strong>
+                    <p class="description"><?php esc_html_e( 'This tool will clear all the WooFunnels plugins transients cache.', 'woofunnels' ); ?></p>
+                </th>
+                <td class="run-tool">
+                    <a href="<?php echo esc_url( $clear_transient_url ); ?>" class="button button-large"><?php esc_html_e( 'Clear transients', 'woofunnels' ); ?></a>
+                </td>
+            </tr>
 			<?php if ( true === $show_reset_tracking ) {
 
 				$reset_tracking_url = admin_url( 'admin.php?page=woofunnels&tab=tools&woofunnels_tracking=reset&_nonce=' . $nonce );
@@ -697,19 +697,19 @@ class WooFunnels_Dashboard {
 					$text_btn           = __( 'Turn On', 'woofunnels' );
 				}
 				?>
-				<tr>
-					<th>
-						<strong class="name"><?php esc_html_e( 'Usage Tracking', 'woofunnels' ); ?></strong>
-						<p class="description"><?php esc_html_e( 'This action controls Usage Tracking', 'woofunnels' ); ?></p>
-					</th>
-					<td class="run-tool">
-						<a href="<?php echo esc_url( $reset_tracking_url ); ?>" class="button button-large"><?php echo esc_html( $text_btn ); ?></a>
-					</td>
-				</tr>
+                <tr>
+                    <th>
+                        <strong class="name"><?php esc_html_e( 'Usage Tracking', 'woofunnels' ); ?></strong>
+                        <p class="description"><?php esc_html_e( 'This action controls Usage Tracking', 'woofunnels' ); ?></p>
+                    </th>
+                    <td class="run-tool">
+                        <a href="<?php echo esc_url( $reset_tracking_url ); ?>" class="button button-large"><?php echo esc_html( $text_btn ); ?></a>
+                    </td>
+                </tr>
 			<?php } ?>
 			<?php do_action( 'woofunnels_tools_add_tables_row' ); ?>
-			</tbody>
-		</table>
+            </tbody>
+        </table>
 		<?php
 	}
 
@@ -814,7 +814,7 @@ class WooFunnels_Dashboard {
 		}
 		ob_start();
 		?>
-		<style>
+        <style>
             #adminmenuwrap {
                 position: relative !important;
                 top: 0 !important;
@@ -824,22 +824,22 @@ class WooFunnels_Dashboard {
                 height: auto;
                 position: relative
             }
-		</style>
+        </style>
 		<?php
 		echo ob_get_clean();
 	}
 
 	public static function wfocu_add_template_indexing_tools() {
 		?>
-		<tr>
-			<th>
-				<strong class="name"><?php esc_html_e( 'Index Templates JSON', 'woofunnels' ); ?></strong>
-				<p class="description"><?php esc_html_e( 'This tool will populate the option key with latest templates.', 'woofunnels' ); ?></p>
-			</th>
-			<td class="run-tool">
-				<a href="<?php echo esc_url( admin_url() . '?wffn_parse_template=yes' ); ?>" class="button button-large"><?php esc_html_e( 'Index Templates', 'woofunnels' ); ?></a>
-			</td>
-		</tr>
+        <tr>
+            <th>
+                <strong class="name"><?php esc_html_e( 'Index Templates JSON', 'woofunnels' ); ?></strong>
+                <p class="description"><?php esc_html_e( 'This tool will populate the option key with latest templates.', 'woofunnels' ); ?></p>
+            </th>
+            <td class="run-tool">
+                <a href="<?php echo esc_url( admin_url() . '?wffn_parse_template=yes' ); ?>" class="button button-large"><?php esc_html_e( 'Index Templates', 'woofunnels' ); ?></a>
+            </td>
+        </tr>
 
 		<?php
 	}
@@ -854,8 +854,19 @@ class WooFunnels_Dashboard {
 		}
 	}
 
-	public static function get_template_api_url() {
-		return 'http://gettemplates.buildwoofunnels.com/';
+	public static function get_all_templates( $force = false ) {
+		$get_transient_instance = WooFunnels_Transient::get_instance();
+		$transient              = $get_transient_instance->get_transient( '_bwf_fb_templates' );
+		if ( empty( $transient ) || true === $force ) {
+			$templates = self::get_remote_templates();
+			if ( is_array( $templates ) ) {
+				$get_transient_instance->set_transient( '_bwf_fb_templates', count( $templates ), HOUR_IN_SECONDS * 12 );
+			}
+
+			return $templates;
+		}
+
+		return get_option( '_bwf_fb_templates' );
 	}
 
 	public static function get_remote_templates() {
@@ -876,19 +887,8 @@ class WooFunnels_Dashboard {
 		return $json_templates;
 	}
 
-	public static function get_all_templates( $force = false ) {
-		$get_transient_instance = WooFunnels_Transient::get_instance();
-		$transient              = $get_transient_instance->get_transient( '_bwf_fb_templates' );
-		if ( empty( $transient ) || true === $force ) {
-			$templates = self::get_remote_templates();
-			if ( is_array( $templates ) ) {
-				$get_transient_instance->set_transient( '_bwf_fb_templates', count( $templates ), HOUR_IN_SECONDS * 12 );
-			}
-
-			return $templates;
-		}
-
-		return get_option( '_bwf_fb_templates' );
+	public static function get_template_api_url() {
+		return 'http://gettemplates.buildwoofunnels.com/';
 	}
 
 	public static function fetch_template_json() {

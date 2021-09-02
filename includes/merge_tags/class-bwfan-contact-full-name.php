@@ -29,7 +29,7 @@ if ( ! bwfan_is_autonami_pro_active() || version_compare( BWFAN_PRO_VERSION, '2.
 		public function parse_shortcode( $attr ) {
 			$get_data = BWFAN_Merge_Tag_Loader::get_data();
 			if ( true === $get_data['is_preview'] ) {
-				return $this->get_dummy_preview();
+				return $this->parse_shortcode_output( $this->get_dummy_preview(), $attr );
 			}
 
 			/** If first name and last name */

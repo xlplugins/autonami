@@ -6,7 +6,7 @@ class BWFAN_WC_Cart_Billing_Address1 extends Cart_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'cart_billing_address1';
-		$this->tag_description = __( 'Cart Billing Address1', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Cart Billing Address 1', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_cart_billing_address1', array( $this, 'parse_shortcode' ) );
 
 	}

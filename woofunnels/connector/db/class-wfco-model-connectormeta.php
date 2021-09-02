@@ -36,6 +36,14 @@ class WFCO_Model_ConnectorMeta extends WFCO_Model {
 		return $meta;
 	}
 
+	private static function _table() {
+		global $wpdb;
+		$table_name = strtolower( get_called_class() );
+		$table_name = str_replace( 'wfco_model_', 'wfco_', $table_name );
+
+		return $wpdb->prefix . $table_name;
+	}
+
 	public static function get_connectors_meta( $ids = [] ) {
 		$meta = [];
 		if ( empty( $ids ) || ! is_array( $ids ) ) {
@@ -61,14 +69,6 @@ class WFCO_Model_ConnectorMeta extends WFCO_Model {
 		}
 
 		return $meta;
-	}
-
-	private static function _table() {
-		global $wpdb;
-		$table_name = strtolower( get_called_class() );
-		$table_name = str_replace( 'wfco_model_', 'wfco_', $table_name );
-
-		return $wpdb->prefix . $table_name;
 	}
 
 

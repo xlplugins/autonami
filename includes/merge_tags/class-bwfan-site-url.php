@@ -7,7 +7,7 @@ class BWFAN_Site_Url extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'site_url';
-		$this->tag_description = __( 'Website url', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Website URL', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_site_url', array( $this, 'parse_shortcode' ) );
 		$this->support_fallback = false;
 	}

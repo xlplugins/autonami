@@ -7,7 +7,7 @@ class BWFAN_WC_Order_View_Url extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'order_view_url';
-		$this->tag_description = __( 'Order View Url', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Order View URL', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_order_view_url', array( $this, 'parse_shortcode' ) );
 		$this->support_fallback = false;
 	}

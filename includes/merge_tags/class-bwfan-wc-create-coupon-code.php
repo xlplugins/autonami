@@ -9,7 +9,7 @@ class BWFAN_WC_Create_Coupon_Code extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'create_coupon';
-		$this->tag_description = __( 'Create a new coupon', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Create New Coupon', 'wp-marketing-automations' );
 
 		add_shortcode( 'bwfan_create_coupon', array( $this, 'parse_shortcode' ) );
 		add_action( 'bwfan_coupon_created', array( $this, 'set_coupon_id' ), 10, 1 );

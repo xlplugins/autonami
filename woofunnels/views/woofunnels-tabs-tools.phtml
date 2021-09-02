@@ -21,17 +21,17 @@ $current_page = 'woofunnels';
 			if ( ! empty( $licenses->plugins_list ) ) {
 				?>
                 <li class="plugin-install-featured <?php echo ( isset( $model->current_tab ) && $model->current_tab === 'licenses' ) ? 'current' : ''; ?>">
-                    <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=licenses' );  ?>"><?php esc_html_e( 'Licenses', 'woofunnels' ); ?></a>
+                    <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=licenses' ); ?>"><?php esc_html_e( 'Licenses', 'woofunnels' ); ?></a>
                 </li>
 			<?php } ?>
             <li class="plugin-install-popular <?php echo ( isset( $model->current_tab ) && $model->current_tab === 'support' ) ? 'current' : ''; ?>">
-                <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=support' );  ?>"
+                <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=support' ); ?>"
                    class=""><?php esc_html_e( 'Support', 'woofunnels' ); ?></a>
             </li>
 			<?php if ( isset( $model->additional_tabs ) && is_array( $model->additional_tabs ) && count( $model->additional_tabs ) > 0 ): ?>
 				<?php foreach ( $model->additional_tabs as $tab ): ?>
                     <li class="<?php echo ( isset( $model->current_tab ) && $model->current_tab === $tab['slug'] ) ? "current" : "" ?>">
-                        <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=' . $tab['slug'] );  ?>"><?php echo esc_html( $tab['label'] ); ?></a>
+                        <a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&tab=' . $tab['slug'] ); ?>"><?php echo esc_html( $tab['label'] ); ?></a>
                     </li>
 				<?php endforeach; ?>
 			<?php endif; ?>

@@ -6,7 +6,7 @@ class BWFAN_WC_Cart_Currency extends BWFAN_Merge_Tag {
 
 	public function __construct() {
 		$this->tag_name        = 'cart_currency';
-		$this->tag_description = __( 'Currency Symbol', 'wp-marketing-automations' );
+		$this->tag_description = __( 'Cart Currency (Symbol)', 'wp-marketing-automations' );
 		add_shortcode( 'bwfan_cart_currency', array( $this, 'parse_shortcode' ) );
 		$this->support_fallback = false;
 	}

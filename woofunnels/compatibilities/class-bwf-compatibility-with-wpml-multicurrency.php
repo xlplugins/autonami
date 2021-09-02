@@ -30,8 +30,9 @@ class BWF_Compatibility_With_WPML_MultiCurrency {
 		if ( ! class_exists( 'SitePress' ) ) {
 			return $price;
 		}
-		
+
 		global $woocommerce_wpml;
+
 		return $woocommerce_wpml->get_multi_currency()->prices->convert_price_amount( $price );
 	}
 

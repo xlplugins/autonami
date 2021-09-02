@@ -217,11 +217,11 @@ class WFCO_Admin {
 	}
 
 	public function is_connector_page( $section = '' ) {
-		if ( 'autonami' === filter_input(INPUT_GET,'page',FILTER_SANITIZE_STRING) && '' === $section ) {
+		if ( 'autonami' === filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING ) && '' === $section ) {
 			return true;
 		}
 
-		if (  'autonami' === filter_input(INPUT_GET,'page',FILTER_SANITIZE_STRING) && filter_input(INPUT_GET,'section',FILTER_SANITIZE_STRING) === $section ) {
+		if ( 'autonami' === filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING ) && filter_input( INPUT_GET, 'section', FILTER_SANITIZE_STRING ) === $section ) {
 			return true;
 		}
 
@@ -229,7 +229,7 @@ class WFCO_Admin {
 	}
 
 	public function connector_page() {
-		if ( 'autonami' === filter_input(INPUT_GET,'page',FILTER_SANITIZE_STRING) ) {
+		if ( 'autonami' === filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING ) ) {
 			include_once( $this->admin_path . '/view/connector-admin.php' ); //phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingVariable
 		}
 	}
@@ -260,7 +260,7 @@ class WFCO_Admin {
 	 * Remove all the notices in our dashboard pages as they might break the design.
 	 */
 	public function maybe_remove_all_notices_on_page() {
-		if ( 'autonami' === filter_input(INPUT_GET,'page',FILTER_SANITIZE_STRING) && filter_input(INPUT_GET,'section',FILTER_SANITIZE_STRING) ) {
+		if ( 'autonami' === filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING ) && filter_input( INPUT_GET, 'section', FILTER_SANITIZE_STRING ) ) {
 			remove_all_actions( 'admin_notices' );
 		}
 	}

@@ -31,7 +31,7 @@ if ( ! bwfan_is_autonami_pro_active() || version_compare( BWFAN_PRO_VERSION, '2.
 		public function parse_shortcode( $attr ) {
 			$get_data = BWFAN_Merge_Tag_Loader::get_data();
 			if ( true === $get_data['is_preview'] ) {
-				return $this->get_dummy_preview();
+				return $this->parse_shortcode_output( $this->get_dummy_preview(), $attr );
 			}
 
 			/** If first name */
@@ -67,7 +67,7 @@ if ( ! bwfan_is_autonami_pro_active() || version_compare( BWFAN_PRO_VERSION, '2.
 			/** If email */
 			$email = isset( $get_data['email'] ) ? trim( $get_data['email'] ) : '';
 			if ( is_email( $email ) ) {
-				$user_data = get_user_by( 'email', $email );
+				$user_data  = get_user_by( 'email', $email );
 				$first_name = $user_data instanceof WP_User ? get_user_meta( $user_data->ID, 'first_name', true ) : '';
 
 				return $this->parse_shortcode_output( ucwords( $first_name ), $attr );

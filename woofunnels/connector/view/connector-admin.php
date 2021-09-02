@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                         <div class="wfco-row">
                             <form method="GET">
                                 <input type="hidden" name="page" value="connector"/>
-                                <input type="hidden" name="status" value="<?php echo( filter_input(INPUT_GET,'status',FILTER_SANITIZE_STRING) ? filter_input(INPUT_GET,'status',FILTER_SANITIZE_STRING) : '' );  ?>"/>
+                                <input type="hidden" name="status" value="<?php echo( filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING ) ? filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING ) : '' ); ?>"/>
 								<?php
 								WFCO_Connector_Screen_Factory::print_screens( 'autonami' );
 								?>
